@@ -22,16 +22,34 @@
     <title>Document</title>
 </head>
 <body>
-    <header class="site-header">
-      <div class="header-menu-and-brand">
-        <img src="assets/images/Menu.png" alt="Menu Icon" height="20" width="20">
-        <h1 class="brand-title">True Gent Africa</h1>
+    <nav class="site-nav">
+      <div class="nav-menu-and-brand">
+        <img class="icon menu-button" src="assets/images/Menu.png" alt="Menu Icon" height="20" width="20">
+        <a href="index.php" class="brand-title">True Gent Africa</a>
       </div>  
-      <div class="header-actions">
-        <img src="assets/images/Cart.png" alt="" height="20" width="20">
-        <img src="assets/images/account-icon.png" alt="" height="20" width="20">
+      <div class="nav-links">
+        <a href=""></a>
+        <a href=""></a>
+        <a href=""></a>
       </div>
-    </header>
+      <div class="nav-actions">
+        <img class="icon-actions" src="assets/images/Cart.png" alt="" height="20" width="20">
+        <img class="icon-actions" src="assets/images/account-icon.png" alt="" height="20" width="20">
+      </div>
+    </nav>
+    <aside class="menu" hidden>
+            <ul class="menu-links">
+                <li class="list-link">
+                    <a class="links" href="index.php">Home</a>
+                </li>
+                <li class="list-link">
+                    <a class="links href="shopping.php">Shop</a>
+                </li>
+                <li class="list-link">
+                    <a class="links" href="contact.php">Contact Us</a>
+                </li>
+            </ul>
+    </aside>
     <main></main>
     <footer></footer>
 </body>

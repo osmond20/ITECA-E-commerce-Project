@@ -4,7 +4,7 @@
   font-family: "Libre Franklin";
   font-style: normal;
   font-weight: 400;
-  src: url("../fonts/libre-franklin-v20-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("../assets/fonts/libre-franklin-v20-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 /* libre-franklin-500 - latin */
 @font-face {
@@ -12,7 +12,7 @@
   font-family: "Libre Franklin";
   font-style: normal;
   font-weight: 500;
-  src: url("../fonts/libre-franklin-v20-latin-500.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("../assets/fonts/libre-franklin-v20-latin-500.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 /* libre-franklin-600 - latin */
 @font-face {
@@ -20,5 +20,136 @@
   font-family: "Libre Franklin";
   font-style: normal;
   font-weight: 600;
-  src: url("../fonts/libre-franklin-v20-latin-600.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("../assets/fonts/libre-franklin-v20-latin-600.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+:root {
+  --white: hsl(0, 0%, 100%);
+  --cod-gray: hsl(0, 0%, 6%);
+  --black: hsl(0, 0%, 0%);
+  --paragraphfontsize: calc(17 / 16 * 1rem);
+  --nav-footer-fontsize: calc(14 / 16 * 1rem);
+  --neutrl-gray: hsl(191, 8%, 74%);
+}
+
+/* || RESET */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img,
+picture,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border-color: transparent;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul,
+ol {
+  list-style-type: none;
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  font-family: "Libre Franklin", sans-serif;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  height: 4.0625rem;
+  width: 100%;
+  padding-inline-start: 1.25rem;
+  padding-inline-end: 0.625rem;
+  border-bottom: 1px solid var(--neutrl-gray);
+  justify-content: space-between;
+}
+
+.nav-menu-and-brand {
+  width: 150px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.nav-links {
+  display: none;
+}
+
+.icon {
+  height: 0.85rem;
+  width: 0.85rem;
+}
+
+.icon-actions {
+  height: 1.125rem;
+  width: 1.125rem;
+}
+
+.brand-title {
+  text-decoration: none;
+  font-size: 0.84375rem;
+  font-weight: 600;
+}
+
+.nav-actions {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  width: 6.25rem;
+  gap: 0.9375rem;
+  padding-inline-end: 1.25rem;
+}
+
+.menu {
+  position: relative;
+  z-index: 20;
+  height: 6.375rem;
+  top: 0rem;
+  width: 100%;
+}
+
+.menu-links {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.list-link {
+  width: 100%;
+}
+
+.links {
+  display: block;
+  width: 100%;
+  height: 2.125rem;
+  font-size: 1rem;
+  text-align: center;
+  padding-top: 0.5rem;
+  border-bottom: 1px solid var(--neutrl-gray);
 }/*# sourceMappingURL=styles.css.map */

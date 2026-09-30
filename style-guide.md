@@ -16,6 +16,7 @@ The designs were created to the following widths:
 - White: hsl(0, 0%, 100%)
 - Cod Gray: hsl(0, 0%, 6%)
 - Black: hsl(0, 0%, 0%)
+- Neutral Gray: hsl(191, 8%, 74%);
 
 ### Secondary
 - Black: hsl(0, 0%, 0%) — used at 25% opacity for the menu overlay

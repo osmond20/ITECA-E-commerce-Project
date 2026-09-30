@@ -4,7 +4,7 @@
   font-family: 'Libre Franklin';
   font-style: normal;
   font-weight: 400;
-  src: url('../fonts/libre-franklin-v20-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url('../assets/fonts/libre-franklin-v20-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 /* libre-franklin-500 - latin */
 @font-face {
@@ -12,7 +12,7 @@
   font-family: 'Libre Franklin';
   font-style: normal;
   font-weight: 500;
-  src: url('../fonts/libre-franklin-v20-latin-500.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url('../assets/fonts/libre-franklin-v20-latin-500.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 /* libre-franklin-600 - latin */
 @font-face {
@@ -20,5 +20,138 @@
   font-family: 'Libre Franklin';
   font-style: normal;
   font-weight: 600;
-  src: url('../fonts/libre-franklin-v20-latin-600.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url('../assets/fonts/libre-franklin-v20-latin-600.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
+
+:root{
+  --white: hsl(0, 0%, 100%);
+  --cod-gray: hsl(0, 0%, 6%);
+  --black: hsl(0, 0%, 0%);
+  --paragraphfontsize: calc(17 / 16 * 1rem);
+  --nav-footer-fontsize: calc(14 / 16 * 1rem);
+  --neutrl-gray: hsl(191, 8%, 74%);
+}
+
+/* || RESET */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img,
+picture,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border-color: transparent;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul,
+ol {
+  list-style-type: none;
+}
+
+body{
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  font-family: 'Libre Franklin', sans-serif;
+}
+
+.site-nav{
+  display: flex;
+  align-items: center;
+  height: calc(65 / 16 * 1rem);
+  width: 100%;
+  padding-inline-start: calc(20 / 16 * 1rem);
+  padding-inline-end: calc(10 / 16 * 1rem);
+  border-bottom: 1px solid var(--neutrl-gray);
+  justify-content: space-between;
+}
+
+.nav-menu-and-brand{
+  width: 150px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: calc(20 / 16 *1rem);
+}
+
+
+.nav-links{
+  display: none;
+}
+
+.icon{
+  height: 0.85rem;
+  width: 0.85rem;
+}
+
+.icon-actions{
+  height: calc(18 / 16 * 1rem);
+  width: calc(18 / 16 * 1rem);
+}
+
+.brand-title{
+  text-decoration: none;
+  font-size: calc(13.5 / 16 * 1rem);
+  font-weight: 600;
+}
+
+.nav-actions{
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  width: calc(100 / 16 * 1rem);
+  gap: calc(15 / 16 * 1rem);
+  padding-inline-end: calc(20 / 16 * 1rem);
+}
+
+.menu{
+  position: relative;
+  z-index: 20;
+  height: calc(102 / 16 * 1rem);
+  top:calc(0 / 16 * 1rem);
+  width: 100%;
+}
+.menu-links{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.list-link{
+  width: 100%;
+}
+
+.links{
+  display: block;
+  width: 100%;
+  height: calc(34 / 16 * 1rem);
+  font-size: 1rem;
+  text-align: center;
+  padding-top: calc(8 / 16 * 1rem);
+  border-bottom: 1px solid var(--neutrl-gray);
+}
+
