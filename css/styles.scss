@@ -131,6 +131,7 @@ body{
 
 .menu{
   position: absolute;
+  background-color: var(--white);
   z-index: 100;
   height: calc(102 / 16 * 1rem);
   top:calc(65 / 16 * 1rem);
@@ -264,7 +265,6 @@ body{
 }
 
 .main-el.dim, .footer-el.dim{
-  background-color: var(--black);
   opacity: 25%;
 }
 
