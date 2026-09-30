@@ -72,11 +72,16 @@ ol {
 body{
   height: 100vh;
   width: 100%;
+  display: flex;
+  flex-direction: column;
   position: relative;
   font-family: 'Libre Franklin', sans-serif;
 }
 
 .site-nav{
+  background-color: var(--white);
+  position: fixed;
+  z-index: 9999;
   display: flex;
   align-items: center;
   height: calc(65 / 16 * 1rem);
@@ -95,14 +100,13 @@ body{
   gap: calc(20 / 16 *1rem);
 }
 
-
 .nav-links{
   display: none;
 }
 
 .icon{
-  height: 0.85rem;
-  width: 0.85rem;
+  height: 0.80rem;
+  width: 0.80rem;
 }
 
 .icon-actions{
@@ -126,12 +130,19 @@ body{
 }
 
 .menu{
-  position: relative;
-  z-index: 20;
+  position: absolute;
+  z-index: 100;
   height: calc(102 / 16 * 1rem);
-  top:calc(0 / 16 * 1rem);
+  top:calc(65 / 16 * 1rem);
   width: 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
+
+.menu.show{
+  opacity: 1;
+}
+
 .menu-links{
   height: 100%;
   width: 100%;
@@ -153,5 +164,111 @@ body{
   text-align: center;
   padding-top: calc(8 / 16 * 1rem);
   border-bottom: 1px solid var(--neutrl-gray);
+  transition: opacity 0.3s ease;
+  cursor: pointer;
 }
 
+.links:hover{
+  opacity: 0.5;
+}
+
+.main-el{
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-block-start: calc(65 / 16 * 1rem);
+  padding-inline: calc(20 / 16 * 1rem);
+}
+
+/*--SECTION 1---*/
+.hero-content{
+  padding-block-start: calc(70 / 16 * 1rem);
+  width: 100%;
+}
+
+.content{
+  padding-inline: calc(13 / 16 * 1rem);
+}
+
+.content-title{
+  font-size: calc(24 / 16 * 1rem);
+  font-weight: 500;
+}
+
+.content-paragraph{
+  margin-block-start: calc(24 / 16 * 1rem);
+}
+
+.content-btn{
+  margin-block-start: calc(30 / 16 * 1rem);
+  display: block;
+  text-align: center;
+  height: calc(35 / 16 * 1rem);
+  width: calc(146 / 16 * 1rem);
+  border-radius: calc(7 / 16 * 1rem);
+  background-color: var(--black);
+  color: var(--white);
+  font-size: calc(10 / 16 * 1rem);
+  padding-top: calc(11 / 16 * 1rem);
+  transition: background-color 0.3s ease;
+}
+
+.content-btn:hover{
+  background-color: var(--white);
+  color: var(--black);
+  border: 1px solid var(--black);
+}
+
+.landing-page-image{
+  margin-block-start: calc(52 / 16 * 1rem);
+  margin-inline: calc(13 / 16 * 1rem);
+  height: calc(289 / 16 * 1rem);
+  width: calc(289 / 16 * 1rem);
+}
+
+/*--SECTION-2--*/
+.statement-content{
+  padding-inline: calc(20 / 16 * 1rem);
+  padding-block-start: calc(54 / 16 * 1rem);
+  display: flex;
+  flex-direction: column;
+  gap: calc(38 / 16 * 1rem);
+}
+
+.statement-title{
+  font-size: calc(21 / 16 * 1rem);
+  text-align: center;
+}
+
+.statement-paragraph{
+  text-align: center;
+  font-size: calc(14 / 16 * 1rem);
+}
+
+
+/*--SECTION-3--*/
+.product-content{
+  display: flex;
+  flex-direction: column;
+  gap: calc(33 / 16 * 1rem);
+}
+
+/*--FOOTER--*/
+.footer-el{
+  display: flex;
+  flex-direction: column;
+  height: calc(303 / 16 * 1rem);
+  width: 100%;
+}
+
+.main-el.dim, .footer-el.dim{
+  background-color: var(--black);
+  opacity: 25%;
+}
+
+
+@media(min-width: 48rem){
+
+}
