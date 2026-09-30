@@ -25,7 +25,7 @@
 
 :root{
   --white: hsl(0, 0%, 100%);
-  --cod-gray: hsl(0, 0%, 6%);
+  --cod-gray: hsla(0, 0%, 6%, 0.562);
   --black: hsl(0, 0%, 0%);
   --paragraphfontsize: calc(17 / 16 * 1rem);
   --nav-footer-fontsize: calc(14 / 16 * 1rem);
@@ -130,7 +130,7 @@ body{
 }
 
 .menu{
-  position: absolute;
+  position: fixed;
   background-color: var(--white);
   z-index: 100;
   height: calc(102 / 16 * 1rem);
@@ -190,7 +190,7 @@ body{
 }
 
 .content{
-  padding-inline: calc(13 / 16 * 1rem);
+  padding-inline: calc(6.5 / 16 * 1rem);
 }
 
 .content-title{
@@ -224,7 +224,7 @@ body{
 
 .landing-page-image{
   margin-block-start: calc(52 / 16 * 1rem);
-  margin-inline: calc(13 / 16 * 1rem);
+  margin-inline: calc(6.5 / 16 * 1rem);
   height: calc(289 / 16 * 1rem);
   width: calc(289 / 16 * 1rem);
 }
@@ -256,12 +256,170 @@ body{
   gap: calc(33 / 16 * 1rem);
 }
 
+
+/*--SECTION-4--*/
+.values-content{
+  margin-block-end: calc(53 / 16 * 1rem);
+}
+
+.video-wrapper{
+  position: relative;
+  margin-block-start: calc(52 / 16 * 1rem);
+  margin-inline: calc(13 / 16 * 1rem);
+  height: calc(289 / 16 * 1rem);
+  width: calc(289 / 16 * 1rem);
+  border-radius: calc(5 / 16 * 1rem);
+}
+
+.video{
+  height: 100%;
+  width: 100%;
+  border-radius: calc(5 / 16 * 1rem);
+}
+
+.btn-wrapper{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom:calc(5 / 16 * 1rem);
+  right:calc(5 / 16 * 1rem);
+  height: calc(30 / 16 * 1rem);
+  width: calc(30 / 16 * 1rem);
+  background-color: var(--cod-gray);
+  border-radius: calc(5 / 16 * 1rem);
+}
+
+.video-btn{
+  height: calc(14 / 16 * 1rem);
+  width: calc(14 / 16 * 1rem);
+}
+
+.value-list{
+  margin-block-start: calc(43 / 16 * 1rem);
+  display: flex;
+  flex-direction: column;
+  gap: calc(42 / 16 * 1rem);
+  margin-inline: calc(13 / 16 * 1rem);
+}
+
+.value{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(15 / 16 * 1rem);
+}
+
+.value-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.value-title{
+  font-size: calc(22 / 16 * 1rem);
+}
+
+.value-paragraph{
+  margin-block-start: calc(20 / 16 * 1rem);
+  text-align: center;
+}
+
 /*--FOOTER--*/
 .footer-el{
   display: flex;
   flex-direction: column;
-  height: calc(303 / 16 * 1rem);
+  height: calc(400 / 16 * 1rem);
   width: 100%;
+}
+
+.footer-main{
+  height: calc(234 / 16 * 1rem);
+  padding-block-start: calc(22 / 16 * 1rem);
+  padding-block-end: calc(27 / 16 * 1rem);
+  padding-inline-start: calc(20 / 16 * 1rem);
+  border-top: 1px solid var(--neutrl-gray);
+  border-bottom: 1px solid var(--neutrl-gray);
+}
+
+.footer-info{
+  display: flex;
+  flex-direction: column;
+  gap: calc(15 / 16 * 1rem);
+}
+
+.footer-title{
+  font-size: calc(15 / 16 * 1rem);
+}
+
+.footer-info-link{
+  font-size: calc(13 / 16 * 1rem);
+  color: var(--cod-gray);
+  transition: color 0.3s ease;
+}
+
+.footer-info-link:hover{
+  color:var(--black)
+}
+
+.footer-connect{
+  display: flex;
+  flex-direction: column;
+  gap: calc(15 / 16 * 1rem);
+  margin-block-start: calc(15 / 16 * 1rem);
+}
+
+.connect-links{
+  display: flex;
+  gap: calc(7 / 16 * 1rem);
+}
+
+.footer-icon{
+  height: calc(20 / 16 * 1rem);
+  width: calc(20 / 16 * 1rem);
+  transition: opacity 0.3s ease;
+}
+
+.footer-icon:hover{
+  opacity: 65%;
+}
+
+.footer-brand-link{
+  display: block;
+  height: calc(32 / 16 * 1rem);
+  width: 100%;
+  font-size: calc(21 / 16 * 1rem);
+  font-weight: 600;
+  margin-block-start: calc(25 / 16 * 1rem);
+}
+
+.footer-bottom{
+  height: calc(58 / 16 * 1rem);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: calc(20 / 16 * 1rem);
+  gap: calc(10 / 16 * 1rem);
+}
+
+.copyright{
+  font-size: calc(10 / 16 * 1rem);
+}
+
+.payment{
+  display: flex;
+  height: calc(35 / 16 * 1rem);
+  border: 1px solid var(--neutrl-gray);
+  border-radius: calc(5 / 16 * 1rem);
+  align-items: center;
+  padding-inline: calc(10 / 16 * 1rem);
+}
+
+.payfast-icon{
+  height: calc(20 / 16 * 1rem);
+  width: calc(80 / 16 * 1rem);
+
 }
 
 .main-el.dim, .footer-el.dim{

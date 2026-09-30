@@ -72,6 +72,14 @@
          </div> 
         </section>
         <section class="values-content">
+            <div class="video-wrapper">
+                <video class="video" src="assets/videos/snapsave-app_1163057655412849_hd.mp4" muted>
+                </video>
+                <div class="btn-wrapper">
+                        <img class="video-btn" src="assets/images/play.png" alt="" height="10" width="10">
+                </div>
+            </div>
+
             <div class="value-list">
                 <div class="value">
                     <img src="assets/images/heart.png" alt="" height="20" width="20">
@@ -80,19 +88,15 @@
                         <p class="value-paragraph">Not just Shine. Infused with natural oils that nourish from root to tip for a fuller, stronger beard over time.</p>
                     </div>
                 </div>
-            </div>
-               <div class="value-list">
                 <div class="value">
-                    <img src="assets/images/heart.png" alt="" height="20" width="20">
+                    <img src="assets/images/water.png" alt="" height="20" width="20">
                     <div class="value-content">
                         <h3 class="value-title">Pure, Honest Ingredients</h3>
                         <p class="value-paragraph">Pure, high quality oils blended with purpose and integrity. No silicones. No parabens.</p>
                     </div>
                 </div>
-            </div>
-               <div class="value-list">
                 <div class="value">
-                    <img src="assets/images/heart.png" alt="" height="20" width="20">
+                    <img src="assets/images/earth.png" alt="" height="20" width="20">
                     <div class="value-content">
                         <h3 class="value-title">Born Here</h3>
                         <p class="value-paragraph">Formulated and bottled in South Africa – supporting local craftsmanship and sustainable sourcing.</p>
@@ -101,7 +105,41 @@
             </div>
         </section>
     </main>
-    <footer class="footer-el"></footer>
+    <footer class="footer-el">
+        <div class="footer-main">
+            <div class="footer-info">
+                <h3 class="footer-title">Customer Info</h3>
+                <a class="footer-info-link" href="shipping-returns-refunds.php">Shipping, Returns and Refunds</a>
+                <a class="footer-info-link" href="privacy-policy.php">Privacy Policy & Terms</a>
+            </div>
+            <div class="footer-connect">
+                <h3 class="footer-title">Connect</h3>
+                <div class="connect-links">
+                    <a href="mailto:CON-1469933-Q0Z3@vossie.net">
+                        <img class="footer-icon" src="assets/images/email.png" alt="" height="10" width="10">
+                    </a>
+                    <a href="https://www.instagram.com/truegentafrica/">
+                        <img class="footer-icon" src="assets/images/instagram.png" alt="" height="10" width="10">
+                    </a>
+                    <a href="https://www.facebook.com/truegentafrica/">
+                        <img class="footer-icon" src="assets/images/facebook.png" alt="" height="10" width="10">
+                    </a>
+                    <a href="https://api.whatsapp.com/send/?phone=27820618023&text&type=phone_number&app_absent=0">
+                        <img class="footer-icon" src="assets/images/whatsapp.png" alt="" height="10" width="10">
+                    </a> 
+                </div> 
+            </div>
+            <a class="footer-brand-link" href="index.php">True Gent Africa</a>
+        </div>
+        <div class="footer-bottom">
+            <p class="copyright">© 2025 True Gent Africa. All Rights Reserved.</p>
+            <div class="payment">
+                <a class="" href="https://payfast.io/">
+                    <img class="payfast-icon" src="assets/images/payfast.png" alt="" height="10" width="10">
+                </a>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
 <script defer src="scripts/index.js"></script>

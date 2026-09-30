@@ -1,7 +1,10 @@
+// Variables
 const menuButton = document.querySelector(".menu-button");
 const menu = document.querySelector(".menu");
 const mainEl = document.querySelector(".main-el");
 const footerEl = document.querySelector(".footer-el");
+const videoBtn = document.querySelector(".video-btn");
+const video = document.querySelector(".video");
 
 // Menu functionality
 menuButton.addEventListener("click", ()=>{
@@ -31,4 +34,15 @@ mainEl.addEventListener("click", ()=>{
         mainEl.classList.remove("dim");
         footerEl.classList.remove("dim");
     }
-})
+});
+
+videoBtn.addEventListener("click", ()=>{
+    if(video.pause){
+        videoBtn.setAttribute("src", "assets/images/pause.png");
+        video.play();
+    }
+    else{
+        video.pause();
+        videoBtn.setAttribute("src", "assets/images/play.png");
+    }
+});
