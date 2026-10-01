@@ -28,9 +28,9 @@
         <a href="index.php" class="brand-title">True Gent Africa</a>
       </div>  
       <div class="nav-links">
-        <a href=""></a>
-        <a href=""></a>
-        <a href=""></a>
+        <a class="nav-link" href="">Home</a>
+        <a class="nav-link" href="">Shop</a>
+        <a class="nav-link" href="">Contact Us</a>
       </div>
       <div class="nav-actions">
         <img class="icon-actions" src="assets/images/Cart.png" alt="" height="20" width="20">
@@ -65,7 +65,7 @@
         </section>
         <section class="product-content">
             <img class="landing-page-image" src="assets/images/truegentafrica-2.png" alt="" height="30" width="30">
-            <div class="content">
+            <div class="content p-content">
             <h1 class="content-title">True Gent Beard Oil – Cedar Spice</h1>
             <p class="content-paragraph">A luxurious blend of pure, African-grown oils crafted for the True Gentleman. Smooth, hydrating, and intentional. With a grounded, evening-leaning scent that leaves a steady, unmistakable presence without ever overpowering.</p>
             <a href="shopping.php" class="content-btn">Shop Now</a>
@@ -82,21 +82,21 @@
 
             <div class="value-list">
                 <div class="value">
-                    <img src="assets/images/heart.png" alt="" height="20" width="20">
+                    <img class="value-icon" src="assets/images/heart.png" alt="" height="20" width="20">
                     <div class="value-content">
                         <h3 class="value-title">Made to Strengthen</h3>
                         <p class="value-paragraph">Not just Shine. Infused with natural oils that nourish from root to tip for a fuller, stronger beard over time.</p>
                     </div>
                 </div>
                 <div class="value">
-                    <img src="assets/images/water.png" alt="" height="20" width="20">
+                    <img class="value-icon" src="assets/images/water.png" alt="" height="20" width="20">
                     <div class="value-content">
                         <h3 class="value-title">Pure, Honest Ingredients</h3>
                         <p class="value-paragraph">Pure, high quality oils blended with purpose and integrity. No silicones. No parabens.</p>
                     </div>
                 </div>
                 <div class="value">
-                    <img src="assets/images/earth.png" alt="" height="20" width="20">
+                    <img class="value-icon" src="assets/images/earth.png" alt="" height="20" width="20">
                     <div class="value-content">
                         <h3 class="value-title">Born Here</h3>
                         <p class="value-paragraph">Formulated and bottled in South Africa – supporting local craftsmanship and sustainable sourcing.</p>

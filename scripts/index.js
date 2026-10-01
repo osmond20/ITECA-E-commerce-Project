@@ -37,9 +37,9 @@ mainEl.addEventListener("click", ()=>{
 });
 
 videoBtn.addEventListener("click", ()=>{
-    if(video.pause){
-        videoBtn.setAttribute("src", "assets/images/pause.png");
+    if(video.paused === true){
         video.play();
+        videoBtn.setAttribute("src", "assets/images/pause.png");
     }
     else{
         video.pause();
