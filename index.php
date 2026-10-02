@@ -4,17 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preload" 
-  href="assets/fonts/libre-franklin-v20-latin-regular.woff2"
+  href="assets/fonts/figtree-v9-latin-regular.woff2"
   as="font"
   type="font/woff2"
   crossorigin>
   <link rel="preload" 
-  href="assets/fonts/libre-franklin-v20-latin-500.woff2"
+  href="assets/fonts/figtree-v9-latin-500.woff2"
   as="font"
   type="font/woff2"
   crossorigin>
   <link rel="preload" 
-  href="assets/fonts/libre-franklin-v20-latin-600.woff2"
+  href="assets/fonts/figtree-v9-latin-600.woff2"
+  as="font"
+  type="font/woff2"
+  crossorigin>
+  <link rel="preload" 
+  href="assets/fonts/figtree-v9-latin-700.woff2"
   as="font"
   type="font/woff2"
   crossorigin>
@@ -36,6 +41,20 @@
         <img class="icon-actions" src="assets/images/Cart.png" alt="" height="20" width="20">
         <img class="icon-actions" src="assets/images/account-icon.png" alt="" height="20" width="20">
       </div>
+        <div class="account-menu">
+            <ul class="acc-menu-list">
+                <li class="acc-menu-list-link" id="log-in">
+                    <a class="acc-link" href="" id="">Log-In</a>
+                </li>
+                <li class="sign-in-link" id=sign-in>
+                    <a class="acc-link" href="">Sign-In</a>
+                </li>
+                <li class="acc-menu-list-link">
+                    <a class="acc-link" href=""></a>
+                </li>
+            </ul>
+        </div>
+
     </nav>
     <aside class="menu" aria-expanded="true">
             <ul class="menu-links">
@@ -64,7 +83,7 @@
             <p class="statement-paragraph">True Gent products are built to work together as a complete grooming system. No overlapping functions. No experimental layering. Once your routine is set, your attention is free for better things</p>
         </section>
         <section class="product-content">
-            <img class="landing-page-image" src="assets/images/truegentafrica-2.png" alt="" height="30" width="30">
+            <img class="landing-page-image" id="product-image" src="assets/images/truegentafrica-2.png" alt="" height="30" width="30">
             <div class="content p-content">
             <h1 class="content-title">True Gent Beard Oil – Cedar Spice</h1>
             <p class="content-paragraph">A luxurious blend of pure, African-grown oils crafted for the True Gentleman. Smooth, hydrating, and intentional. With a grounded, evening-leaning scent that leaves a steady, unmistakable presence without ever overpowering.</p>
