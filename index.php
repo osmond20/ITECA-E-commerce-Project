@@ -35,10 +35,10 @@
       <div class="nav-links">
         <a class="nav-link" href="">Home</a>
         <a class="nav-link" href="">Shop</a>
-        <a class="nav-link" href="">Contact Us</a>
+        <a class="nav-link" href="contact.php">Contact Us</a>
       </div>
       <div class="nav-actions">
-        <img class="icon-actions" src="assets/images/Cart.png" alt="" height="20" width="20">
+        <img class="icon-actions" src="assets/images/cart-outline.svg" alt="" height="20" width="20">
         <img class="icon-actions" id="acc-icon" aria-expanded="true" src="assets/images/account-icon.png" alt="" height="20" width="20">
       </div>
         <div class="account-menu">
@@ -147,7 +147,7 @@
                     </a> 
                 </div> 
             </div>
-            <a class="footer-brand-link" href="index.php">True Gent Africa</a>
+            <a class="footer-brand-link" href="index.php" target="_top">True Gent Africa</a>
         </div>
         <div class="footer-bottom">
             <p class="copyright">© 2025 True Gent Africa. All Rights Reserved.</p>

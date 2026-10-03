@@ -129,6 +129,7 @@ body {
 }
 
 .nav-actions {
+  height: 100%;
   display: flex;
   justify-content: end;
   align-items: center;
@@ -284,6 +285,7 @@ section {
 
 .statement-title {
   font-size: 1.3125rem;
+  font-weight: 600;
   text-align: center;
 }
 
@@ -475,16 +477,17 @@ section {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: clamp(0.625rem, 5.747126vw - 2.047414rem, 3.125rem);
-    padding-block-start: 3.4375rem;
+    padding-block-start: clamp(3.4375rem, 3.4375rem + (100vw - 46.5rem) * 0.0287356, 4.6875rem);
   }
   .content {
-    justify-self: start;
+    justify-self: end;
+    padding-block-start: 2.5rem;
   }
   .landing-page-image {
     width: clamp(18.75rem, 21.551724vw + 8.728448rem, 28.125rem);
   }
   .content-title {
-    font-size: clamp(1.75rem, 4.310345vw - 0.25431rem, 3.625rem);
+    font-size: clamp(1.75rem, 1.75rem + (100vw - 46.5rem) * 0.0494253, 2.7rem);
   }
   .content-btn {
     height: clamp(2.1875rem, 2.155172vw + 1.185345rem, 3.125rem);
@@ -630,8 +633,8 @@ section {
     width: 10.625rem;
   }
   .icon-actions {
-    height: 1.25rem;
-    width: 1.25rem;
+    height: 1.5625rem;
+    width: 1.5625rem;
   }
 }
 @media (min-width: 90rem) {
@@ -642,5 +645,8 @@ section {
 @media (min-width: 110rem) {
   .statement-paragraph {
     padding-inline-end: 12.5rem;
+  }
+  .content-title {
+    font-size: clamp(2.7rem, 2.7rem + (100vw - 62.4rem) * 0.1666667, 3.625rem);
   }
 }/*# sourceMappingURL=styles.css.map */

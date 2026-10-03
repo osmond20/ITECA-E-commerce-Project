@@ -130,6 +130,7 @@ body{
 }
 
 .nav-actions{
+  height: 100%;
   display: flex;
   justify-content: end;
   align-items: center;
@@ -286,6 +287,7 @@ section{
 
 .statement-title{
   font-size: calc(21 / 16 * 1rem);
+  font-weight: 600;
   text-align: center;
 }
 
@@ -482,11 +484,12 @@ section{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: clamp(0.625rem, calc(5.747126vw - 2.047414rem), 3.125rem);
-    padding-block-start: calc(55 / 16 * 1rem);
+padding-block-start: clamp(3.4375rem, calc(3.4375rem + ((100vw - 46.5rem) * 0.0287356)), 4.6875rem);
   }
 
   .content{
-    justify-self: start;
+    justify-self: end;
+    padding-block-start: calc(40 / 16 * 1rem);
   }
 
   .landing-page-image{
@@ -494,7 +497,7 @@ section{
   }
 
   .content-title{
-   font-size: clamp(1.75rem, calc(4.310345vw - 0.25431rem), 3.625rem);
+    font-size: clamp(1.75rem, calc(1.75rem + ((100vw - 46.5rem) * 0.0494253)), 2.7rem);
   }
 
   .content-btn{
@@ -672,8 +675,8 @@ padding-inline-end: clamp(1.25rem, calc(25.862069vw - 10.775862rem), 12.5rem);
     }
 
     .icon-actions{
-      height: calc(20 / 16 * 1rem);
-      width: calc(20 / 16 * 1rem);
+      height: calc(25 / 16 * 1rem);
+      width: calc(25 / 16 * 1rem);
   }
 }
 
@@ -686,5 +689,9 @@ padding-inline-end: clamp(1.25rem, calc(25.862069vw - 10.775862rem), 12.5rem);
 @media (min-width: 110rem){
    .statement-paragraph{
     padding-inline-end:calc(200 / 16 * 1rem);
+  }
+
+    .content-title{
+    font-size: clamp(2.7rem, calc(2.7rem + ((100vw - 62.4rem) * 0.1666667)), 3.625rem);
   }
 }
