@@ -120,6 +120,7 @@ body{
 .icon-actions{
   height: calc(18 / 16 * 1rem);
   width: calc(18 / 16 * 1rem);
+  cursor: pointer;
 }
 
 .brand-title{
@@ -183,13 +184,19 @@ body{
 
 .account-menu{
   position: absolute;
-  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
   padding: calc(10 / 16 * 1rem);
   right: 10px;
   bottom:-50px;
   background-color: var(--white);
   border-radius: calc(7 / 16 * 1rem);
   border: 1px solid var(--neutrl-gray);
+  box-shadow: 0px 2px 2px  var(--cod-gray);
+}
+
+.account-menu.show{
+  opacity: 1;
 }
 
 .acc-menu-list{

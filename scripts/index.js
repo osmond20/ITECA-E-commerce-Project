@@ -5,6 +5,8 @@ const mainEl = document.querySelector(".main-el");
 const footerEl = document.querySelector(".footer-el");
 const videoBtn = document.querySelector(".video-btn");
 const video = document.querySelector(".video");
+const accIcon = document.getElementById("acc-icon");
+const accMenu = document.querySelector(".account-menu");
 
 // Menu functionality
 menuButton.addEventListener("click", ()=>{
@@ -14,7 +16,6 @@ menuButton.addEventListener("click", ()=>{
     if(isOpen){
         menuButton.setAttribute("src", "assets/images/close.png")
         menu.setAttribute("aria-hidden", isOpen);
-        menu.classList.add("show");
     }
     else{
         menuButton.setAttribute("src", "assets/images/Menu.png")
@@ -46,3 +47,8 @@ videoBtn.addEventListener("click", ()=>{
         videoBtn.setAttribute("src", "assets/images/play.png");
     }
 });
+
+accIcon.addEventListener("click", ()=>{
+    const isOpen = accMenu.classList.toggle("show");
+    accMenu.setAttribute("aria-expanded", isOpen);
+});     
