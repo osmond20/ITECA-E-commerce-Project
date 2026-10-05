@@ -37,6 +37,11 @@ mainEl.addEventListener("click", ()=>{
     }
 });
 
+accIcon.addEventListener("click", ()=>{
+    const isOpen = accMenu.classList.toggle("show");
+    accMenu.setAttribute("aria-expanded", isOpen);
+});  
+
 videoBtn.addEventListener("click", ()=>{
     if(video.paused === true){
         video.play();
@@ -46,9 +51,4 @@ videoBtn.addEventListener("click", ()=>{
         video.pause();
         videoBtn.setAttribute("src", "assets/images/play.png");
     }
-});
-
-accIcon.addEventListener("click", ()=>{
-    const isOpen = accMenu.classList.toggle("show");
-    accMenu.setAttribute("aria-expanded", isOpen);
-});     
+});   

@@ -160,5 +160,5 @@
     </footer>
 </body>
 </html>
-<script defer src="scripts/index.js"></script>
+<script defer src="js/index.js"></script>
 <?php  ?>
