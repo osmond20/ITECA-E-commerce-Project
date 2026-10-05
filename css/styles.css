@@ -471,23 +471,26 @@ section {
 
 @media (min-width: 46.5rem) {
   .main-el {
-    padding-inline: clamp(4.375rem, 33.045977vw - 10.991379rem, 300px);
+    padding-inline: clamp(4.375rem, 4.375rem + (100vw - 46.5rem) * 0.12931, 10rem);
   }
   .hero-content {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: clamp(0.625rem, 5.747126vw - 2.047414rem, 3.125rem);
-    padding-block-start: clamp(3.4375rem, 3.4375rem + (100vw - 46.5rem) * 0.0287356, 4.6875rem);
+    padding-block-start: clamp(3.4375rem, 3.4375rem + (100vw - 46.5rem) * 0.0175287, 4.2rem);
   }
   .content {
     justify-self: end;
-    padding-block-start: 2.5rem;
+    padding-block-start: 0.625rem;
   }
   .landing-page-image {
-    width: clamp(18.75rem, 21.551724vw + 8.728448rem, 28.125rem);
+    width: 100%;
   }
   .content-title {
-    font-size: clamp(1.75rem, 1.75rem + (100vw - 46.5rem) * 0.0494253, 2.7rem);
+    font-size: clamp(1.75rem, 3.333vw + 0.2rem, 3.2rem);
+  }
+  .content-paragraph {
+    font-size: clamp(1rem, 1rem + (100vw - 46.5rem) * 0.0086207, 1.375rem);
   }
   .content-btn {
     height: clamp(2.1875rem, 2.155172vw + 1.185345rem, 3.125rem);
@@ -640,6 +643,12 @@ section {
 @media (min-width: 90rem) {
   .value {
     width: 75%;
+  }
+  .value-title {
+    font-size: clamp(1rem, 1rem + (100vw - 46.5rem) * 0.0183908, 1.8rem);
+  }
+  .value-paragraph {
+    font-size: clamp(0.8rem, 0.8rem + (100vw - 46.5rem) * 0.0114943, 1.3rem);
   }
 }
 @media (min-width: 110rem) {

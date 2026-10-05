@@ -35,7 +35,7 @@
       <div class="nav-links">
         <a class="nav-link" href="">Home</a>
         <a class="nav-link" href="">Shop</a>
-        <a class="nav-link" href="contact.php">Contact Us</a>
+        <a class="nav-link" href="pages/contact.php">Contact Us</a>
       </div>
       <div class="nav-actions">
         <img class="icon-actions" src="assets/images/cart-outline.svg" alt="" height="20" width="20">
@@ -64,7 +64,7 @@
                     <a class="links href="shopping.php">Shop</a>
                 </li>
                 <li class="list-link">
-                    <a class="links" href="contact.php">Contact Us</a>
+                    <a class="links" href="pages/contact.php">Contact Us</a>
                 </li>
             </ul>
     </aside>
@@ -127,8 +127,8 @@
         <div class="footer-main">
             <div class="footer-info">
                 <h3 class="footer-title">Customer Info</h3>
-                <a class="footer-info-link" href="shipping-returns-refunds.php">Shipping, Returns and Refunds</a>
-                <a class="footer-info-link" href="privacy-policy.php">Privacy Policy & Terms</a>
+                <a class="footer-info-link" href="pages/shipping.php">Shipping, Returns and Refunds</a>
+                <a class="footer-info-link" href="pages/privacypolicy.php">Privacy Policy & Terms</a>
             </div>
             <div class="footer-connect">
                 <h3 class="footer-title">Connect</h3>
