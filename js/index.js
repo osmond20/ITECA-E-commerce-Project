@@ -7,6 +7,7 @@ const videoBtn = document.querySelector(".video-btn");
 const video = document.querySelector(".video");
 const accIcon = document.getElementById("acc-icon");
 const accMenu = document.querySelector(".account-menu");
+const imagesPath = new URL("../assets/images/", document.currentScript.src);
 
 // Menu functionality
 menuButton.addEventListener("click", ()=>{
@@ -14,11 +15,11 @@ menuButton.addEventListener("click", ()=>{
     const isOpen = menu.classList.toggle("show");
 
     if(isOpen){
-        menuButton.setAttribute("src", "assets/images/close.png")
+        menuButton.setAttribute("src", new URL("close.png", imagesPath))
         menu.setAttribute("aria-hidden", isOpen);
     }
     else{
-        menuButton.setAttribute("src", "assets/images/Menu.png")
+        menuButton.setAttribute("src", new URL("Menu.png", imagesPath))
     }
 
     // switches opacity states
@@ -29,7 +30,7 @@ menuButton.addEventListener("click", ()=>{
 // Click functionality so that the menu closes without menu button event
 mainEl.addEventListener("click", ()=>{
     if(menu.classList.contains("show") === true){
-        menuButton.setAttribute("src", "assets/images/Menu.png")
+        menuButton.setAttribute("src", new URL("Menu.png", imagesPath))
         menu.setAttribute("aria-expanded", false);
         menu.classList.remove("show");
         mainEl.classList.remove("dim");
@@ -42,13 +43,15 @@ accIcon.addEventListener("click", ()=>{
     accMenu.setAttribute("aria-expanded", isOpen);
 });  
 
-videoBtn.addEventListener("click", ()=>{
-    if(video.paused === true){
-        video.play();
-        videoBtn.setAttribute("src", "assets/images/pause.png");
-    }
-    else{
-        video.pause();
-        videoBtn.setAttribute("src", "assets/images/play.png");
-    }
-});   
+if(videoBtn && video){
+    videoBtn.addEventListener("click", ()=>{
+        if(video.paused === true){
+            video.play();
+            videoBtn.setAttribute("src", new URL("pause.png", imagesPath));
+        }
+        else{
+            video.pause();
+            videoBtn.setAttribute("src", new URL("play.png", imagesPath));
+        }
+    });
+}
