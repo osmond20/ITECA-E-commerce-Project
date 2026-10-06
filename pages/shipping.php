@@ -41,7 +41,7 @@
         <img class="icon-actions" src="../assets/images/cart-outline.svg" alt="" height="20" width="20">
         <img class="icon-actions" id="acc-icon" aria-expanded="true" src="../assets/images/account-icon.png" alt="" height="20" width="20">
       </div>
-        <div class="account-menu">
+      <div class="account-menu">
             <ul class="acc-menu-list">
                 <li class="acc-menu-list-link" id="log-in">
                     <a class="acc-link" href="" id="">Log-In</a>
@@ -53,7 +53,7 @@
                     <a class="acc-link" href=""></a>
                 </li>
             </ul>
-        </div>
+    </div>
     </nav>
     <aside class="menu" aria-expanded="true">
             <ul class="menu-links">
@@ -68,7 +68,7 @@
                 </li>
             </ul>
     </aside>
-    <main class="shipping-main-el">
+    <main class="main-el">
         <div class="shipping-content">
             <h1 class="shipping-title">Shipping, Returns and Refunds</h1>
             <p class="shipping-paragraph">Shipping takes 2-5 days depending on where you are located. We ship from Johannesburg using The Courier Guy.
@@ -112,4 +112,5 @@
         </div>
     </footer>
 </body>
+<script defer src="../js/index.js"></script>
 </html>

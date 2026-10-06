@@ -8,4 +8,5 @@
 <body>
     
 </body>
+<script defer src="../js/index.js"></script>
 </html>
