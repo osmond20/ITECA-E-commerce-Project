@@ -124,7 +124,7 @@ body {
 
 .brand-title {
   text-decoration: none;
-  font-size: 0.84375rem;
+  font-size: clamp(0.84375rem, 0.84375rem + (100vw - 46.5rem) * 0.0064655, 1.125rem);
   font-weight: 600;
 }
 
