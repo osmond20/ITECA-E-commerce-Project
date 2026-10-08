@@ -1,0 +1,185 @@
+/* figtree-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Figtree';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../assets/fonts/figtree-v9-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* figtree-500 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Figtree';
+  font-style: normal;
+  font-weight: 500;
+  src: url('../assets/fonts/figtree-v9-latin-500.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* figtree-600 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Figtree';
+  font-style: normal;
+  font-weight: 600;
+  src: url('../assets/fonts/figtree-v9-latin-600.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* figtree-700 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Figtree';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../assets/fonts/figtree-v9-latin-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+:root{
+  --white: hsl(0, 0%, 100%);
+  --cod-gray: hsla(0, 0%, 6%, 0.562);
+  --black: hsl(0, 0%, 0%);
+  --paragraphfontsize: calc(17 / 16 * 1rem);
+  --nav-footer-fontsize: calc(14 / 16 * 1rem);
+  --neutrl-gray: hsl(191, 8%, 74%);
+  --red: hsl(0, 91%, 49%);
+}
+
+/* || RESET */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img,
+picture,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border-color: transparent;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul,
+ol {
+  list-style-type: none;
+}
+
+body{
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'FigTree', sans-serif;
+}
+
+.main-el{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.signin-container{
+    height: calc(460 / 16 * 1rem);
+    width: clamp(17.5rem, calc(17.5rem + ((100vw - 46.5rem) * 0.0287356)), 18.75rem);
+    border: 1px solid gray;
+    border-radius: calc(10 / 16 * 1rem);
+    padding-block-start: calc(20 / 16 * 1rem);
+    padding-inline: 1rem;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+}
+            
+.sign-in-form{
+    height: 76%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:  center;
+    gap: calc(1 / 16 * 1rem);
+}
+    
+            
+.title{
+    padding-top: calc(15 / 16 * 1rem);
+    text-align: center;
+    font-size: calc(25 / 16 * 1rem);
+}
+            
+.inputs{
+    height: 45px;
+    width: 95%;
+    border-radius: 7px;
+    border: 1px solid var(--black);
+    font-family: var(--body-font);
+    font-size: calc(14 / 16 * 1rem);
+    padding-left: calc(10 / 16 * 1rem);
+    padding-right: calc(10 / 16 * 1rem);
+}
+
+.inputs.on-error{
+    transition: border 0.3s ease;
+    border: 1px solid var(--red);
+}
+
+.error{
+    font-size: calc(7 / 16 * 1rem);
+    padding-inline-end: 0.90rem;
+    width: 100%;
+    text-align: end;
+    font-style: italic;
+    color: var(--red);
+    opacity: 0;
+}
+
+.error.show{
+    opacity: 1;
+}
+            
+.signinBtn{
+    margin-block-start: calc(5 / 16 * 1rem);
+    height:40px;
+    width: 95%;
+    border-radius: 10px;
+    border:1px solid black;
+    background-color: var(--black);
+    color: var(--white);
+    font-family: var(--body-font);
+    transition: background-color 0.3s ease;
+}
+            
+.signinBtn:hover{
+    background-color: var(--white);
+    color: var(--black);
+    cursor: pointer;
+}
+            
+.link-content, .login{
+    text-decoration: none;
+    color: black;
+    font-size: 12px;
+    margin-block-end: calc(20 / 16 * 1rem);
+}
+            
+.login:hover{
+    text-decoration: underline;
+}
