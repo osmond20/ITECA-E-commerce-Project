@@ -86,73 +86,98 @@ body {
   font-family: "FigTree", sans-serif;
 }
 
-div {
-  height: 26.25rem;
-  width: 20.3125rem;
+.main-el {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-container {
+  height: 20.625rem;
+  width: clamp(17.5rem, 17.5rem + (100vw - 46.5rem) * 0.0287356, 18.75rem);
   border: 1px solid gray;
   border-radius: 0.625rem;
-  padding: 1.875rem;
+  padding-block-start: 1.25rem;
+  padding-inline: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
   background-color: white;
 }
 
-form {
-  height: 80%;
+.log-in-form {
+  height: 76%;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 0.0625rem;
 }
 
-h1 {
+.title {
+  padding-top: 0.9375rem;
   text-align: center;
   font-size: 1.5625rem;
 }
 
-label {
-  font-size: 12px;
-  display: flex;
-  align-self: start;
-}
-
-input {
+.inputs {
   height: 45px;
   width: 95%;
-  border-radius: 10px;
-  border: 1px solid gray;
+  border-radius: 7px;
+  border: 1px solid var(--black);
   font-family: var(--body-font);
   font-size: 0.875rem;
   padding-left: 0.625rem;
   padding-right: 0.625rem;
 }
 
-button {
+.inputs.on-error {
+  transition: border 0.3s ease;
+  border: 1px solid var(--red);
+}
+
+.error {
+  font-size: 0.5rem;
+  padding-inline-end: 0.9rem;
+  width: 100%;
+  text-align: end;
+  font-style: italic;
+  color: var(--red);
+  opacity: 0;
+}
+
+.error.show {
+  opacity: 1;
+}
+
+.loginBtn {
+  margin-block-start: 0.3125rem;
   height: 40px;
   width: 95%;
   border-radius: 10px;
   border: 1px solid black;
-  background-color: white;
-  color: black;
+  background-color: var(--black);
+  color: var(--white);
   font-family: var(--body-font);
   transition: background-color 0.3s ease;
 }
 
-button:hover {
-  background-color: black;
-  color: white;
+.loginBtn:hover {
+  background-color: var(--white);
+  color: var(--black);
+  cursor: pointer;
 }
 
-a {
+.link-content, .login {
   text-decoration: none;
   color: black;
   font-size: 12px;
+  margin-block-end: 2.5rem;
 }
 
-a:hover {
+.login:hover {
   text-decoration: underline;
 }/*# sourceMappingURL=login.css.map */
