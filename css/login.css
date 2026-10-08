@@ -1,0 +1,158 @@
+/* figtree-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Figtree";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../assets/fonts/figtree-v9-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* figtree-500 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Figtree";
+  font-style: normal;
+  font-weight: 500;
+  src: url("../assets/fonts/figtree-v9-latin-500.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* figtree-600 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Figtree";
+  font-style: normal;
+  font-weight: 600;
+  src: url("../assets/fonts/figtree-v9-latin-600.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* figtree-700 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Figtree";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../assets/fonts/figtree-v9-latin-700.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+:root {
+  --white: hsl(0, 0%, 100%);
+  --cod-gray: hsla(0, 0%, 6%, 0.562);
+  --black: hsl(0, 0%, 0%);
+  --paragraphfontsize: calc(17 / 16 * 1rem);
+  --nav-footer-fontsize: calc(14 / 16 * 1rem);
+  --neutrl-gray: hsl(191, 8%, 74%);
+  --red: hsl(0, 91%, 49%);
+}
+
+/* || RESET */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img,
+picture,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border-color: transparent;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul,
+ol {
+  list-style-type: none;
+}
+
+body {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  font-family: "FigTree", sans-serif;
+}
+
+div {
+  height: 26.25rem;
+  width: 20.3125rem;
+  border: 1px solid gray;
+  border-radius: 0.625rem;
+  padding: 1.875rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  background-color: white;
+}
+
+form {
+  height: 80%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 1.5625rem;
+}
+
+label {
+  font-size: 12px;
+  display: flex;
+  align-self: start;
+}
+
+input {
+  height: 45px;
+  width: 95%;
+  border-radius: 10px;
+  border: 1px solid gray;
+  font-family: var(--body-font);
+  font-size: 0.875rem;
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+}
+
+button {
+  height: 40px;
+  width: 95%;
+  border-radius: 10px;
+  border: 1px solid black;
+  background-color: white;
+  color: black;
+  font-family: var(--body-font);
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: black;
+  color: white;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  font-size: 12px;
+}
+
+a:hover {
+  text-decoration: underline;
+}/*# sourceMappingURL=login.css.map */

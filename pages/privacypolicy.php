@@ -44,10 +44,10 @@
         <div class="account-menu">
             <ul class="acc-menu-list">
                 <li class="acc-menu-list-link" id="log-in">
-                    <a class="acc-link" href="" id="">Log-In</a>
+                    <a class="acc-link" href="pages/login.php" id="">Log-In</a>
                 </li>
                 <li class="sign-in-link" id=sign-in>
-                    <a class="acc-link" href="">Sign-In</a>
+                    <a class="acc-link" href="pages/signin.php">Sign-In</a>
                 </li>
                 <li class="acc-menu-list-link">
                     <a class="acc-link" href=""></a>
