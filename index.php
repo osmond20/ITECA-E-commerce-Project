@@ -33,8 +33,8 @@
         <a href="index.php" class="brand-title">True Gent Africa</a>
       </div>  
       <div class="nav-links">
-        <a class="nav-link" href="">Home</a>
-        <a class="nav-link" href="">Shop</a>
+        <a class="nav-link" href="../index.php">Home</a>
+        <a class="nav-link" href="pages/shopping.php">Shop</a>
         <a class="nav-link" href="pages/contact.php">Contact Us</a>
       </div>
       <div class="nav-actions">

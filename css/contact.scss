@@ -118,6 +118,10 @@ body{
   width: 0.80rem;
 }
 
+.icon:hover{
+  cursor: pointer;
+}
+
 .icon-actions{
   height: calc(18 / 16 * 1rem);
   width: calc(18 / 16 * 1rem);
