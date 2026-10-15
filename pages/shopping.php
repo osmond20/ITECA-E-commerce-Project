@@ -5,22 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
         <link rel="preload" 
-  href="assets/fonts/figtree-v9-latin-regular.woff2"
+  href="../assets/fonts/figtree-v9-latin-regular.woff2"
   as="font"
   type="font/woff2"
   crossorigin>
   <link rel="preload" 
-  href="assets/fonts/figtree-v9-latin-500.woff2"
+  href="../assets/fonts/figtree-v9-latin-500.woff2"
   as="font"
   type="font/woff2"
   crossorigin>
   <link rel="preload" 
-  href="assets/fonts/figtree-v9-latin-600.woff2"
+  href="../assets/fonts/figtree-v9-latin-600.woff2"
   as="font"
   type="font/woff2"
   crossorigin>
   <link rel="preload" 
-  href="assets/fonts/figtree-v9-latin-700.woff2"
+  href="../assets/fonts/figtree-v9-latin-700.woff2"
   as="font"
   type="font/woff2"
   crossorigin>
@@ -34,8 +34,8 @@
       </div>  
       <div class="nav-links">
         <a class="nav-link" href="../index.php">Home</a>
-        <a class="nav-link" href="pages/shopping.php">Shop</a>
-        <a class="nav-link" href="pages/contact.php">Contact Us</a>
+        <a class="nav-link" href="../pages/shopping.php">Shop</a>
+        <a class="nav-link" href="../pages/contact.php">Contact Us</a>
       </div>
       <div class="nav-actions">
         <img class="icon-actions" src="../assets/images/cart-outline.svg" alt="" height="20" width="20">
