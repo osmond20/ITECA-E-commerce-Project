@@ -34,8 +34,8 @@
       </div>  
       <div class="nav-links">
         <a class="nav-link" href="../index.php">Home</a>
-        <a class="nav-link" href="pages/shopping.php">Shop</a>
-        <a class="nav-link" href="contact.php">Contact Us</a>
+        <a class="nav-link" href="../pages/shopping.php">Shop</a>
+        <a class="nav-link" href="../pages/contact.php">Contact Us</a>
       </div>
       <div class="nav-actions">
         <img class="icon-actions" src="../assets/images/cart-outline.svg" alt="" height="20" width="20">
@@ -44,10 +44,10 @@
       <div class="account-menu">
             <ul class="acc-menu-list">
                 <li class="acc-menu-list-link" id="log-in">
-                    <a class="acc-link" href="pages/signin.php" id="">Log-In</a>
+                    <a class="acc-link" href="../pages/login.php" id="">Log-In</a>
                 </li>
                 <li class="sign-in-link" id=sign-in>
-                    <a class="acc-link" href="pages/signin.php">Sign-In</a>
+                    <a class="acc-link" href="../pages/signin.php">Sign-In</a>
                 </li>
                 <li class="acc-menu-list-link">
                     <a class="acc-link" href=""></a>
@@ -61,10 +61,10 @@
                     <a class="links" href="../index.php">Home</a>
                 </li>
                 <li class="list-link">
-                    <a class="links" href="shopping.php">Shop</a>
+                    <a class="links" href="../pages/shopping.php">Shop</a>
                 </li>
                 <li class="list-link">
-                    <a class="links" href="contact.php">Contact Us</a>
+                    <a class="links" href="../pages/contact.php">Contact Us</a>
                 </li>
             </ul>
     </aside>
@@ -80,8 +80,8 @@
         <div class="footer-main">
             <div class="footer-info">
                 <h3 class="footer-title">Customer Info</h3>
-                <a class="footer-info-link" href="shipping.php">Shipping, Returns and Refunds</a>
-                <a class="footer-info-link" href="privacypolicy.php">Privacy Policy & Terms</a>
+                <a class="footer-info-link" href="../pages/shipping.php">Shipping, Returns and Refunds</a>
+                <a class="footer-info-link" href="../pages/privacypolicy.php">Privacy Policy & Terms</a>
             </div>
             <div class="footer-connect">
                 <h3 class="footer-title">Connect</h3>

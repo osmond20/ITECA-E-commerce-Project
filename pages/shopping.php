@@ -44,10 +44,10 @@
         <div class="account-menu">
             <ul class="acc-menu-list">
                 <li class="acc-menu-list-link" id="log-in">
-                    <a class="acc-link" href="pages/login.php" id="">Log-In</a>
+                    <a class="acc-link" href="../pages/login.php" id="">Log-In</a>
                 </li>
                 <li class="sign-in-link" id=sign-in>
-                    <a class="acc-link" href="pages/signin.php">Sign-In</a>
+                    <a class="acc-link" href="../pages/signin.php">Sign-In</a>
                 </li>
                 <li class="acc-menu-list-link">
                     <a class="acc-link" href=""></a>
@@ -58,25 +58,49 @@
     <aside class="menu" aria-expanded="true">
             <ul class="menu-links">
                 <li class="list-link">
-                    <a class="links" href="index.php">Home</a>
+                    <a class="links" href="../index.php">Home</a>
                 </li>
                 <li class="list-link">
-                    <a class="links href="shopping.php">Shop</a>
+                    <a class="links" href="../pages/shopping.php">Shop</a>
                 </li>
                 <li class="list-link">
-                    <a class="links" href="pages/contact.php">Contact Us</a>
+                    <a class="links" href="../pages/contact.php">Contact Us</a>
                 </li>
             </ul>
     </aside>
-    <main>
-        <section>
-            <div>
-                <img src="" alt="">
-                <div>
-                    <p></p>
-                    <p></p>
+    <main class="main-el">
+        <section class="shopping-component">
+            <div class="product-container">
+                <img class="product-img-1" src="../assets/images/TGA-FOProduct.png" alt="TGA Fresh Oak" height="50" width="50">
+                <div class="text-container">
+                    <p class="product-text">Fresh Oak</p>
+                    <p class="product-text">R249,00</p>
                 </div>
-                <button>Add to Cart</button>
+                <button class="atc-btn">Add to Cart</button>
+            </div>
+            <div class="product-container">
+                <img class="product-img-1" src="../assets/images/TGA-CSProduct.png" alt="TGA Fresh Oak" height="50" width="50">
+                <div class="text-container">
+                    <p class="product-text">Cedar Spice</p>
+                    <p class="product-text">R289,00</p>
+                </div>
+                <button class="atc-btn">Add to Cart</button>
+            </div>
+            <div class="product-container">
+                <img class="product-img-2" src="../assets/images/Fresh-Oak-BC.png" alt="TGA Fresh Oak" height="50" width="50">
+                <div class="text-container">
+                    <p class="product-text">Fresh Oak - Combo</p>
+                    <p class="product-text">R409,00</p>
+                </div>
+                <button class="atc-btn">Add to Cart</button>
+            </div>
+            <div class="product-container">
+                <img class="product-img-3" src="../assets/images/TGA-CS-Combo.png" alt="TGA Fresh Oak" height="50" width="50">
+                <div class="text-container">
+                    <p class="product-text">Cedar Spice - Combo</p>
+                    <p class="product-text">R449,00</p>
+                </div>
+                <button class="atc-btn">Add to Cart</button>
             </div>
         </section>
     </main>
@@ -84,8 +108,8 @@
         <div class="footer-main">
             <div class="footer-info">
                 <h3 class="footer-title">Customer Info</h3>
-                <a class="footer-info-link" href="pages/shipping.php">Shipping, Returns and Refunds</a>
-                <a class="footer-info-link" href="pages/privacypolicy.php">Privacy Policy & Terms</a>
+                <a class="footer-info-link" href="../pages/shipping.php">Shipping, Returns and Refunds</a>
+                <a class="footer-info-link" href="../pages/privacypolicy.php">Privacy Policy & Terms</a>
             </div>
             <div class="footer-connect">
                 <h3 class="footer-title">Connect</h3>
