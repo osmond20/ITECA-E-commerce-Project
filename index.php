@@ -58,10 +58,10 @@
     <aside class="menu" aria-expanded="true">
             <ul class="menu-links">
                 <li class="list-link">
-                    <a class="links" href="index.php">Home</a>
+                    <a class="links" href="../index.php">Home</a>
                 </li>
                 <li class="list-link">
-                    <a class="links href="shopping.php">Shop</a>
+                    <a class="links" href="pages/shopping.php">Shop</a>
                 </li>
                 <li class="list-link">
                     <a class="links" href="pages/contact.php">Contact Us</a>
@@ -127,8 +127,8 @@
         <div class="footer-main">
             <div class="footer-info">
                 <h3 class="footer-title">Customer Info</h3>
-                <a class="footer-info-link" href="pages/shipping.php">Shipping, Returns and Refunds</a>
-                <a class="footer-info-link" href="pages/privacypolicy.php">Privacy Policy & Terms</a>
+                <a class="footer-info-link" href="../pages/shipping.php">Shipping, Returns and Refunds</a>
+                <a class="footer-info-link" href="../pages/privacypolicy.php">Privacy Policy & Terms</a>
             </div>
             <div class="footer-connect">
                 <h3 class="footer-title">Connect</h3>

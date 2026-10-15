@@ -89,7 +89,7 @@ body{
 .site-nav{
   background-color: var(--white);
   position: fixed;
-  z-index: 9999;
+  z-index: 1000;
   display: flex;
   align-items: center;
   height: calc(65 / 16 * 1rem);
