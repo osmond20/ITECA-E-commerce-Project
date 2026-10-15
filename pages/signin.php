@@ -9,17 +9,17 @@
   type="font/woff2"
   crossorigin>
   <link rel="preload" 
-  href="assets/fonts/figtree-v9-latin-500.woff2"
+  href="../assets/fonts/figtree-v9-latin-500.woff2"
   as="font"
   type="font/woff2"
   crossorigin>
   <link rel="preload" 
-  href="assets/fonts/figtree-v9-latin-600.woff2"
+  href="../assets/fonts/figtree-v9-latin-600.woff2"
   as="font"
   type="font/woff2"
   crossorigin>
   <link rel="preload" 
-  href="assets/fonts/figtree-v9-latin-700.woff2"
+  href="../assets/fonts/figtree-v9-latin-700.woff2"
   as="font"
   type="font/woff2"
   crossorigin>

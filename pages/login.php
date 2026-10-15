@@ -5,22 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
             <link rel="preload" 
-  href="assets/fonts/figtree-v9-latin-regular.woff2"
+  href="../assets/fonts/figtree-v9-latin-regular.woff2"
   as="font"
   type="font/woff2"
   crossorigin>
   <link rel="preload" 
-  href="assets/fonts/figtree-v9-latin-500.woff2"
+  href="../assets/fonts/figtree-v9-latin-500.woff2"
   as="font"
   type="font/woff2"
   crossorigin>
   <link rel="preload" 
-  href="assets/fonts/figtree-v9-latin-600.woff2"
+  href="../assets/fonts/figtree-v9-latin-600.woff2"
   as="font"
   type="font/woff2"
   crossorigin>
   <link rel="preload" 
-  href="assets/fonts/figtree-v9-latin-700.woff2"
+  href="../assets/fonts/figtree-v9-latin-700.woff2"
   as="font"
   type="font/woff2"
   crossorigin>
