@@ -1,7 +1,10 @@
+<?php 
+    require __DIR__ . "/../backend/session.php";
+?>
  <nav class="site-nav">
       <div class="nav-menu-and-brand">
-        <img class="icon menu-button" src="assets/images/Menu.png" alt="Menu Icon" height="20" width="20">
-        <a href="index.php" class="brand-title">True Gent Africa</a>
+        <img class="icon menu-button" src="../assets/images/Menu.png" alt="Menu Icon" height="20" width="20">
+        <a href="../pages/index.php" class="brand-title">True Gent Africa</a>
       </div>  
       <div class="nav-links">
         <a class="nav-link" href="../pages/index.php">Home</a>
@@ -14,15 +17,35 @@
       </div>
         <div class="account-menu">
             <ul class="acc-menu-list">
-                <li class="acc-menu-list-link" id="log-in">
+            <?php 
+            // checking whether the session state is empty
+            if(empty($_SESSION['state'])){
+               echo
+                '<li class="acc-menu-list-link" id="log-in">
                     <a class="acc-link" href="../pages/login.php" id="">Log-In</a>
                 </li>
                 <li class="sign-in-link" id=sign-in>
                     <a class="acc-link" href="../pages/signin.php">Sign-In</a>
+                </li>';
+            } 
+            // if the session state is not empty
+            else if($_SESSION['state'] === 'signedIn' || $_SESSION['state'] === 'loggedIn'){
+                echo 
+                '
+                <li class="profile-link" id="profile">
+                    <a class="acc-link" href="#" id="">Profile</a>
                 </li>
-                <li class="acc-menu-list-link">
-                    <a class="acc-link" href=""></a>
+                <li class="sign-in-link" id=orders>
+                    <a class="acc-link" href="../pages/orders.php">Orders</a>
                 </li>
+                <li class="logout-link" id="log-out">
+                    <form class="logout-form" action="../backend/logoutHandler.php" method="post">
+                        <button type="submit" class="acc-link logout-btn" name="logout">Logout</button>
+                    </form>
+                </li>
+                ';
+            }
+            ?>
             </ul>
         </div>
     </nav>

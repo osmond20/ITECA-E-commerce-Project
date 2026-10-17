@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="preload" 
-  href="assets/fonts/figtree-v9-latin-regular.woff2"
+    <link rel="preload" 
+  href="../assets/fonts/figtree-v9-latin-regular.woff2"
   as="font"
   type="font/woff2"
   crossorigin>
@@ -28,23 +28,52 @@
 </head>
 <body>
       <main class="main-el">
+        <?php
+              if(!isset($_GET['error'])){
+                // html code runs
+              }
+              else{
+                $error = $_GET['error'];
+                if($error == "emptyfields"){
+                  echo "<p class='error'>Empty Fields</p>";
+                }
+                else if($error == "emailinvalid"){
+                    echo "<p class='error'>Email is invalid</p>";
+                }
+                else if($error == "signinerror"){
+                   echo "<p class='error'>Email already exists</p>";
+                }
+              }
+            ?>
         <div class="signin-container">
             <h1 class="title">Sign In</h1>
-             <form class="sign-in-form" action="" method="post" enctype="multipart/form-data">
-                    <input class="inputs" type="text" placeholder="First Name" name="firstname">
-                    <p class="error">First Name cannot be empty</p>
-                    <input class="inputs" type="text" placeholder="Last Name" name="lastname">
-                    <p class="error">Last Name cannot be empty</p>
-                    <input class="inputs" type="email" placeholder="Email" name="email">
-                    <p class="error">Looks like this is not an email</p>
+             <form class="sign-in-form" action="../backend/signinHandler.php" method="post" enctype="multipart/form-data">
+                    <?php 
+                      if(isset($_GET['username'])){
+                        $username = $_GET['username'];
+                        //htmlspecialchars handles characters in the submitted value safely
+                        echo ' <input class="inputs" type="text" placeholder="Username" name="username" value="' .
+                          htmlspecialchars($username, ENT_QUOTES, 'UTF-8') . '">';
+                      }
+                      else{
+                       echo ' <input class="inputs" type="text" placeholder="Username" name="username">';
+                      }
+
+                      if(isset($_GET['email'])){
+                        $email = $_GET['email'];
+                        echo ' <input class="inputs" type="email" placeholder="Email" name="email" value="' .
+                        htmlspecialchars($email, ENT_QUOTES, 'UTF-8') . '">';
+                      }
+                      else{
+                       echo '<input class="inputs" type="email" placeholder="Email" name="email">';
+                      }
+                    ?>
                     <input class="inputs" type="password" placeholder="Password" name="pw"  minlength="8">
-                    <p class="error">Password cannot be empty</p>
-                    <button class="signinBtn" type="submit">Sign In</button>
+                    <button class="signinBtn" type="submit" name="signin-btn">Sign In</button>
             </form>
             
             <p class="link-content">If you already have an account? <a href="../pages/login.php" class="login">Login</a></p>
         </div>
       </main>
 </body>
-<script defer src="../js/signin.js"></script>
 </html>

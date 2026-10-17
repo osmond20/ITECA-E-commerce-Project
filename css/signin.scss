@@ -96,7 +96,7 @@ body{
 }
 
 .signin-container{
-    height: calc(460 / 16 * 1rem);
+    height: calc(350 / 16 * 1rem);
     width: clamp(17.5rem, calc(17.5rem + ((100vw - 46.5rem) * 0.0287356)), 18.75rem);
     border: 1px solid gray;
     border-radius: calc(10 / 16 * 1rem);
@@ -106,19 +106,19 @@ body{
     flex-direction: column;
     align-items: center;
     background-color: white;
+    gap: calc(5 / 16 * 1rem);
 }
             
 .sign-in-form{
-    height: 76%;
+    height: 65%;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items:  center;
-    gap: calc(1 / 16 * 1rem);
+    gap: calc(5/ 16 * 1rem);
 }
-    
-            
+             
 .title{
     padding-top: calc(15 / 16 * 1rem);
     text-align: center;
@@ -136,23 +136,17 @@ body{
     padding-right: calc(10 / 16 * 1rem);
 }
 
-.inputs.on-error{
-    transition: border 0.3s ease;
-    border: 1px solid var(--red);
-}
-
 .error{
-    font-size: calc(8 / 16 * 1rem);
-    padding-inline-end: 0.90rem;
+    font-size: alc(14 / 16 * 1rem);
+    padding: calc(12 / 16 * 1rem);
     width: 100%;
-    text-align: end;
-    font-style: italic;
+    text-align: center;
     color: var(--red);
-    opacity: 0;
-}
-
-.error.show{
+    transition: opacity 0.3s ease;
     opacity: 1;
+    background: #f8d7da;
+    border-radius: calc(5 / 16 * 1rem);
+    margin-block-end: calc(20 / 16 * 1rem);
 }
             
 .signinBtn{

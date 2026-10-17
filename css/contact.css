@@ -219,6 +219,15 @@ body {
   text-decoration: underline;
 }
 
+.logout-btn {
+  font-size: 0.95rem;
+}
+
+li {
+  text-align: center;
+}
+
+/*MAIN ELEMENT*/
 .main-el {
   padding-block-start: 4.0625rem;
   display: flex;

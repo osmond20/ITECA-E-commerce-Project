@@ -89,14 +89,14 @@ body{
 
 .main-el{
     display: flex;
-    flex: 1;
+    height: 100vh;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
 .login-container{
-  height: calc(330 / 16 * 1rem);
+  height: calc(380 / 16 * 1rem);
   width: clamp(17.5rem, calc(17.5rem + ((100vw - 46.5rem) * 0.0287356)), 18.75rem);
   border: 1px solid gray;
   border-radius: calc(10 / 16 * 1rem);
@@ -109,13 +109,13 @@ body{
 }
             
 .log-in-form{
-    height: 76%;
+    height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items:  center;
-    gap: calc(1 / 16 * 1rem);
+    gap: calc(5 / 16 * 1rem);
 }
     
             
@@ -136,24 +136,19 @@ body{
     padding-right: calc(10 / 16 * 1rem);
 }
 
-.inputs.on-error{
-    transition: border 0.3s ease;
-    border: 1px solid var(--red);
-}
-
 .error{
-    font-size: calc(8 / 16 * 1rem);
-    padding-inline-end: 0.90rem;
-    width: 100%;
-    text-align: end;
-    font-style: italic;
+    font-size: alc(14 / 16 * 1rem);
+    padding: calc(12 / 16 * 1rem);
+    width: clamp(17.5rem, calc(17.5rem + ((100vw - 46.5rem) * 0.0287356)), 18.75rem);
+    text-align: center;
     color: var(--red);
-    opacity: 0;
+    transition: opacity 0.3s ease;
+    opacity: 1;
+    background: #f8d7da;
+    border-radius: calc(5 / 16 * 1rem);
+    margin-block-end: calc(20 / 16 * 1rem);
 }
 
-.error.show{
-    opacity: 1;
-}
             
 .loginBtn{
     margin-block-start: calc(5 / 16 * 1rem);
@@ -172,12 +167,20 @@ body{
     color: var(--black);
     cursor: pointer;
 }
+
+.link-content-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-block-start: calc(10 / 16 * 1rem);
+}
             
 .link-content, .login{
     text-decoration: none;
     color: black;
     font-size: 12px;
-    margin-block-end: calc(40 / 16 * 1rem);
+    margin-block-start: calc(6 / 16 * 1rem);
+    margin-block-end: calc(5 / 16 * 1rem);
 }
             
 .login:hover{

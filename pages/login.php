@@ -28,19 +28,51 @@
 </head>
 <body>
     <main class="main-el">
+           <?php
+              if(!isset($_GET['error'])){
+                // html code runs
+              }
+              else{
+                $error = $_GET['error'];
+                if($error == "emptyfields"){
+                  echo "<p class='error'>Empty Fields</p>";
+                }
+                else if($error == "emailinvalid"){
+                    echo "<p class='error'>Email is invalid</p>";
+                }
+                else if($error == "signinerror"){
+                   echo "<p class='error'>Email already exists</p>";
+                }
+                else if($error == "incorrectcredentials"){
+                  echo "<p class='error'>Incorrect password or email</p>";
+                }
+                 else if($error == "accountnotfound"){
+                  echo "<p class='error'>Account does not exist</p>";
+                }
+              }
+            ?>
         <div class="login-container">
             <h1 class="title">Log In</h1>
-             <form class="log-in-form" action="" method="post" enctype="multipart/form-data">
-                    <input class="inputs" type="email" placeholder="Email" name="email">
-                    <p class="error">Looks like this is not an email</p>
+             <form class="log-in-form" action="../backend/loginHandler.php" method="post" enctype="multipart/form-data">
+                       <?php 
+                      if(isset($_GET['email'])){
+                        $email = $_GET['email'];
+                        echo ' <input class="inputs" type="email" placeholder="Email" name="email" value="' .
+                        htmlspecialchars($email, ENT_QUOTES, 'UTF-8') . '">';
+                      }
+                      else{
+                       echo '<input class="inputs" type="email" placeholder="Email" name="email">';
+                      }
+                    ?>
                     <input class="inputs" type="password" placeholder="Password" name="pw"  minlength="8">
-                    <p class="error">Password cannot be empty</p>
-                    <button class="loginBtn" type="submit">Log In</button>
+                    <button class="loginBtn" type="submit" name="login-btn">Log In</button>
+                   <div class="link-content-container">
+                    <p class="link-content">If you don't have an account? <a href="../pages/signin.php" class="login">Sign in</a></p>
+                    <p class="link-content">Forgot password? <a href="../pages/signin.php" class="login">Click here</a></p>
+                   </div>
             </form>
-            
-            <p class="link-content">If you don't have an account? <a href="../pages/signin.php" class="login">Sign in</a></p>
         </div>
       </main>
 </body>
-<script defer src="../js/login.js"></script>
 </html>
+

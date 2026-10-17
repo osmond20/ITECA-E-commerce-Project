@@ -95,7 +95,7 @@ body {
 }
 
 .signin-container {
-  height: 28.75rem;
+  height: 21.875rem;
   width: clamp(17.5rem, 17.5rem + (100vw - 46.5rem) * 0.0287356, 18.75rem);
   border: 1px solid gray;
   border-radius: 0.625rem;
@@ -105,16 +105,17 @@ body {
   flex-direction: column;
   align-items: center;
   background-color: white;
+  gap: 0.3125rem;
 }
 
 .sign-in-form {
-  height: 76%;
+  height: 65%;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 0.0625rem;
+  gap: 0.3125rem;
 }
 
 .title {
@@ -134,23 +135,17 @@ body {
   padding-right: 0.625rem;
 }
 
-.inputs.on-error {
-  transition: border 0.3s ease;
-  border: 1px solid var(--red);
-}
-
 .error {
-  font-size: 0.5rem;
-  padding-inline-end: 0.9rem;
+  font-size: alc(0.875rem);
+  padding: 0.75rem;
   width: 100%;
-  text-align: end;
-  font-style: italic;
+  text-align: center;
   color: var(--red);
-  opacity: 0;
-}
-
-.error.show {
+  transition: opacity 0.3s ease;
   opacity: 1;
+  background: #f8d7da;
+  border-radius: 0.3125rem;
+  margin-block-end: 1.25rem;
 }
 
 .signinBtn {
