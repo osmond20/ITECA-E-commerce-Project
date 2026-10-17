@@ -1,6 +1,6 @@
 [
     {
-        "id": "fresh oak",
+        "id": "1",
         "imageURL": "../assets/images/TGA-FOProduct.png",
         "name": "Fresh Oak",
         "price": "249.00",
@@ -10,7 +10,7 @@
         "How-to-use": "Warm a few drops between your palms and work evenly through a clean, slightly damp beard. Massage into the skin beneath and style as usual."
     },
     {
-         "id": "cedar spice",
+         "id": "2",
         "imageURL": "../assets/images/TGA-CSProduct.png",
         "name": "Cedar Spice",
         "price": "289.00",
@@ -20,7 +20,7 @@
         "How-to-use": "Warm a few drops between your palms and work evenly through a clean, slightly damp beard, making sure to reach the skin beneath. Use daily. One to three drops. No rotation. No supplements."
     },
     {
-         "id": "fresh oak combo",
+         "id": "3",
         "imageURL": "../assets/images/Fresh-Oak-BC.png",
         "name": "Fresh Oak",
         "price": "409.00",
@@ -30,7 +30,7 @@
         "How-to-use": "Warm a few drops between your palms and work evenly through a clean, slightly damp beard, making sure to reach the skin beneath. Use daily for softness, nourishment, and a well-kept feel."
     }
     ,{
-         "id": "cedar spice combo",
+         "id": "4",
         "imageURL": "../assets/images/TGA-CS-Combo.png",
         "name": "Cedar Spice Combo",
         "price": "449.00",
