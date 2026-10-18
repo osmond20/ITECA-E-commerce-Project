@@ -29,7 +29,7 @@
 <body>
     <main class="main-el">
         <?php 
-              if(!isset($_GET['error'])){
+              if(!isset($_GET['newpwd'])){
                 // html code runs
               }
               else{
@@ -45,8 +45,8 @@
         <div class="reset-container">
             <h1 class="title">Set New Password</h1>
             <?php 
-                $selector = $_GET['selector'];
-                $validator = $_GET['validator']; // token
+                $selector = $_GET['selector'] ?? '';
+                $validator = $_GET['validator'] ?? ''; // token
 
                 // checking if validators(tokens) exists inside the URL
                 if(empty($selector) || empty($validator)){
@@ -54,18 +54,21 @@
                 }
                 else{
                     // checking if tokens are in fact hexadecimal tokens
-                    if(ctype_xdigit($selector) !== false && ctype_xdigit($validator)){
+                    if(ctype_xdigit($selector) && ctype_xdigit($validator)){
                       ?>
                       
-                        <form class="reset-form" action="../backend/resetPassword.php" method="post" enctype="multipart/form-data">
+                        <form class="reset-form" action="../backend/resetPasswordHandler.php" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="selector" value="<?php echo $selector?>">
-                            <input type="hidden" name="selector" value="<?php echo $validator?>">
+                            <input type="hidden" name="validator" value="<?php echo $validator?>"><!-- FIX: was named "selector" a second time, so the token never reached the handler -->
                             <input class="inputs" type="password" name="pw" placeholder="Enter new password">
                             <input class="inputs" type="password" name="pw-repeat" placeholder="Repeat new password">
                             <button class="resetBtn" type="submit" name="reset-pw-btn">Reset Password</button>
                         </form>
 
                       <?php
+                    }
+                    else{
+                        echo "Could not validate your request!";
                     }
                 }
 

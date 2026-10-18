@@ -4,24 +4,28 @@
         require __DIR__ . "/../db/conn.php";
 
         // grabbing user credentials
-        $selector = $_POST['selector']; // using for running a select stmt in the db
-        $validator = $_POST['validator']; // using for validating the user
-        $password = $_POST['pw'];
-        $passwordRepeat = $_POST['pw-repeat'];
+        $selector = $_POST['selector'] ?? ''; // using for running a select stmt in the db
+        $validator = $_POST['validator'] ?? ''; // using for validating the user
+        $password = $_POST['pw'] ?? '';
+        $passwordRepeat = $_POST['pw-repeat'] ?? '';
+
+        // Both tokens must be hexadecimal before they are used anywhere
+        if(!ctype_xdigit($selector) || !ctype_xdigit($validator)){
+            echo "Could not validate your request!";
+            exit();
+        }
 
         if(empty($password) || empty($passwordRepeat)){
             // sending back to create new password page with tokens
-            header("Location: ../forgotpwd/create-new-password.php?newpwd=empty&selector="." 
-        . $selector". "&validator=" . "$validator");
-        exit();
+            header("Location: ../forgotpwd/create-new-password.php?newpwd=empty&selector=" . $selector . "&validator=" . $validator);
+            exit();
         }else if($password != $passwordRepeat){
-            header("Location: ../forgotpwd/create-new-password.php?newpwd=pwdnotsame&selector="." 
-        . $selector". "&validator=" . "$validator");
+            header("Location: ../forgotpwd/create-new-password.php?newpwd=pwdnotsame&selector=" . $selector . "&validator=" . $validator);
+            exit();
         }
 
         // checking the token date if it has expired or not
         $currentDate = date("U");
-
 
         $sql= $conn->prepare("SELECT * FROM pwdReset WHERE pwdResetSelector=? AND pwdResetExpires >=?");
           if(!$sql){
@@ -38,10 +42,8 @@
             }
             // matching token from db and form in matching format
             else{
-                //converting validator token to binary
-                $tokenBin = hex2bin($validator);
-
-                $tokenCheck = password_verify($tokenBin, $row['pwdResetToken']);
+                // The token is now stored hashed as a hex string so it is verified as-is
+                $tokenCheck = password_verify($validator, $row['pwdResetToken']);
 
                 // checking if token is valid
                 if($tokenCheck === false){
@@ -58,6 +60,7 @@
                         exit();
                     }
                     else{
+                        // binding tokenEmail to email_address placeholder
                         $sql->bind_param("s", $tokenEmail);
                         $sql->execute();
 
@@ -78,11 +81,11 @@
                                 // hashing password before inserting into db
                                 $newPwdHash = password_hash($password, PASSWORD_DEFAULT);
 
-                                $sql->bind_param("s", $newPwdHash, $tokenEmail);
+                                $sql->bind_param("ss", $newPwdHash, $tokenEmail);
                                 $sql->execute(); // update password
 
                                 // deleting the existing token after new password has been set
-                                $sql = $conn->prepare("DELETE FROM pwdReset WHERE pwdRestEmail=?");
+                                $sql = $conn->prepare("DELETE FROM pwdReset WHERE pwdResetEmail=?");
                                 if(!$sql){
                                     echo "There was an error.";
                                     exit();
@@ -91,6 +94,7 @@
                                     $sql->bind_param('s', $tokenEmail);
                                     $sql->execute();
                                     header("Location: ../pages/login.php?newpwd=passwordupdated");
+                                    exit();
                                 }
                             }
                         }
@@ -103,5 +107,4 @@
         header("Location: ../pages/index.php");
         exit();
     }
-
 ?>

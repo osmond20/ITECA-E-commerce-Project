@@ -29,14 +29,14 @@
 <body>
     <main class="main-el">
         <?php 
-              if(!isset($_GET['error'])){
-                // html code runs
+              // FIX: resetRequest.php redirects with ?reset=success (or ?reset=invalid),
+              // the old code was looking for ?error= and ?success= so nothing was ever shown
+              $reset = $_GET['reset'] ?? '';
+              if($reset === "success"){
+                echo "<p class='success'>If that email is registered, a reset link is on its way. Check your inbox (and spam folder).</p>";
               }
-              else{
-                $success = $_GET['success'];
-                if($success == "success"){
-                  echo "<p class='success'>Check your email!</p>";
-                }
+              else if($reset === "invalid"){
+                echo "<p class='error'>Please enter a valid email address.</p>";
               }
         ?>
         <div class="reset-container">
