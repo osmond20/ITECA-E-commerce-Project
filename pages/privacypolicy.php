@@ -44,22 +44,22 @@
                 While using Our Service, We may ask You to provide Us with certain personally identifiable information that can be used to contact or identify You. Personally identifiable information may include, but is not limited to:
             </p> 
             <ul class="list">
-                <li>Email Address</li>
-                <li>First Name and Last Name</li>
-                <li>Phone number</li>
-                <li>Address, State, Province, ZIP/Postal code, City</li>
+                <li>- Email Address</li>
+                <li>- First Name and Last Name</li>
+                <li>- Phone number</li>
+                <li>- Address, State, Province, ZIP/Postal code, City</li>
             </ul>
         </div>
         <div class="component-three">
             <h2 class="subtitle">Use of your personal data</h2>
                 <p class="paragraph">The Company may use Personal Data for the following purposes:</p>
                     <ul class="list">
-                        <li><span>To provide and our Service</span>, including to monitor the usage of our service</li>
-                        <li><span>To manage your account:</span>in management of your registration as a user of the service. The Personal Data you provide can give you access to different functionalities of the service that are available to you a registered user.</li>
-                        <li><span>To contact you:</span>To contact You by email, telephone calls, such as a mobile application’s push notifications regarding updates or informative communications related to the functionalities, products or contracted services, including security updates, when necessary or reasonable for their implementation.</li>
-                        <li><span>To provide you</span> with news, special offers that we may offer.</li>
-                        <li><span>To manage your business requests:</span>To attend to your requests in using our service.</li>
-                        <li><span>For data analysis:</span> We may use your information for data analysis and determining usage trends to aid in improving our service and your customer experience. </li>
+                        <li>- <span>To provide and our Service</span>, including to monitor the usage of our service</li>
+                        <li>- <span>To manage your account:</span>in management of your registration as a user of the service. The Personal Data you provide can give you access to different functionalities of the service that are available to you a registered user.</li>
+                        <li>- <span>To contact you:</span>To contact You by email, telephone calls, such as a mobile application’s push notifications regarding updates or informative communications related to the functionalities, products or contracted services, including security updates, when necessary or reasonable for their implementation.</li>
+                        <li>- <span>To provide you</span> with news, special offers that we may offer.</li>
+                        <li>- <span>To manage your business requests:</span>To attend to your requests in using our service.</li>
+                        <li>- <span>For data analysis:</span> We may use your information for data analysis and determining usage trends to aid in improving our service and your customer experience. </li>
                     </ul>
                 <p class="paragraph">
                     We may share your informaition with 
@@ -87,11 +87,11 @@
             <h3 class="subheading">Other legal requirements</h3>
             <p class="paragraph">The Company may disclose your personal information in the good faith belief that such action is necessary to:</p>
             <ul class="list">
-                <li>Comply with a legal obligation</li>
-                <li>Protect and defend the rights or property of the company.</li>
-                <li>Prevent or investigate possible wrongdoing in connection with the service</li>
-                <li>Protect the personal safety of users of the service or the public</li>
-                <li>Protect against legal liability</li>
+                <li>- Comply with a legal obligation</li>
+                <li>- Protect and defend the rights or property of the company.</li>
+                <li>- Prevent or investigate possible wrongdoing in connection with the service</li>
+                <li>- Protect the personal safety of users of the service or the public</li>
+                <li>- Protect against legal liability</li>
             </ul>
         </div>
         <div class="component-seven">
