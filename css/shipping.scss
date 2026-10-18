@@ -229,6 +229,7 @@ li{
 
 .main-el{
     display: flex;
+    flex: 1;
     flex-direction: column;
     padding-block-start: calc(100 / 16 * 1rem);
     height: calc(650 / 16 * 1rem);

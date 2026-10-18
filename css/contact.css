@@ -233,7 +233,7 @@ li {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 100%;
+  flex: 1;
   width: 100%;
 }
 
@@ -254,7 +254,7 @@ li {
 
 .contact-us-form {
   height: 21.875rem;
-  width: clamp(17.5rem, 17.5rem + (100vw - 46.5rem) * 0.287356, 30rem);
+  width: clamp(19.5rem, 19.5rem + (100vw - 46.5rem) * 0.2413793, 30rem);
   display: flex;
   gap: 0.1875rem;
   flex-direction: column;
