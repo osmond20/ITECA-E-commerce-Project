@@ -147,6 +147,19 @@ body {
   margin-block-end: 1.25rem;
 }
 
+.success {
+  font-size: alc(0.875rem);
+  padding: 0.75rem;
+  width: clamp(17.5rem, 17.5rem + (100vw - 46.5rem) * 0.0287356, 18.75rem);
+  text-align: center;
+  color: #26a526;
+  transition: opacity 0.3s ease;
+  opacity: 1;
+  background: #e0f8d7;
+  border-radius: 0.3125rem;
+  margin-block-end: 1.25rem;
+}
+
 .loginBtn {
   margin-block-start: 0.3125rem;
   height: 40px;

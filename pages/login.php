@@ -29,7 +29,7 @@
 <body>
     <main class="main-el">
            <?php
-              if(!isset($_GET['error'])){
+              if(!isset($_GET['error']) || !isset($_GET['newpwd'])){
                 // html code runs
               }
               else{
@@ -48,6 +48,11 @@
                 }
                  else if($error == "accountnotfound"){
                   echo "<p class='error'>Account does not exist</p>";
+                }
+
+                $success = $_GET['passwordupdated'];
+                if($success == "passwordupdated"){
+                  echo "<p class='success'>Password Updated</p>";
                 }
               }
             ?>
@@ -68,7 +73,7 @@
                     <button class="loginBtn" type="submit" name="login-btn">Log In</button>
                    <div class="link-content-container">
                     <p class="link-content">If you don't have an account? <a href="../pages/signin.php" class="login">Sign in</a></p>
-                    <p class="link-content">Forgot password? <a href="../pages/signin.php" class="login">Click here</a></p>
+                    <p class="link-content">Forgot password? <a href="../pages/resetpassword.php" class="login">Click here</a></p>
                    </div>
             </form>
         </div>

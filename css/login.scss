@@ -149,6 +149,19 @@ body{
     margin-block-end: calc(20 / 16 * 1rem);
 }
 
+.success{
+    font-size: alc(14 / 16 * 1rem);
+    padding: calc(12 / 16 * 1rem);
+    width: clamp(17.5rem, calc(17.5rem + ((100vw - 46.5rem) * 0.0287356)), 18.75rem);
+    text-align: center;
+    color: #26a526;
+    transition: opacity 0.3s ease;
+    opacity: 1;
+    background: #e0f8d7;
+    border-radius: calc(5 / 16 * 1rem);
+    margin-block-end: calc(20 / 16 * 1rem);
+}
+
             
 .loginBtn{
     margin-block-start: calc(5 / 16 * 1rem);
