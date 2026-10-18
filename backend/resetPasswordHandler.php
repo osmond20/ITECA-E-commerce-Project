@@ -1,110 +1,95 @@
 <?php 
-    if(isset($_POST['reset-pw-btn'])){
-        // connecting to db
-        require __DIR__ . "/../db/conn.php";
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['reset-pw-btn'])) {
+        header('Location: ../pages/index.php');
+        exit();
+    }   
 
-        // grabbing user credentials
-        $selector = $_POST['selector'] ?? ''; // using for running a select stmt in the db
-        $validator = $_POST['validator'] ?? ''; // using for validating the user
-        $password = $_POST['pw'] ?? '';
-        $passwordRepeat = $_POST['pw-repeat'] ?? '';
+    // connecting to db
+    require __DIR__ . "/../db/conn.php";
 
-        // Both tokens must be hexadecimal before they are used anywhere
-        if(!ctype_xdigit($selector) || !ctype_xdigit($validator)){
-            echo "Could not validate your request!";
-            exit();
-        }
+    // grabbing user credentials
+    $selector = $_POST['selector'] ?? ''; // using for running a select stmt in the db
+    $validator = $_POST['validator'] ?? ''; // using for validating the user
+    $password = $_POST['pw'] ?? '';
+    $passwordRepeat = $_POST['pw-repeat'] ?? '';
 
-        if(empty($password) || empty($passwordRepeat)){
-            // sending back to create new password page with tokens
-            header("Location: ../forgotpwd/create-new-password.php?newpwd=empty&selector=" . $selector . "&validator=" . $validator);
-            exit();
-        }else if($password != $passwordRepeat){
-            header("Location: ../forgotpwd/create-new-password.php?newpwd=pwdnotsame&selector=" . $selector . "&validator=" . $validator);
-            exit();
-        }
+    // Both tokens must be hexadecimal before they are used anywhere
+    // The reset link uses 16 hex chars for selector and 64 for validator.
+    if (!preg_match('/^[a-f0-9]{16}$/i', $selector) || !preg_match('/^[a-f0-9]{64}$/i', $validator)) {
+        http_response_code(400);
+        exit('This password-reset link is invalid or expired. Request a new link.');
+    }
+    if ($password === '' || $passwordRepeat === '' || strlen($password) < 8 || strlen($password) > 4096) {
+        header('Location: ../forgotpwd/create-new-password.php?newpwd=passwordinvalid&selector=' . urlencode($selector) . '&validator=' . urlencode($validator));
+        exit();
+    }
+    if (!hash_equals($password, $passwordRepeat)) {
+        header('Location: ../forgotpwd/create-new-password.php?newpwd=pwdnotsame&selector=' . urlencode($selector) . '&validator=' . urlencode($validator));
+        exit();
+    }
 
         // checking the token date if it has expired or not
         $currentDate = date("U");
 
-        $sql= $conn->prepare("SELECT * FROM pwdReset WHERE pwdResetSelector=? AND pwdResetExpires >=?");
-          if(!$sql){
-            echo "There was an error";
-            exit();
-        }else{
-            $sql->bind_param("ss", $selector, $currentDate);
-            $sql->execute();
-            $result= $sql->get_result();
-            // checking if there are no rows
-            if(!$row= $result->fetch_assoc()){
-                echo "You need to resubmit your reset request.";
-                exit();
-            }
-            // matching token from db and form in matching format
-            else{
-                // The token is now stored hashed as a hex string so it is verified as-is
-                $tokenCheck = password_verify($validator, $row['pwdResetToken']);
-
-                // checking if token is valid
-                if($tokenCheck === false){
-                    echo "You need to re-submit your reset request.";
-                    exit();
-                }
-                // password will be updated to db if valid
-                else if($tokenCheck === true){
-                    $tokenEmail = $row['pwdResetEmail'];
-
-                    $sql= $conn->prepare("SELECT * FROM users WHERE email_address=?");
-                    if(!$sql){
-                        echo "There was an error";
-                        exit();
-                    }
-                    else{
-                        // binding tokenEmail to email_address placeholder
-                        $sql->bind_param("s", $tokenEmail);
-                        $sql->execute();
-
-                        $result= $sql->get_result();
-                        // checking if there are no rows
-                        if(!$row= $result->fetch_assoc()){
-                            echo "There was an error!";
-                            exit();
-                        }
-                        else{
-                            // updating the user's password inside the user table
-                            $sql= $conn->prepare("UPDATE users SET password_hash=? WHERE email_address=?");
-                            if(!$sql){
-                                echo "There was an error.";
-                                exit();
-                            }
-                            else{
-                                // hashing password before inserting into db
-                                $newPwdHash = password_hash($password, PASSWORD_DEFAULT);
-
-                                $sql->bind_param("ss", $newPwdHash, $tokenEmail);
-                                $sql->execute(); // update password
-
-                                // deleting the existing token after new password has been set
-                                $sql = $conn->prepare("DELETE FROM pwdReset WHERE pwdResetEmail=?");
-                                if(!$sql){
-                                    echo "There was an error.";
-                                    exit();
-                                }
-                                else{
-                                    $sql->bind_param('s', $tokenEmail);
-                                    $sql->execute();
-                                    header("Location: ../pages/login.php?newpwd=passwordupdated");
-                                    exit();
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+        $stmt= $conn->prepare("SELECT * FROM pwdReset WHERE pwdResetSelector=? AND pwdResetExpires >=?");
+        if (!$stmt) {
+            error_log('Password reset token lookup preparation failed.');
+            http_response_code(500);
+            exit('A server error occurred. Please request a new reset link later.');
         }
+            $stmt->bind_param("ss", $selector, $currentDate);
+            $stmt->execute();
+            $row = $stmt->get_result()->fetch_assoc();
+            $stmt->close();
+            
+            /*  checking if there are no rows
+                matching token from db and form in matching format
+                The token is now stored hashed as a hex string so it is verified as-is
+                checking if token is valid
+            */
+            if (!$row || !password_verify($validator, $row['pwdResetToken'])) {
+                http_response_code(400);
+                exit('This password-reset link is invalid or expired. Request a new link.');
+            }
+            
+            $email = $row['pwdResetEmail'];
+            $newHash = password_hash($password, PASSWORD_DEFAULT);
+            if ($newHash === false) {
+                error_log('Password hashing failed during reset.');
+                http_response_code(500);
+                exit('A server error occurred. Please try again later.');
+            }
+    // Update the password and consume the token together. This assumes both tables
+    $conn->begin_transaction();
+    try {
+        $update = $conn->prepare('UPDATE users SET password_hash = ? WHERE email_address = ?');
+        if (!$update) {
+            throw new RuntimeException('Could not prepare password update.');
+        }
+        $update->bind_param('ss', $newHash, $email);
+        if (!$update->execute() || $update->affected_rows < 1) {
+            $update->close();
+            throw new RuntimeException('Password update failed.');
+        }
+        $update->close();
+
+        $delete = $conn->prepare('DELETE FROM pwdReset WHERE pwdResetEmail = ?');
+        if (!$delete) {
+            throw new RuntimeException('Could not prepare reset token deletion.');
+        }
+        $delete->bind_param('s', $email);
+        if (!$delete->execute()) {
+            $delete->close();
+            throw new RuntimeException('Reset token deletion failed.');
+        }
+        $delete->close();
+        $conn->commit();
+    } catch (Throwable $e) {
+        $conn->rollback();
+        error_log('Password reset transaction failed.');
+        http_response_code(500);
+        exit('A server error occurred. Please request a new reset link later.');
     }
-    else{
-        header("Location: ../pages/index.php");
-        exit();
-    }
+    header('Location: ../pages/login.php?newpwd=passwordupdated');
+    exit();
 ?>

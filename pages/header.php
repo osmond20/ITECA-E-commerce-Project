@@ -1,5 +1,8 @@
 <?php 
     require __DIR__ . "/../backend/session.php";
+    if (!isset($_SESSION['csrf_logout'])) {
+        $_SESSION['csrf_logout'] = bin2hex(random_bytes(32));
+    }
 ?>
  <nav class="site-nav">
       <div class="nav-menu-and-brand">

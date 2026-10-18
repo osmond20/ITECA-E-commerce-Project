@@ -1,1 +1,4 @@
 /PHPMailer/
+/backend/mailconfig.php
+/db/conn.php
+/pages/contact.php

@@ -43,6 +43,9 @@
                 else if($error == "signinerror"){
                    echo "<p class='error'>Email already exists</p>";
                 }
+                else if($error == "passwordinvalid"){
+                   echo "<p class='error'>Password must be at least 8 characters long.</p>";
+                }
               }
             ?>
         <div class="signin-container">
@@ -68,7 +71,7 @@
                        echo '<input class="inputs" type="email" placeholder="Email" name="email">';
                       }
                     ?>
-                    <input class="inputs" type="password" placeholder="Password" name="pw"  minlength="8">
+                    <input class="inputs" type="password" placeholder="Password" name="pw"  minlength="8" maxlength="4096" required>
                     <button class="signinBtn" type="submit" name="signin-btn">Sign In</button>
             </form>
             

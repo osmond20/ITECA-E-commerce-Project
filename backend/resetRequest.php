@@ -10,8 +10,14 @@
         require __DIR__ . "/../PHPMailer/src/PHPMailer.php";
         require __DIR__ . "/../PHPMailer/src/SMTP.php";
 
-        // Gmail login details + website address (see mailconfig.php)
-        $config = require __DIR__ . "/mailconfig.php";
+        // Gmail login details + website address (see mail-config.php)
+        $configPath = __DIR__ . '/mailconfig.php';
+        if (!is_file($configPath)) {
+            error_log('Password reset mail configuration file is missing.');
+            header('Location: ../pages/resetpassword.php?reset=success');
+            exit();
+        }
+        $config = require $configPath;
 
         $userEmail = trim($_POST['email'] ?? '');
 
@@ -46,7 +52,8 @@
         // to find out which emails are registered (and we don't email strangers).
         $sql = $conn->prepare("SELECT 1 FROM users WHERE email_address=? LIMIT 1");
         if(!$sql){
-            echo "There was an error!";
+            error_log('Password reset account lookup could not be prepared.');
+            header('Location: ../pages/resetpassword.php?reset=success');
             exit();
         }
         $sql->bind_param("s", $userEmail);
@@ -59,19 +66,22 @@
             $sql = $conn->prepare("DELETE FROM pwdReset WHERE pwdResetEmail=?");
 
             if(!$sql){
-                echo "There was an error!";
+                error_log('Password reset token deletion could not be prepared.');
+                header('Location: ../pages/resetpassword.php?reset=success');
                 exit();
             }
             else{
                 $sql->bind_param("s", $userEmail);
                 $sql->execute();
+                $sql->close();
             }
 
             $sql = $conn->prepare("INSERT INTO 
             pwdReset (pwdResetEmail, pwdResetSelector, 
             pwdResetToken, pwdResetExpires) VALUES (?, ?, ?, ?)");
             if(!$sql){
-                echo "There was an error";
+                error_log('Password reset token insertion could not be prepared.');
+                header('Location: ../pages/resetpassword.php?reset=success');
                 exit();
             }else{
                 // hashing the token for security
@@ -88,7 +98,7 @@
             try{
                 // debug output goes to the PHP error log (never to the page,
                 // because the page redirects below)
-                $mail->SMTPDebug   = $config['debug'] ? 2 : 0;
+                $mail->SMTPDebug   = false; // Never enable SMTP debug output in production.
                 $mail->Debugoutput = 'error_log';
 
                 // server settings
@@ -127,7 +137,7 @@
             catch(Exception $e){
                 // not telling the visitor (that would reveal the account exists),
                 // but recording it so you can see what went wrong
-                error_log("Password reset email failed: " . $mail->ErrorInfo);
+                error_log('Password reset email failed; check mail server configuration.');
             }
         }
 

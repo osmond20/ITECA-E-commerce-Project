@@ -29,26 +29,19 @@
 <body>
     <main class="main-el">
         <?php
-            if(isset($_GET['error'])){
-            $error = $_GET['error'];
-            if($error == "emptyfields"){
-                echo "<p class='error'>Empty Fields</p>";
+            $error = $_GET['error'] ?? '';
+            if ($error === 'emptyfields') {
+                echo "<p class='error'>Please enter your email and password.</p>";
+            } elseif ($error === 'emailinvalid') {
+                echo "<p class='error'>Please enter a valid email address.</p>";
+            } elseif ($error === 'forbidden') {
+                echo "<p class='error'>You must sign in with an administrator account to access that page.</p>";
+            } elseif ($error === 'incorrectcredentials' || $error === 'accountnotfound') {
+                echo "<p class='error'>Incorrect email or password.</p>";
             }
-            else if($error == "emailinvalid"){
-                echo "<p class='error'>Email is invalid</p>";
-            }
-            else if($error == "signinerror"){
-                echo "<p class='error'>Email already exists</p>";
-            }
-            else if($error == "incorrectcredentials"){
-                echo "<p class='error'>Incorrect password or email</p>";
-            }
-            else if($error == "accountnotfound"){
-                echo "<p class='error'>Account does not exist</p>";
-            }
-            }
-            if(($_GET['newpwd'] ?? '') === "passwordupdated"){
-                echo "<p class='success'>Password Updated</p>";
+
+            if (($_GET['newpwd'] ?? '') === 'passwordupdated') {
+                echo "<p class='success'>Password updated. Please sign in.</p>";
             }
         ?>
         <div class="login-container">
@@ -64,7 +57,7 @@
                        echo '<input class="inputs" type="email" placeholder="Email" name="email">';
                       }
                     ?>
-                    <input class="inputs" type="password" placeholder="Password" name="pw"  minlength="8">
+                    <input class="inputs" type="password" placeholder="Password" name="pw"  minlength="8" maxlength="4096" required>
                     <button class="loginBtn" type="submit" name="login-btn">Log In</button>
                    <div class="link-content-container">
                     <p class="link-content">If you don't have an account? <a href="../pages/signin.php" class="login">Sign in</a></p>
