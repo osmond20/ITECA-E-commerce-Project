@@ -29,8 +29,6 @@
 <body>
     <main class="main-el">
         <?php 
-              // FIX: resetRequest.php redirects with ?reset=success (or ?reset=invalid),
-              // the old code was looking for ?error= and ?success= so nothing was ever shown
               $reset = $_GET['reset'] ?? '';
               if($reset === "success"){
                 echo "<p class='success'>If that email is registered, a reset link is on its way. Check your inbox (and spam folder).</p>";

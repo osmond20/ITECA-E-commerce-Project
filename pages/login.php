@@ -28,34 +28,29 @@
 </head>
 <body>
     <main class="main-el">
-           <?php
-              if(!isset($_GET['error']) || !isset($_GET['newpwd'])){
-                // html code runs
-              }
-              else{
-                $error = $_GET['error'];
-                if($error == "emptyfields"){
-                  echo "<p class='error'>Empty Fields</p>";
-                }
-                else if($error == "emailinvalid"){
-                    echo "<p class='error'>Email is invalid</p>";
-                }
-                else if($error == "signinerror"){
-                   echo "<p class='error'>Email already exists</p>";
-                }
-                else if($error == "incorrectcredentials"){
-                  echo "<p class='error'>Incorrect password or email</p>";
-                }
-                 else if($error == "accountnotfound"){
-                  echo "<p class='error'>Account does not exist</p>";
-                }
-
-                $success = $_GET['passwordupdated'];
-                if($success == "passwordupdated"){
-                  echo "<p class='success'>Password Updated</p>";
-                }
-              }
-            ?>
+        <?php
+            if(isset($_GET['error'])){
+            $error = $_GET['error'];
+            if($error == "emptyfields"){
+                echo "<p class='error'>Empty Fields</p>";
+            }
+            else if($error == "emailinvalid"){
+                echo "<p class='error'>Email is invalid</p>";
+            }
+            else if($error == "signinerror"){
+                echo "<p class='error'>Email already exists</p>";
+            }
+            else if($error == "incorrectcredentials"){
+                echo "<p class='error'>Incorrect password or email</p>";
+            }
+            else if($error == "accountnotfound"){
+                echo "<p class='error'>Account does not exist</p>";
+            }
+            }
+            if(($_GET['newpwd'] ?? '') === "passwordupdated"){
+                echo "<p class='success'>Password Updated</p>";
+            }
+        ?>
         <div class="login-container">
             <h1 class="title">Log In</h1>
              <form class="log-in-form" action="../backend/loginHandler.php" method="post" enctype="multipart/form-data">
@@ -80,4 +75,3 @@
       </main>
 </body>
 </html>
-

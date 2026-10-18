@@ -10,8 +10,8 @@
         require __DIR__ . "/../PHPMailer/src/PHPMailer.php";
         require __DIR__ . "/../PHPMailer/src/SMTP.php";
 
-        // Gmail login details + website address (see mail-config.php)
-        $config = require __DIR__ . "/mail-config.php";
+        // Gmail login details + website address (see mailconfig.php)
+        $config = require __DIR__ . "/mailconfig.php";
 
         $userEmail = trim($_POST['email'] ?? '');
 

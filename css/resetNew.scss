@@ -96,7 +96,7 @@ body{
 }
 
 .reset-container{
-  height: calc(350 / 16 * 1rem);
+  height: calc(280 / 16 * 1rem);
   width: clamp(17.5rem, calc(17.5rem + ((100vw - 46.5rem) * 0.0287356)), 18.75rem);
   border: 1px solid gray;
   border-radius: calc(10 / 16 * 1rem);

@@ -150,7 +150,7 @@ body{
 }
 
 .success{
-    font-size: alc(14 / 16 * 1rem);
+    font-size: calc(14 / 16 * 1rem);
     padding: calc(12 / 16 * 1rem);
     width: clamp(17.5rem, calc(17.5rem + ((100vw - 46.5rem) * 0.0287356)), 18.75rem);
     text-align: center;
