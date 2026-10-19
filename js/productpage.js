@@ -1,3 +1,4 @@
+// variables
 const productId = new URLSearchParams(window.location.search).get("product_id");
 const productImage = document.getElementById("image_URL");
 const productName = document.getElementById("product_name");
@@ -6,6 +7,7 @@ const productDescription = document.getElementById("description");
 const ingredients = document.getElementById("ingredients");
 const howToUse = document.getElementById("how_to_use");
 
+// function to display errors if fetch proves to be unsuccessful
 function showProductError(message) {
     productName.textContent = message;
     productDescription.textContent = "";
@@ -13,6 +15,7 @@ function showProductError(message) {
     productImage.removeAttribute("src");
 }
 
+// function use to operate the product info toggles when a user clicks
 function setupProductInfoToggles() {
     document.querySelectorAll(".component").forEach((component) => {
         const arrow = component.querySelector(".arrowBtn");
@@ -29,6 +32,7 @@ function setupProductInfoToggles() {
     });
 }
 
+// asynchronous fethcing from "api/products.json" into product page elements
 async function loadProduct() {
     if (!productId || !/^\d+$/.test(productId)) {
         showProductError("Product not found");
