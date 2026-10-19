@@ -43,6 +43,7 @@
                 </li>
                 <li class="logout-link" id="log-out">
                     <form class="logout-form" action="../backend/logoutHandler.php" method="post">
+                        <input type="hidden" name="csrf_token" value="' . htmlspecialchars($_SESSION['csrf_logout'], ENT_QUOTES, 'UTF-8') . '">
                         <button type="submit" class="acc-link logout-btn" name="logout">Logout</button>
                     </form>
                 </li>

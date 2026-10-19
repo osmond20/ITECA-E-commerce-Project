@@ -24,7 +24,7 @@
   type="font/woff2"
   crossorigin>
   <link rel="stylesheet" href="../css/signin.css">
-    <title>Document</title>
+    <title>Sign in</title>
 </head>
 <body>
       <main class="main-el">

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Product</title>
     <link rel="preload" 
     href="../assets/fonts/figtree-v9-latin-regular.woff2"
     as="font"
@@ -30,13 +30,13 @@
     <?php require "header.php" ?>
     <main class="main-el">
         <section class="image-container">
-            <img class="main-img" id="product-img" src="" alt="TGA product" height="50" width="50">
+            <img class="main-img" id="image_URL" src="" alt="TGA product" height="50" width="50">
         </section>
         <section class="product-info">
-            <h1 class="title" id="product-title">Loading...</h1>
-            <p class="price" id="product-price"></p>
+            <h1 class="title" id="product_name">Loading...</h1>
+            <p class="price" id="product_price"></p>
             <button class="atcBtn">Add to cart</button>
-            <p class="description" id="product-description"></p>
+            <p class="product-description" id="description"></p>
             <div class="additionalInfo-container">
                 <div class="component">
                     <h2 class="component-title">Ingredients</h2> <img class="arrowBtn" src="../assets/images/arrow-down.png" alt="">
@@ -50,7 +50,7 @@
                     <h2 class="component-title">How to use</h2> <img class="arrowBtn" src="../assets/images/arrow-down.png" alt="">
                 </div>
                 <div class="HTU-info">
-                    <p class="container-info" id="HTU" hidden></p>
+                    <p class="container-info" id="how_to_use" hidden></p>
                 </div>
             </div>
         </section>

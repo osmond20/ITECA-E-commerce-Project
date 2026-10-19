@@ -312,6 +312,12 @@ li{
     transition: transform 0.3s ease;
 }
 
+.container-info{
+  padding-top: calc(10 / 16 * 1rem);
+  font-size: calc(14 / 16 * 1rem);
+  color:var(--cod-gray)
+}
+
 /*--FOOTER--*/
 .footer-el{
   display: flex;
@@ -414,6 +420,10 @@ li{
   opacity: 25%;
 }
 
+@media(min-width: 46.5rem){
+
+}
+
 /*--DESKTOP--*/
 @media(min-width: 62.4rem){
 
@@ -458,4 +468,21 @@ li{
       height: calc(25 / 16 * 1rem);
       width: calc(25 / 16 * 1rem);
   }
+
+    .main-el{
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: 500px;
+      padding-inline: 12%;
+      gap: calc(20 / 16 * 1rem);
+    }
+
+    .image-container{
+      height: 100%;
+      width: 100%;
+    }
+
+    .product-info{
+      justify-content: center;
+    }
 }

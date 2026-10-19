@@ -38,12 +38,12 @@ require __DIR__ . "/session.php";
     $check->bind_param('s', $email);
     $check->execute();
     $check->store_result();
-    $check->close();
 
     if ($check->num_rows > 0) {
         header('Location: ../pages/signin.php?error=signinerror&username=' . urlencode($username) . '&email=' .urlencode($email));
         exit();
     }
+    $check->close();
 
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
     if ($passwordHash === false) {

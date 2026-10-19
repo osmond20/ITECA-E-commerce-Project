@@ -310,6 +310,12 @@ li {
   transition: transform 0.3s ease;
 }
 
+.container-info {
+  padding-top: 0.625rem;
+  font-size: 0.875rem;
+  color: var(--cod-gray);
+}
+
 /*--FOOTER--*/
 .footer-el {
   display: flex;
@@ -445,5 +451,19 @@ li {
   .icon-actions {
     height: 1.5625rem;
     width: 1.5625rem;
+  }
+  .main-el {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 500px;
+    padding-inline: 12%;
+    gap: 1.25rem;
+  }
+  .image-container {
+    height: 100%;
+    width: 100%;
+  }
+  .product-info {
+    justify-content: center;
   }
 }/*# sourceMappingURL=productpage.css.map */

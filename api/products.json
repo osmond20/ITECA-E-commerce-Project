@@ -1,43 +1,50 @@
 [
     {
-        "id": "1",
-        "imageURL": "../assets/images/TGA-FOProduct.png",
-        "name": "Fresh Oak",
-        "price": "249.00",
-        "currency": "R",
-        "description": "A lightweight, fast‑absorbing beard oil formulated to condition both skin and hair. Designed for everyday use so additional treatments are unnecessary.",
+        "product_id": 1,
+        "product_name": "Fresh Oak",
+        "image_URL": "..\/assets\/images\/TGA-FOProduct.png",
+        "product_price": "249.00",
+        "stock_quantity": 25,
+        "description": "A lightweight, fast-absorbing beard oil formulated to condition both skin and hair. Designed for everyday use so additional treatments are unnecessary.",
         "ingredients": "Sclerocarya Birrea Seed Oil (Marula Oil), Vitis Vinifera Seed Oil (Grapeseed Oil), Prunus Amygdalus Dulcis (Sweet Almond) Oil, Ricinus Communis (Castor) Seed Oil, Cedrus Atlantica Wood Oil (Cedarwood EO), Rosmarinus Officinalis Leaf Oil (Rosemary EO).",
-        "How-to-use": "Warm a few drops between your palms and work evenly through a clean, slightly damp beard. Massage into the skin beneath and style as usual."
+        "how_to_use": "Warm a few drops between your palms and work evenly through a clean, slightly damp beard. Massage into the skin beneath and style as usual.",
+        "created_at": "2026-10-19 10:22:03",
+        "updated_at": "2026-10-19 10:23:17"
     },
     {
-         "id": "2",
-        "imageURL": "../assets/images/TGA-CSProduct.png",
-        "name": "Cedar Spice",
-        "price": "289.00",
-        "currency": "R",
-        "description": "A lightweight, fast‑absorbing beard oil formulated to condition both skin and hair. Designed for everyday use so additional treatments are unnecessary.",
+        "product_id": 2,
+        "product_name": "Cedar Spice",
+        "image_URL": "..\/assets\/images\/TGA-CSProduct.png",
+        "product_price": "289.00",
+        "stock_quantity": 25,
+        "description": "A lightweight, fast-absorbing beard oil formulated to condition both skin and hair. Designed for everyday use so additional treatments are unnecessary.",
         "ingredients": "Sclerocarya Birrea Seed Oil (Marula Oil), Argania Spinosa Kernel Oil (Argan Oil), Adansonia Digitata Seed Oil (Baobab Oil), Vitis Vinifera Seed Oil (Grapeseed Oil), Cedrus Atlantica Wood Oil (Cedarwood EO), Eugenia Caryophyllus Bud Oil (Clove EO), Rosmarinus Officinalis Leaf Oil (Rosemary EO).",
-        "How-to-use": "Warm a few drops between your palms and work evenly through a clean, slightly damp beard, making sure to reach the skin beneath. Use daily. One to three drops. No rotation. No supplements."
+        "how_to_use": "Warm a few drops between your palms and work evenly through a clean, slightly damp beard, making sure to reach the skin beneath. Use daily. One to three drops. No rotation. No supplements.",
+        "created_at": "2026-10-19 10:22:27",
+        "updated_at": "2026-10-19 10:23:28"
     },
     {
-         "id": "3",
-        "imageURL": "../assets/images/Fresh-Oak-BC.png",
-        "name": "Fresh Oak",
-        "price": "409.00",
-        "currency": "R",
+        "product_id": 3,
+        "product_name": "Fresh Oak Combo",
+        "image_URL": "..\/assets\/images\/Fresh-Oak-BC.png",
+        "product_price": "409.00",
+        "stock_quantity": 35,
         "description": "Condition. Nourish. Support structure. Designed for daily use. Balanced. No unnecessary steps.",
         "ingredients": "Sclerocarya Birrea Seed Oil (Marula Oil), Vitis Vinifera Seed Oil (Grapeseed Oil), Prunus Amygdalus Dulcis (Sweet Almond) Oil, Ricinus Communis (Castor) Seed Oil, Cedrus Atlantica Wood Oil (Cedarwood EO), Rosmarinus Officinalis Leaf Oil (Rosemary EO). Included: 30ml Beard oil + 25ml Beard butter (unscented).",
-        "How-to-use": "Warm a few drops between your palms and work evenly through a clean, slightly damp beard, making sure to reach the skin beneath. Use daily for softness, nourishment, and a well-kept feel."
-    }
-    ,{
-         "id": "4",
-        "imageURL": "../assets/images/TGA-CS-Combo.png",
-        "name": "Cedar Spice Combo",
-        "price": "449.00",
-        "currency": "R",
+        "how_to_use": "Warm a few drops between your palms and work evenly through a clean, slightly damp beard, making sure to reach the skin beneath. Use daily for softness, nourishment, and a well-kept feel.",
+        "created_at": "2026-10-19 10:22:42",
+        "updated_at": "2026-10-19 10:23:36"
+    },
+    {
+        "product_id": 4,
+        "product_name": "Cedar Spice Combo",
+        "image_URL": "..\/assets\/images\/TGA-CS-Combo.png",
+        "product_price": "449.00",
+        "stock_quantity": 35,
         "description": "Condition. Nourish. Support structure. Designed for daily use. Balanced. No unnecessary steps.",
         "ingredients": "Sclerocarya Birrea Seed Oil (Marula Oil), Argania Spinosa Kernel Oil (Argan Oil), Adansonia Digitata Seed Oil (Baobab Oil), Vitis Vinifera Seed Oil (Grapeseed Oil), Cedrus Atlantica Wood Oil (Cedarwood EO), Eugenia Caryophyllus Bud Oil (Clove EO), Rosmarinus Officinalis Leaf Oil (Rosemary EO). Included: 30ml Beard oil + 30ml Beard butter (unscented).",
-        "How-to-use": "Warm a few drops between your palms and work evenly through a clean, slightly damp beard, making sure to reach the skin beneath. Use daily for softness, nourishment, and a well-kept feel."
+        "how_to_use": "Warm a few drops between your palms and work evenly through a clean, slightly damp beard, making sure to reach the skin beneath. Use daily for softness, nourishment, and a well-kept feel.",
+        "created_at": "2026-10-19 10:22:57",
+        "updated_at": "2026-10-19 10:23:47"
     }
-    
 ]

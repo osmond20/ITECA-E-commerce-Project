@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login</title>
             <link rel="preload" 
   href="../assets/fonts/figtree-v9-latin-regular.woff2"
   as="font"

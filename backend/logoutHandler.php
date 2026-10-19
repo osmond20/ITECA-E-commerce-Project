@@ -1,10 +1,15 @@
 <?php 
     require __DIR__  . "/session.php";
 
+    /* 
+        security check that prevents unintended logout requests
+        from logging someone out and then performs the real logout when
+        the request is valid
+    */
     if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['logout']) || !isset($_SESSION['csrf_logout']) || !is_string($_POST['csrf_token'] ?? null) || !hash_equals($_SESSION['csrf_logout'], $_POST['csrf_token'])) {
-    header('Location: ../pages/index.php');
-    exit();
-}
+        header('Location: ../pages/index.php');
+        exit();
+    }
 
     // Clear session data and expire the browser's session cookie.
     $_SESSION = [];

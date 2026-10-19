@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Shopping</title>
         <link rel="preload" 
   href="../assets/fonts/figtree-v9-latin-regular.woff2"
   as="font"
@@ -27,11 +27,15 @@
   <link rel="stylesheet" href="../css/shopping.css">
 </head>
 <body>
-     <?php require "header.php" ?>
+     <?php require "header.php";
+        require_once __DIR__ . "/../backend/APIfetch.php";
+     ?>
     <main class="main-el">
         <section class="shopping-component">
             <div class="product-container">
-                <img class="product-img-1" src="../assets/images/TGA-FOProduct.png" alt="TGA Fresh Oak" height="50" width="50">
+                <a href="../pages/productpage.php?product_id=1">
+                    <img class="product-img-1" src="../assets/images/TGA-FOProduct.png" alt="TGA Fresh Oak" height="50" width="50" id="1">
+                </a>
                 <div class="text-container">
                     <p class="product-text">Fresh Oak</p>
                     <p class="product-text">R249,00</p>
@@ -39,7 +43,9 @@
                 <button class="atc-btn">Add to Cart</button>
             </div>
             <div class="product-container">
-                <img class="product-img-1" src="../assets/images/TGA-CSProduct.png" alt="TGA Fresh Oak" height="50" width="50">
+                <a href="../pages/productpage.php?product_id=2">
+                    <img class="product-img-1" src="../assets/images/TGA-CSProduct.png" alt="TGA Cedar Spice" height="50" width="50" id="2">
+                </a>
                 <div class="text-container">
                     <p class="product-text">Cedar Spice</p>
                     <p class="product-text">R289,00</p>
@@ -47,17 +53,21 @@
                 <button class="atc-btn">Add to Cart</button>
             </div>
             <div class="product-container">
-                <img class="product-img-2" src="../assets/images/Fresh-Oak-BC.png" alt="TGA Fresh Oak" height="50" width="50">
+                <a href="../pages/productpage.php?product_id=3">
+                    <img class="product-img-2" src="../assets/images/Fresh-Oak-BC.png" alt="TGA Fresh Oak Combo" height="50" width="50" id="3">
+                </a>
                 <div class="text-container">
-                    <p class="product-text">Fresh Oak - Combo</p>
+                    <p class="product-text">Fresh Oak Combo</p>
                     <p class="product-text">R409,00</p>
                 </div>
                 <button class="atc-btn">Add to Cart</button>
             </div>
             <div class="product-container">
-                <img class="product-img-3" src="../assets/images/TGA-CS-Combo.png" alt="TGA Fresh Oak" height="50" width="50">
+                <a href="../pages/productpage.php?product_id=4">
+                    <img class="product-img-3" src="../assets/images/TGA-CS-Combo.png" alt="TGA Cedar Spice Combo" height="50" width="50" id="4">
+                </a>
                 <div class="text-container">
-                    <p class="product-text">Cedar Spice - Combo</p>
+                    <p class="product-text">Cedar Spice Combo</p>
                     <p class="product-text">R449,00</p>
                 </div>
                 <button class="atc-btn">Add to Cart</button>
