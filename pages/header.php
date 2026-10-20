@@ -15,7 +15,10 @@
         <a class="nav-link" href="../pages/contact.php">Contact Us</a>
       </div>
       <div class="nav-actions">
-        <img class="icon-actions" src="../assets/images/cart-outline.svg" alt="" height="20" width="20">
+       <button class="snipcart-checkout">
+            <img class="icon-actions" src="../assets/images/cart-outline.svg" alt="" height="20" width="20">
+            <span class="snipcart-items-count"></span>
+        </button>
         <img class="icon-actions" id="acc-icon" aria-expanded="true" src="../assets/images/account-icon.png" alt="" height="20" width="20">
       </div>
         <div class="account-menu">
@@ -56,7 +59,7 @@
     <aside class="menu" aria-expanded="true">
             <ul class="menu-links">
                 <li class="list-link">
-                    <a class="links" href="../index.php">Home</a>
+                    <a class="links" href="../pages/index.php">Home</a>
                 </li>
                 <li class="list-link">
                     <a class="links" href="../pages/shopping.php">Shop</a>

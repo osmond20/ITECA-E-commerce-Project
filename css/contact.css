@@ -143,6 +143,30 @@ body {
   padding-inline-end: 1.25rem;
 }
 
+.snipcart-checkout {
+  position: relative;
+  background: none;
+  border: 0;
+}
+
+.snipcart-items-count {
+  position: absolute;
+  top: -5px;
+  right: -6px;
+  min-width: 12px;
+  height: 12px;
+  box-sizing: border-box;
+  padding-block-end: 1px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--black);
+  color: var(--white);
+  border-radius: 50px;
+  font-size: 8px;
+  line-height: 1;
+}
+
 .menu {
   position: fixed;
   background-color: var(--white);
