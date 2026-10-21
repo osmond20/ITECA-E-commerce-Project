@@ -148,7 +148,6 @@ body{
   position: relative;
   background: none;
   border: 0;
-
 }
 
 .snipcart-items-count{
@@ -157,8 +156,8 @@ body{
   right: -6px;
   min-width: 12px;
   height: 12px;
+  padding-top: calc(2 / 16 * 1rem);
   box-sizing: border-box;
-  padding-block-end: 1px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -166,7 +165,6 @@ body{
   color: var(--white);
   border-radius: 50px;
   font-size: 8px;
-  line-height: 1;
 }
 
 .menu{
@@ -176,12 +174,12 @@ body{
   height: calc(102 / 16 * 1rem);
   top:calc(65 / 16 * 1rem);
   width: 100%;
-  opacity: 0;
+  display: none;
   transition: opacity 0.3s ease;
 }
 
 .menu.show{
-  opacity: 1;
+  display: block;
 }
 
 .menu-links{
@@ -215,7 +213,7 @@ body{
 
 .account-menu{
   position: absolute;
-  opacity: 0;
+  display: none;
   transition: opacity 0.3s ease;
   padding: calc(10 / 16 * 1rem);
   right: 10px;
@@ -227,7 +225,7 @@ body{
 }
 
 .account-menu.show{
-  opacity: 1;
+  display:block;
 }
 
 .acc-menu-list{
@@ -448,6 +446,8 @@ input:focus-visible, textarea:focus-visible{
 }
 
 @media (min-width: 46.5rem) {
+
+
     .footer-main{
     display: grid;
     grid-template-columns: repeat(3, 1fr);

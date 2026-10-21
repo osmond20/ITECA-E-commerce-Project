@@ -172,12 +172,12 @@ body {
   height: 6.375rem;
   top: 4.0625rem;
   width: 100%;
-  opacity: 0;
+  display: none;
   transition: opacity 0.3s ease;
 }
 
 .menu.show {
-  opacity: 1;
+  display: block;
 }
 
 .menu-links {
@@ -211,7 +211,7 @@ body {
 
 .account-menu {
   position: absolute;
-  opacity: 0;
+  display: none;
   transition: opacity 0.3s ease;
   padding: 0.625rem;
   right: 10px;
@@ -223,7 +223,7 @@ body {
 }
 
 .account-menu.show {
-  opacity: 1;
+  display: block;
 }
 
 .acc-menu-list {
