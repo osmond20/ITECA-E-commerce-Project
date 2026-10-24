@@ -32,8 +32,8 @@
 
         <div class="contact-form-container">
         <h1 class="contact-title">Contact Us</h1>
-            // paste your formspree endpoint url in action=""
-        <form class="contact-us-form" action="Add your Formspree endpoint here" method="post" enctype="multipart/form-data">
+            <!-- paste your formspree endpoint url in action="" -->
+        <form class="contact-us-form" action="" method="post" enctype="multipart/form-data">
                 <input class="inputs" name="Full Name" type="text" placeholder="Full Name">
                 <p class="error">Full Name cannot be empty</p>
                 <input class="inputs" name="Email" type="email" placeholder="Email">
