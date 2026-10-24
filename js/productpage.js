@@ -6,6 +6,7 @@ const productPrice = document.getElementById("product_price");
 const productDescription = document.getElementById("description");
 const ingredients = document.getElementById("ingredients");
 const howToUse = document.getElementById("how_to_use");
+const addToCartButton = document.querySelector(".atc-btn");
 
 // function to display errors if fetch proves to be unsuccessful
 function showProductError(message) {
@@ -13,9 +14,10 @@ function showProductError(message) {
     productDescription.textContent = "";
     productPrice.textContent = "";
     productImage.removeAttribute("src");
+    addToCartButton.disabled = true;
 }
 
-// function use to operate the product info toggles when a user clicks
+// function used to operate the product info toggles when a user clicks
 function setupProductInfoToggles() {
     document.querySelectorAll(".component").forEach((component) => {
         const arrow = component.querySelector(".arrowBtn");
@@ -34,7 +36,7 @@ function setupProductInfoToggles() {
 
 // asynchronous fethcing from "api/products.json" into product page elements
 async function loadProduct() {
-    if (!productId || !/^\d+$/.test(productId)) {
+    if (!productId) {
         showProductError("Product not found");
         return;
     }
@@ -56,6 +58,11 @@ async function loadProduct() {
             return;
         }
 
+        const price = Number(product.product_price);
+        if(!Number.isFinite(price) || price < 0){
+            throw new Error(`Product ${productId} has an invalid price`);
+        }
+
         productName.textContent = product.product_name;
         productPrice.textContent = `R${String(product.product_price).replace(".", ",")}`;
         productDescription.textContent = product.description;
@@ -64,6 +71,14 @@ async function loadProduct() {
         productImage.src = new URL(product.image_URL, window.location.href);
         productImage.alt = product.product_name;
         document.title = product.product_name;
+
+        addToCartButton.dataset.itemId = String(product.product_id);
+        addToCartButton.dataset.itemName = product.product_name;
+        addToCartButton.dataset.itemPrice = price.toFixed(2);
+        addToCartButton.dataset.itemDescription = product.description;
+        addToCartButton.dataset.itemUrl = window.location.href;
+        addToCartButton.dataset.itemImage = productImage.src;
+        addToCartButton.disabled = false;
     } catch (error) {
         console.error("Could not load product:", error);
         showProductError("Unable to load product. Please try again later.");

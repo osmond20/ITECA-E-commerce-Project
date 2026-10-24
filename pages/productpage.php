@@ -35,7 +35,7 @@
         <section class="product-info">
             <h1 class="title" id="product_name">Loading...</h1>
             <p class="price" id="product_price"></p>
-            <button class="atcBtn">Add to cart</button>
+            <button class="atcBtn" disabled>Add to cart</button>
             <p class="product-description" id="description"></p>
             <div class="additionalInfo-container">
                 <div class="component">

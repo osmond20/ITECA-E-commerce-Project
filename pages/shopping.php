@@ -38,9 +38,9 @@
                 </a>
                 <div class="text-container">
                     <p class="product-text">Fresh Oak</p>
-                    <p class="product-text">R249,00</p>
+                    <p class="product-text product-price">Loading price...</p>
                 </div>
-                <button class="atc-btn">Add to Cart</button>
+                <button class="atc-btn" data-item-id="1"disabled>Add to Cart</button>
             </div>
             <div class="product-container">
                 <a href="../pages/productpage.php?product_id=2">
@@ -48,9 +48,9 @@
                 </a>
                 <div class="text-container">
                     <p class="product-text">Cedar Spice</p>
-                    <p class="product-text">R289,00</p>
+                    <p class="product-text product-price">Loading price...</p>
                 </div>
-                <button class="atc-btn">Add to Cart</button>
+                <button class="atc-btn"data-item-id="2" disabled>Add to Cart</button>
             </div>
             <div class="product-container">
                 <a href="../pages/productpage.php?product_id=3">
@@ -58,9 +58,9 @@
                 </a>
                 <div class="text-container">
                     <p class="product-text">Fresh Oak Combo</p>
-                    <p class="product-text">R409,00</p>
+                    <p class="product-text product-price">Loading price...</p>
                 </div>
-                <button class="atc-btn">Add to Cart</button>
+                <button class="atc-btn" data-item-id="3"disabled>Add to Cart</button>
             </div>
             <div class="product-container">
                 <a href="../pages/productpage.php?product_id=4">
@@ -68,13 +68,14 @@
                 </a>
                 <div class="text-container">
                     <p class="product-text">Cedar Spice Combo</p>
-                    <p class="product-text">R449,00</p>
+                    <p class="product-text product-price">Loading price...</p>
                 </div>
-                <button class="atc-btn">Add to Cart</button>
+                <button class="atc-btn" data-item-id="4" disabled>Add to Cart</button>
             </div>
         </section>
     </main>
     <?php require "footer.php" ?>
 </body>
 <script defer src="../js/index.js"></script>
+<script defer src="../js/shopping.js"></script>
 </html>
