@@ -1,3 +1,4 @@
+// function for loading products from the products.json API
 async function loadShoppingPrices() {
     const buttons = document.querySelectorAll(".atc-btn");
 

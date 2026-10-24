@@ -25,6 +25,7 @@
     type="font/woff2"
     crossorigin>
     <link rel="stylesheet" href="../css/productpage.css">
+    <link rel="stylesheet" href="../css/cart.css">
 </head>
 <body>
     <?php require "header.php" ?>
@@ -33,8 +34,8 @@
             <img class="main-img" id="image_URL" src="" alt="TGA product" height="50" width="50">
         </section>
         <section class="product-info">
-            <h1 class="title" id="product_name">Loading...</h1>
-            <p class="price" id="product_price"></p>
+            <h1 class="product-title" id="product_name">Loading...</h1>
+            <p class="product-price" id="product_price"></p>
             <button class="atcBtn" disabled>Add to cart</button>
             <p class="product-description" id="description"></p>
             <div class="additionalInfo-container">
@@ -55,8 +56,10 @@
             </div>
         </section>
     </main>
+    <?php require __DIR__ . "//cart.php" ?>
    <?php require "footer.php" ?>
 </body>
 <script defer src="../js/index.js"></script>
 <script defer src="../js/productpage.js"></script>
+<script defer src="../js/cart.js"></script>
 </html>

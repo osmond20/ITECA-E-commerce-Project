@@ -1,3 +1,4 @@
+// variables to store elements
 const contactForm = document.querySelector(".contact-us-form");
 const inputs = document.querySelectorAll(".inputs");
 const message = document.querySelector(".message");

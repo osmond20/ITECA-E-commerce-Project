@@ -26,6 +26,7 @@
   type="font/woff2"
   crossorigin>
   <link rel="stylesheet" href="../css/privacy.css">
+  <link rel="stylesheet" href="../css/cart.css">
 <body>
     <?php 
         require "header.php";
@@ -106,7 +107,9 @@
             <p class="paragraph">As a user of our service, you are advised to review our privacy policy periodically for any changes that may be made.</p>
         </div>
     </main>
+    <?php require __DIR__ . "//cart.php" ?>
     <?php require "footer.php" ?>
 </body>
 <script defer src="../js/index.js"></script>
+<script defer src="../js/cart.js"></script>
 </html>

@@ -138,30 +138,6 @@ body {
   padding-inline-end: 1.25rem;
 }
 
-.snipcart-checkout {
-  position: relative;
-  background: none;
-  border: 0;
-}
-
-.snipcart-items-count {
-  position: absolute;
-  top: -5px;
-  right: -6px;
-  min-width: 12px;
-  height: 12px;
-  box-sizing: border-box;
-  padding-block-end: 1px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--black);
-  color: var(--white);
-  border-radius: 50px;
-  font-size: 8px;
-  line-height: 1;
-}
-
 .menu {
   position: fixed;
   background-color: var(--white);
@@ -231,11 +207,16 @@ body {
   display: block;
   height: 100%;
   width: 100%;
-  transition: color 0.3s ease;
+  background-image: linear-gradient(var(--black), var(--black));
+  background-size: 0 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size 0.3s ease;
 }
 
 .acc-link:hover {
-  text-decoration: underline;
+  background-size: 100% 1px;
+  outline: none;
 }
 
 .logout-btn {
@@ -482,11 +463,15 @@ li {
   .nav-link {
     font-size: 0.9rem;
     text-decoration: none;
-    transition: opacity 0.3s ease;
+    background-image: linear-gradient(var(--black), var(--black));
+    background-size: 0 1px;
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    transition: background-size 0.3s ease;
   }
-  .nav-link:hover {
-    opacity: 75%;
-    text-decoration: underline;
+  .nav-link:hover, .nav-link:focus {
+    background-size: 100% 1px;
+    outline: none;
   }
   .brand-title {
     font-size: 1rem;

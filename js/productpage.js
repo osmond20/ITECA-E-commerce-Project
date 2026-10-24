@@ -1,4 +1,4 @@
-// variables
+// variables to store elements
 const productId = new URLSearchParams(window.location.search).get("product_id");
 const productImage = document.getElementById("image_URL");
 const productName = document.getElementById("product_name");
@@ -6,7 +6,7 @@ const productPrice = document.getElementById("product_price");
 const productDescription = document.getElementById("description");
 const ingredients = document.getElementById("ingredients");
 const howToUse = document.getElementById("how_to_use");
-const addToCartButton = document.querySelector(".atc-btn");
+const addToCartButton = document.querySelector(".atcBtn");
 
 // function to display errors if fetch proves to be unsuccessful
 function showProductError(message) {
@@ -42,11 +42,13 @@ async function loadProduct() {
     }
 
     try {
+        // pauses execution until promise is returned
         const response = await fetch(new URL("../api/products.json", window.location.href));
         if (!response.ok) {
             throw new Error(`Products API returned ${response.status}`);
         }
 
+        // pauses execution until promise is returned
         const products = await response.json();
         if (!Array.isArray(products)) {
             throw new Error("Products API response is not a product list");
@@ -63,6 +65,8 @@ async function loadProduct() {
             throw new Error(`Product ${productId} has an invalid price`);
         }
 
+        // loading data retrieved from the product.json api into
+        // the corresponding elements dynamically
         productName.textContent = product.product_name;
         productPrice.textContent = `R${String(product.product_price).replace(".", ",")}`;
         productDescription.textContent = product.description;
@@ -72,6 +76,9 @@ async function loadProduct() {
         productImage.alt = product.product_name;
         document.title = product.product_name;
 
+        // storing the product information in the button 
+        // to facilitate cart.js to easily read from the 
+        // product page's button
         addToCartButton.dataset.itemId = String(product.product_id);
         addToCartButton.dataset.itemName = product.product_name;
         addToCartButton.dataset.itemPrice = price.toFixed(2);
@@ -85,5 +92,5 @@ async function loadProduct() {
     }
 }
 
-setupProductInfoToggles();
-loadProduct();
+setupProductInfoToggles(); // callling for ensuring clicking is available
+loadProduct(); // calling for data fetching

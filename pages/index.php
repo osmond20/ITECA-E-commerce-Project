@@ -24,6 +24,7 @@
   type="font/woff2"
   crossorigin>
   <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/cart.css">
     <title>Document</title>
 </head>
 <body>
@@ -83,8 +84,10 @@
             </div>
         </section>
     </main>
+    <?php require __DIR__ . "//cart.php" ?>
     <?php require "footer.php" ?>
 </body>
 <script defer src="../js/index.js"></script>
+<script defer src="../js/cart.js"></script>
 </html>
 <?php  ?>

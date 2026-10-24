@@ -1,4 +1,4 @@
-// Variables
+// variables to store elements
 const menuButton = document.querySelector(".menu-button");
 const menu = document.querySelector(".menu");
 const mainEl = document.querySelector(".main-el");

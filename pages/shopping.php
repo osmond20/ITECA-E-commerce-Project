@@ -25,6 +25,7 @@
   type="font/woff2"
   crossorigin>
   <link rel="stylesheet" href="../css/shopping.css">
+  <link rel="stylesheet" href="../css/cart.css">
 </head>
 <body>
      <?php require "header.php";
@@ -40,7 +41,7 @@
                     <p class="product-text">Fresh Oak</p>
                     <p class="product-text product-price">Loading price...</p>
                 </div>
-                <button class="atc-btn" data-item-id="1"disabled>Add to Cart</button>
+                <button class="atc-btn" data-item-id="1" disabled>Add to Cart</button>
             </div>
             <div class="product-container">
                 <a href="../pages/productpage.php?product_id=2">
@@ -74,8 +75,10 @@
             </div>
         </section>
     </main>
+    <?php require __DIR__ . "//cart.php" ?>
     <?php require "footer.php" ?>
 </body>
 <script defer src="../js/index.js"></script>
 <script defer src="../js/shopping.js"></script>
+<script defer src="../js/cart.js"></script>
 </html>
