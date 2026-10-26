@@ -211,39 +211,36 @@
     }
 
     // Builds the signed form and posts it to PayFast. Never returns.
-    function redirectToPayFast(string $reference, string $firstName, string $lastName, string $email, float $total): void
-    {
-        $pf = payfastSettings();
+    $pf = payfastSettings();
 
-        // The fields, in PayFast's required order.
-        $data = [
-            // --- merchant details ---
-            'merchant_id'   => $pf['merchant_id'],
-            'merchant_key'  => $pf['merchant_key'],
-            'return_url'    => $pf['site_url'] . '/pages/checkout.php?notice=paymentsuccess',
-            'cancel_url'    => $pf['site_url'] . '/pages/checkout.php?notice=paymentfailed',
-            'notify_url'    => $pf['site_url'] . '/backend/notify.php',
-            // --- buyer details ---
-            'name_first'    => $firstName,
-            'name_last'     => $lastName,
-            'email_address' => $email,
-            // --- transaction details ---
-            'm_payment_id'  => $reference,                                        // comes back to us in notify.php
-            'amount'        => $total,  // e.g. 389.00
-            'item_name'     => 'True Gent Africa order ' . $reference,
-        ];
-        $data['signature'] = payfastSignature($data, $pf['passphrase']);
+    // The fields, in PayFast's required order.
+    $data = [
+        // --- merchant details ---
+        'merchant_id'   => $pf['merchant_id'],
+        'merchant_key'  => $pf['merchant_key'],
+        'return_url'    => $pf['site_url'] . '/pages/checkout.php?notice=paymentsuccess',
+        'cancel_url'    => $pf['site_url'] . '/pages/checkout.php?notice=paymentfailed',
+        'notify_url'    => $pf['site_url'] . '/backend/notify.php',
+        // --- buyer details ---
+        'name_first'    => $firstName,
+        'name_last'     => $lastName,
+        'email_address' => $email,
+        // --- transaction details ---
+        'm_payment_id'  => $reference,                                        // comes back to us in notify.php
+        'amount'        => $total,  // e.g. 389.00
+        'item_name'     => 'True Gent Africa order ' . $reference,
+    ];
+    $data['signature'] = payfastSignature($data, $pf['passphrase']);
 
-        // A page with a hidden form that submits itself (like the video's "Pay Now" button).
-        $action = 'https://' . $pf['host'] . '/eng/process';
-        echo '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Redirecting to PayFast...</title></head><body>';
-        echo '<p>Taking you to PayFast...</p>';
-        echo '<form id="payfast-form" action="' . htmlspecialchars($action, ENT_QUOTES) . '" method="post">';
-        foreach ($data as $name => $value) {
-            echo '<input type="hidden" name="' . htmlspecialchars($name, ENT_QUOTES) . '" value="' . htmlspecialchars((string) $value, ENT_QUOTES) . '">';
-        }
-        echo '<noscript><button type="submit">Continue to PayFast</button></noscript>';
-        echo '</form><script>document.getElementById("payfast-form").submit();</script></body></html>';
-        exit();
+    // A page with a hidden form that submits itself (like the video's "Pay Now" button).
+    $action = 'https://' . $pf['host'] . '/eng/process';
+    echo '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Redirecting to PayFast...</title></head><body>';
+    echo '<p>Taking you to PayFast...</p>';
+    echo '<form id="payfast-form" action="' . htmlspecialchars($action, ENT_QUOTES) . '" method="post">';
+    foreach ($data as $name => $value) {
+        echo '<input type="hidden" name="' . htmlspecialchars($name, ENT_QUOTES) . '" value="' . htmlspecialchars((string) $value, ENT_QUOTES) . '">';
     }
+    echo '<noscript><button type="submit">Continue to PayFast</button></noscript>';
+    echo '</form><script>document.getElementById("payfast-form").submit();</script></body></html>';
+    exit();
 ?>
