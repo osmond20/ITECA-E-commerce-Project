@@ -1,4 +1,7 @@
 <?php
+    use PHPMailer\PHPMailer\Exception as PHPMailerException;
+    use PHPMailer\PHPMailer\PHPMailer;
+
 /* =====================================================================
    notify.php  -  EXAMPLE: PayFast tells us a payment happened (ITN)
 
@@ -12,6 +15,13 @@
    ===================================================================== */
 
     require_once __DIR__ . '/payfast.php';
+
+    $config = require __DIR__ . '/mailconfig.php';
+
+    // loading PHPMailer (change the path if your PHPMailer folder lives somewhere else)
+    require __DIR__ . "/../PHPMailer/src/Exception.php";
+    require __DIR__ . "/../PHPMailer/src/PHPMailer.php";
+    require __DIR__ . "/../PHPMailer/src/SMTP.php";
 
     // 1) Tell PayFast "got it" straight away (it wants HTTP 200 quickly).
     http_response_code(200);
@@ -126,7 +136,7 @@
         $post = $_POST;
 
         $reference = (string) ($post['m_payment_id'] ?? '');
-        $stmt = $conn->prepare('SELECT total FROM orders WHERE order_reference = ? LIMIT 1');
+        $stmt = $conn->prepare('SELECT total, customer_email, customer_name FROM orders WHERE order_reference = ? LIMIT 1');
         $stmt->bind_param('s', $reference);
         $stmt->execute();
         $order = $stmt->get_result()->fetch_assoc();
@@ -156,8 +166,47 @@
         // All four checks passed, so we can trust the payment status.
         $status = (string) ($post['payment_status'] ?? '');
         if ($status === 'COMPLETE') {
-            markOrderPaid($conn, $reference, (string) ($post['pf_payment_id'] ?? ''));
-            // TODO: send the customer their confirmation email here
+            $orderWasMarkedPaid = markOrderPaid($conn, $reference, (string) ($post['pf_payment_id'] ?? ''));
+            if ($orderWasMarkedPaid) {
+                try {
+                    $mail = new PHPMailer(true);
+                    $mail->SMTPDebug = false;
+                    $mail->Debugoutput = 'error_log';
+                    $mail->isSMTP();
+                    $mail->Host = 'smtp.gmail.com';
+                    $mail->SMTPAuth = true;
+                    $mail->Username = $config['username'];
+                    $mail->Password = $config['app_password'];
+                    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                    $mail->Port = 587;
+                    $mail->CharSet = 'UTF-8';
+
+                    $mail->setFrom($config['username'], $config['from_name']);
+                    $mail->addAddress($order['customer_email'], $order['customer_name']);
+                    $mail->addReplyTo($config['username'], $config['from_name']);
+
+                    $safeName = htmlspecialchars($order['customer_name'], ENT_QUOTES, 'UTF-8');
+                    $safeReference = htmlspecialchars($reference, ENT_QUOTES, 'UTF-8');
+                    $total = number_format((float) $order['total'], 2);
+
+                    $mail->isHTML(true);
+                    $mail->Subject = 'Payment confirmation for order ' . $reference;
+                    $mail->Body = '<h1>Thank you for your order</h1>'
+                        . '<p>Hi ' . $safeName . ', your payment has been received.</p>'
+                        . '<p>Order reference: <strong>' . $safeReference . '</strong><br>'
+                        . 'Total paid: <strong>' . $total . '</strong></p>'
+                        . '<p>Thank you for shopping with True Gent Africa.</p>';
+                    $mail->AltBody = "Thank you for your order, {$order['customer_name']}.\n"
+                        . "Your payment has been received.\n"
+                        . "Order reference: {$reference}\n"
+                        . "Total paid: {$total}\n\n"
+                        . "Thank you for shopping with True Gent Africa.";
+
+                    $mail->send();
+                } catch (PHPMailerException $error) {
+                    error_log('Order confirmation email failed for order ' . $reference . '; check mail server configuration.');
+                }
+            }
         }
     }
 ?>

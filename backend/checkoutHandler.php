@@ -1,7 +1,7 @@
 <?php 
     require __DIR__ . "/session.php";
 
-    require __DIR__ . "/backend/payfast.php";
+    require __DIR__ . "/payfast.php";
 
     if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['checkout-submit'])) {
         header('Location: ../pages/checkout.php');
@@ -88,8 +88,13 @@
     $selections = []; // one entry per product, with the real price
 
     foreach($wanted as $item){
-        $productID = $item['id'];
+        $productID = $item['id'] ?? '';
         $quantity = $item['quantity'];
+        
+        if(!$productID){
+            header("Location: ../pages/checkout.php?error=serverError");
+            exit();
+        }
 
         // use the db record as the source of truth for availability and price
         $stmt->bind_param('s', $productID);
@@ -152,6 +157,7 @@
         $subtotal += $selection['subtotal'];
     }
     $total+= $subtotal + $flatRate;
+    $total = number_format((float) $total, 2, '.', '');
     $userEmail = $_SESSION['user email'] ?? null;
 
     // saving everything all at once or nothing at all
@@ -160,7 +166,7 @@
     try{
         // saving the order itself to the order table
         $stmt = $conn->prepare('
-            INSERT INTO orders (order_reference, user_email, customer_email, customer_name, full_address, phone_number, payment method, 
+            INSERT INTO orders (order_reference, user_email, customer_email, customer_name, full_address, phone_number, payment_method, 
             subtotal, shipping, total, order_note) VALUES (?,?,?,?,?, ?, ?, ?, ?, ?, ?)
         ');
         if(!$stmt){
@@ -174,7 +180,7 @@
             throw new Exception($stmt->error);
         }
 
-        $orderId = $conn->insert_id(); // gets the id recently inserted by mySQL
+        $orderId = $conn->insert_id; // gets the id recently inserted by mySQL
         $stmt->close();
 
         // adding a record to order_items
@@ -194,7 +200,8 @@
             $selectionTotal = $selection['subtotal'];
 
             $itemStmt->bind_param("iisdid", $orderId, $productID, $name, $price, $quantity, $selectionTotal);
-            if(!$itemStmt){
+            // executing query
+            if(!$itemStmt->execute()){
                 throw new Exception($itemStmt->error);
             }
         }
