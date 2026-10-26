@@ -1,4 +1,6 @@
 <?php 
+    require __DIR__ . "/../backend/session.php";
+
     // A secret to proves that user sent a form from checkout
     if(empty($_SESSION['csrf_checkout'])){
         $_SESSION['csrf_checkout'] = bin2hex(random_bytes(32));
@@ -13,7 +15,7 @@
     unset($_SESSION['checkout_errors'], $_SESSION['checkout_old'], $_SESSION['checkout_notice']);
 
     // function to make text safe to print in HTML
-    function e($text){
+    function safeText($text){
         return htmlspecialchars((string) $text, ENT_QUOTES, 'UTF-8');
     }
 ?>
@@ -40,26 +42,50 @@
                 <?php
                     $error =$_GET['error'] ?? '';
                     $notice = $_GET['notice'] ?? '';
+                    $session = $_GET['session'] ?? '';
+                    $emptycart = $_GET['cartempty'] ?? '';
+                    $message = $_GET['message'] ?? '';
 
                     if ($notice === 'notice'){
-                        echo '<p class="checkout-alert">Successful payment</p>';
+                        echo '<p class="checkout-alert">Successful payment.</p>';
                     }
                     else if ($error === 'incorrectfields'){ 
-                    echo ' <p class="checkout-alert checkout-alert-error">Invalid submission</p>';
+                    echo ' <p class="checkout-alert checkout-alert-error">Invalid submission.</p>';
                     } 
                     else if($error === 'emptycart'){
-                        echo '<p class="checkout-alert checkout-alert-error">Your cart is empty. Please add a product the cart</p>';
+                        echo '<p class="checkout-alert checkout-alert-error">Your cart is empty. Please add a product the cart.</p>';
+                    }
+                    else if($error === 'payment'){
+                        echo '<p class="checkout-alert checkout-alert-error">Please check the payment method.</p>';
+                    }
+                    else if($error === "serverError"){
+                        echo '<p class="checkout-alert checkout-alert-error">Something went wrong on our side. Please try again later.</p>';
+                    }
+                    else if($session === 'sessionexpired'){
+                        echo '<p class="checkout-alert">Session expired.</p>';
+                    }
+                    else if($emptycart === 'empty'){
+                        echo '<p class="checkout-alert">Your cart is empty. Please add a product.</p>';
+                    }
+                    else if($message === 'stock'){
+                        $stock = $_GET['stock'];
+                        $product = $_GET['product_name'];
+                        echo '<p class="checkout-alert">Sorry we only have' . safeText($stock) .'of'. safeText($product) .'in stock.</p>';
+                    }
+                    else if($message === 'out of stock'){
+                        $product = $_GET['product_name'];
+                        echo '<p class="checkout-alert">Sorry, '. safeText($product). 'is out of stock.</p>';
                     }
                     ?>
                <!-- Hidden value sent along with the form -->
-                <input type="hidden" name="csrf_token" value="<?= e($_SESSION['csrf_checkout']) ?>"> 
+                <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_checkout'] ?>"> 
                 <!-- js/checkout.js fills this with the cart, e.g. [{"id":1,"quantity":2}] -->
                 <input type="hidden" name="cart" id="cart-field" value="[]">
 
                 <!-- Contact -->
                 <h2 class="checkout-heading">Contact</h2>
                 <p class="checkout-intro">We'll only use your email to send your order confirmation and delivery updates</p>
-                <input class="field-input" type="email" name="email" placeholder="Enter your email address">
+                <input class="field-input" type="email" name="email" placeholder="Enter your email address" value="<?php safeText($old['email'] ?? ""); ?>">
                 
                 <!-- Delivery -->
                 <h2 class="checkout-heading">Delivery</h2>
@@ -71,14 +97,14 @@
                 </select>
 
                 <div class="field-row">
-                    <input class="field-input" type="text" name="fName" placeholder="First Name">
-                    <input class="field-input" type="text" name="lName" placeholder="Last Name">
+                    <input class="field-input" type="text" name="fName" placeholder="First Name" value="<?php safeText($old['firstName'] ?? ""); ?>">
+                    <input class="field-input" type="text" name="lName" placeholder="Last Name" value="<?php safeText($old['lastName'] ?? ""); ?>">
                 </div>
 
-                <input class="field-input" type="text" name="address" placeholder="Enter your address">
+                <input class="field-input" type="text" name="address" placeholder="Enter your address" value="<?php safeText($old['address'] ?? ""); ?>">
 
                 <div class="field-row">
-                    <input class="field-input" type="text" name="city" placeholder="City">
+                    <input class="field-input" type="text" name="city" placeholder="City" value="<?php safeText($old['city'] ?? ""); ?>">
                     <select class="field-select" name="province">
                         <option value="Province" disabled selected>Province</option>
                         <option value="Eastern Cape" default>Eastern Cape</option>
@@ -93,10 +119,10 @@
                     </select>
                 </div>
                 <div class="field-row">
-                    <input class="field-input" type="text" name="Postal-Code" placeholder="Postal Code">
-                    <input class="field-input" type="tel" name="Phone Number" placeholder="Phone Number">
+                    <input class="field-input" type="text" name="postal-Code" placeholder="Postal Code" value="<?php safeText($old['postal-code'] ?? ""); ?>">
+                    <input class="field-input" type="tel" name="phone-Number" placeholder="Phone Number" value="<?php safeText($old['tel'] ?? ""); ?>">
                 </div>
-                <textarea class="field-textarea" name="note" placeholder="Notes about your order, .e.g. special delivery"></textarea>
+                <textarea class="field-textarea" name="note" placeholder="Notes about your order, .e.g. special delivery"><?php safeText($old['note'] ?? ""); ?></textarea>
                 <!-- ---------- Payment ---------- -->
                 <div class="payment-box">
                     <legend class="payment-legend">Payment Options</legend>
@@ -136,6 +162,5 @@
     <?php require __DIR__ . "/../pages/footer.php"?>
 </body>
 <script defer src="../js/index.js"></script>
-<script defer src="../js/cart.js"></script>
 <script defer src="../js/checkout.js"></script>
 </html>

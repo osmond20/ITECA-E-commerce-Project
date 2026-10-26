@@ -80,5 +80,4 @@
 </body>
 <script defer src="../js/index.js"></script>
 <script defer src="../js/shopping.js"></script>
-<script defer src="../js/cart.js"></script>
 </html>

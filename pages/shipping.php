@@ -41,5 +41,4 @@
     <?php require "footer.php" ?>
 </body>
 <script defer src="../js/index.js"></script>
-<script defer src="../js/cart.js"></script>
 </html>

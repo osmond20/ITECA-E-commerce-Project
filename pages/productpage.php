@@ -61,5 +61,4 @@
 </body>
 <script defer src="../js/index.js"></script>
 <script defer src="../js/productpage.js"></script>
-<script defer src="../js/cart.js"></script>
 </html>
