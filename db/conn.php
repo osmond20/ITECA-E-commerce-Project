@@ -1,10 +1,10 @@
 <?php 
     // setting up vairables for database connection
     // fill in with your own credentials
-    $servername = "";
-    $dBUserName = "";
-    $dBPassword = '';
-    $dbName = "";
+    $servername = "YOUR SERVER NAME";
+    $dBUserName = "YOUR DB USERNAME";
+    $dBPassword = 'YOUR PASSWORD';
+    $dbName = "YOUR DB NAME";
 
 
     // storing connection in a variable
