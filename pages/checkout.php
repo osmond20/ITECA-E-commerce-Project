@@ -46,8 +46,11 @@
                     $emptycart = $_GET['cartempty'] ?? '';
                     $message = $_GET['message'] ?? '';
 
-                    if ($notice === 'notice'){
+                    if ($notice === 'paymentsuccess'){
                         echo '<p class="checkout-alert">Successful payment.</p>';
+                    }
+                    else if($notice === 'paymentfailed'){
+                        echo '<p class="checkout-alert checkout-alert-error">Payment failed</p>';
                     }
                     else if ($error === 'incorrectfields'){ 
                     echo ' <p class="checkout-alert checkout-alert-error">Invalid submission.</p>';
@@ -60,6 +63,9 @@
                     }
                     else if($error === "serverError"){
                         echo '<p class="checkout-alert checkout-alert-error">Something went wrong on our side. Please try again later.</p>';
+                    }
+                    else if($error === "saveError"){
+                        echo '<p class="checkout-alert checkout-alert-error">We could not save your order. Please try again.</p>';
                     }
                     else if($session === 'sessionexpired'){
                         echo '<p class="checkout-alert">Session expired.</p>';

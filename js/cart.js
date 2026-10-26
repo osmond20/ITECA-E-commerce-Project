@@ -11,6 +11,10 @@ const cartContent = document.querySelector(".cart-content");
 const shoppingComponent = document.querySelector(".shopping-component");
 const contactContainer = document.querySelector(".contact-form-container");
 const cartStorageKey = "shoppingCart";
+// storing the productIDs of each product for the cart to be added in
+// local storage
+const cartIDs= new Map([ ["Fresh Oak", 1],["Cedar Spice", 2],["Fresh Oak Combo", 3],["Cedar Spice Combo", 4]]);
+
 
 // event listeners for the shopping cart
 cartIcon.addEventListener("click", () =>{
@@ -157,6 +161,7 @@ function saveCart(){
 
     cartBoxes.forEach(cartBox =>{
         cartItems.push({
+            productID: cartIDs.get(cartBox.querySelector(".cart-product-title").textContent),
             productTitle: cartBox.querySelector(".cart-product-title").textContent,
             productPrice: cartBox.querySelector(".cart-price").textContent,
             quantity: parseInt(cartBox.querySelector(".number").textContent, 10),

@@ -1,6 +1,8 @@
 <?php 
     require __DIR__ . "/session.php";
 
+    require __DIR__ . "/backend/payfast.php";
+
     if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['checkout-submit'])) {
         header('Location: ../pages/checkout.php');
         exit();
@@ -29,8 +31,8 @@
     $note = trim((string) ($_POST['note']));
     $payment = $_POST['payment_method'];
 
-    // delivery fee
-    $deliveryfee = 100.00;
+    // shipping fee
+    $flatRate = 100.00;
 
     // sending information inputted in the form
     $_SESSION['checkout_old'] = ['email' => $email, 'firstName'=> $firstName, 'lastName'=> $lastName,
@@ -54,16 +56,16 @@
     $wanted = []; // 'title' => $productTitle, 'quantity' => $quantity
     if(is_array($cartFromBrowser)){
         foreach($cartFromBrowser as $selected){
-            $productTitle = $selected['productTitle'] ?? '';
+            $productID = $selected['productID'] ?? '';
             $quantity = $selected['quantity'] ?? null;
 
             // checking if variables are valid
-            if(!is_string($productTitle) || !is_int($quantity) || $productTitle === "" || $quantity < 1){
+            if(!is_int($productID) || !is_int($quantity) || $productID < 1 || $quantity < 1){
                 continue; // ignore them and continue to the next line
             }
 
             // pushing to wanted array
-            $wanted[] = ['title' => $productTitle, 'quantity' => $quantity];
+            $wanted[] = ['id' => $productID, 'quantity' => $quantity];
         }
     }
 
@@ -75,8 +77,8 @@
     }
 
     //looking up real price in the db
-    $stmt = $conn->prepare("SELECT product_name, product_price, stock_quantity 
-    FROM products WHERE product_name = ? LIMIT 1");
+    $stmt = $conn->prepare("SELECT product_id, product_name, product_price, stock_quantity 
+    FROM products WHERE product_id = ? LIMIT 1");
     if(!$stmt){
         error_log('Checkout: could not prepare product query.');
         header("Location: ../pages/checkout.php?error=serverError");
@@ -85,9 +87,12 @@
 
     $selections = []; // one entry per product, with the real price
 
-    foreach($wanted as $productTitle => $quantity){
+    foreach($wanted as $item){
+        $productID = $item['id'];
+        $quantity = $item['quantity'];
+
         // use the db record as the source of truth for availability and price
-        $stmt->bind_param('s', $productTitle);
+        $stmt->bind_param('s', $productID);
         $stmt->execute();
         $product = $stmt->get_result()->fetch_assoc();
 
@@ -108,26 +113,137 @@
         //converting the price to double
         $price = number_format((float)$product['product_price'], 2);
 
-        //summing the total of a selected product 
-        $total = $price * (int)$quantity + $deliveryfee;
+        // getting the subtotal which is the sum of all products only
+        $subtotal = $price * (int)$quantity;
 
         //keeping verified product details and calculated total for the order
         $selections[] = [
+            'product_id'=> (int) $product['product_id'],
             'name'=>$product['product_name'],
             'price'=>$price,
             'quantity'=>$quantity,
-            'total'=>$total
+            'subtotal'=>$subtotal
         ];
     }
     $stmt->close();
 
+    //saving to db
+    // order details must be according to database columns
+    /*
+        $email
+        $fAddress = $address . ", ". $city . ", " 
+        . $province . ", " . $postalCode . ", " . $country;
+        $payment
+        $subtotal  
+        $shippingFee
+        $total
+        $userEmail = $SESSION['user_email'] ?? null;
+        */
 
-    
+    $reference = 'TGA='. strtoupper(bin2hex(random_bytes(5)));
+    $_SESSION['reference'] = $reference;
 
+    $customerName = $firstName . " " . $lastName;
+    $deliveryAddress = $address . ", " . $city . ", " . $province
+    . ", " . $postalCode . ", " . $country;
+    $total = 0;
+    $subtotal = 0;
+    foreach($selections as $selection){
+        $subtotal += $selection['subtotal'];
+    }
+    $total+= $subtotal + $flatRate;
+    $userEmail = $_SESSION['user email'] ?? null;
 
+    // saving everything all at once or nothing at all
+    // because if saving an item fails, the half-saved order is undone
+    $conn->begin_transaction();
+    try{
+        // saving the order itself to the order table
+        $stmt = $conn->prepare('
+            INSERT INTO orders (order_reference, user_email, customer_email, customer_name, full_address, phone_number, payment method, 
+            subtotal, shipping, total, order_note) VALUES (?,?,?,?,?, ?, ?, ?, ?, ?, ?)
+        ');
+        if(!$stmt){
+            throw new Exception($conn->error);
+        }
 
+        $stmt->bind_param('sssssssssss', $reference, $userEmail, $email, $customerName, $deliveryAddress, $tel, $payment, $subtotal, 
+        $flatRate, $total, $note);
 
+        if(!$stmt->execute()){
+            throw new Exception($stmt->error);
+        }
 
+        $orderId = $conn->insert_id(); // gets the id recently inserted by mySQL
+        $stmt->close();
 
+        // adding a record to order_items
+        $itemStmt = $conn->prepare(
+            'INSERT INTO order_items (order_id, product_id, product_name, 
+            unit_price, quantity, selection_total) VALUES (?, ?, ?, ?, ?, ?)');
+        
+        if(!$itemStmt){
+            throw new Exception($conn->error);
+        }
 
+        foreach($selections as $selection){
+            $productID = $selection['product_id'];
+            $name = $selection['name'];
+            $price = $selection['price'];
+            $quantity = $selection['quantity'];
+            $selectionTotal = $selection['subtotal'];
+
+            $itemStmt->bind_param("iisdid", $orderId, $productID, $name, $price, $quantity, $selectionTotal);
+            if(!$itemStmt){
+                throw new Exception($itemStmt->error);
+            }
+        }
+        $itemStmt->close();
+
+        $conn->commit(); // after everything work all at once, make it permanent
+
+    }
+    catch(Throwable $error){
+        $conn->rollback(); // saving fails, undo it all
+        error_log('savedOrder failed' . $error->getMessage());
+        header("Location: ../pages/checkout.php?error=saveError");
+        exit();
+    }
+
+    // Builds the signed form and posts it to PayFast. Never returns.
+    function redirectToPayFast(string $reference, string $firstName, string $lastName, string $email, float $total): void
+    {
+        $pf = payfastSettings();
+
+        // The fields, in PayFast's required order.
+        $data = [
+            // --- merchant details ---
+            'merchant_id'   => $pf['merchant_id'],
+            'merchant_key'  => $pf['merchant_key'],
+            'return_url'    => $pf['site_url'] . '/pages/checkout.php?notice=paymentsuccess',
+            'cancel_url'    => $pf['site_url'] . '/pages/checkout.php?notice=paymentfailed',
+            'notify_url'    => $pf['site_url'] . '/backend/notify.php',
+            // --- buyer details ---
+            'name_first'    => $firstName,
+            'name_last'     => $lastName,
+            'email_address' => $email,
+            // --- transaction details ---
+            'm_payment_id'  => $reference,                                        // comes back to us in notify.php
+            'amount'        => $total,  // e.g. 389.00
+            'item_name'     => 'True Gent Africa order ' . $reference,
+        ];
+        $data['signature'] = payfastSignature($data, $pf['passphrase']);
+
+        // A page with a hidden form that submits itself (like the video's "Pay Now" button).
+        $action = 'https://' . $pf['host'] . '/eng/process';
+        echo '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Redirecting to PayFast...</title></head><body>';
+        echo '<p>Taking you to PayFast...</p>';
+        echo '<form id="payfast-form" action="' . htmlspecialchars($action, ENT_QUOTES) . '" method="post">';
+        foreach ($data as $name => $value) {
+            echo '<input type="hidden" name="' . htmlspecialchars($name, ENT_QUOTES) . '" value="' . htmlspecialchars((string) $value, ENT_QUOTES) . '">';
+        }
+        echo '<noscript><button type="submit">Continue to PayFast</button></noscript>';
+        echo '</form><script>document.getElementById("payfast-form").submit();</script></body></html>';
+        exit();
+    }
 ?>
