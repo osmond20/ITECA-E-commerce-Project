@@ -16,7 +16,7 @@
     right: 20px;
     justify-self: center;
     padding: 20px; 
-    z-index: 60; 
+    z-index: 9999; 
     width: clamp(calc(280 / 16 * 1rem), calc((280 / 16 * 1rem) + ((100vw - 46.5rem) * 0.316092)), calc(500 / 16 * 1rem));
     display: none;
 }

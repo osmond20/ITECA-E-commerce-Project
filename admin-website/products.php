@@ -47,6 +47,18 @@
 <body>
     <?php require __DIR__ . "/header.php" ?>
     <main class="main-el">
+       <?php  
+            $error = $_GET['error'] ?? '';
+            $success = $_GET['success'] ?? '';
+
+            if($error === 'inputError'){
+            echo '<p class="checkout-alert-error">Input invalid.</p>';
+            }else if($error === 'serverError'){
+            echo '<p class="checkout-alert">Server error. Please try again</p>';
+            }else if ($success === 'saved'){
+            echo '<p class="checkout-alert">Successfully updated.</p>';
+            }
+          ?>
       <!-- Products -->
       <section class="products-container" id="page-products">
         <div class="products">
@@ -60,12 +72,15 @@
               <span>Qty: <?php echo safeText($products[0]['stock_quantity']); ?></span>
             </p>
             <div class="product-data-update">
-              <form class="updateForm" action="../backend/updateProductsHandler" method="post">
-                <input class="updateInputs" type="text" name="price" value="">
-                <input class="updateInputs" type="number" name="quantity" min="0" value="0">
+              <form class="Form" action="../backend/updateProductsHandler.php" method="post">
+                  <div class="updateForm" hidden>
+                    <input type="text" name="id" value="1" hidden>
+                    <input class="updateInputs" type="text" name="price" value="">
+                    <input class="updateInputs" type="number" name="quantity" min="0" value="0">
+                  </div>
+                  <button class="btn" name="updateBtn" type="submit">Update</button>
               </form>
             </div>
-            <button class="btn" type="button">Edit</button>
           </article>
           <article class="product">
             <div class="image-container">
@@ -77,12 +92,15 @@
               <span>Qty: <?php echo safeText($products[1]['stock_quantity']); ?></span>
             </p>
             <div class="product-data-update">
-              <form class="updateForm" action="../backend/updateProductsHandler" method="post">
-                <input class="updateInputs" type="text" name="price" value="">
-                <input class="updateInputs" type="number" name="quantity" min="0" value="0">
+              <form class="Form" action="../backend/updateProductsHandler.php" method="post">
+                <div class="updateForm" hidden>
+                  <input type="text" name="id" value="2" hidden>
+                  <input class="updateInputs" type="text" name="price" value="">
+                  <input class="updateInputs" type="number" name="quantity" min="0" value="0">
+                </div>
+                <button class="btn" name="updateBtn" type="submit">Update</button>
               </form>
             </div>
-            <button class="btn" type="button">Edit</button>
           </article>
           <article class="product">
             <div class="image-container">
@@ -94,12 +112,15 @@
               <span>Qty: <?php echo safeText($products[2]['stock_quantity']); ?></span>
             </p>
             <div class="product-data-update">
-              <form class="updateForm" action="../backend/updateProductsHandler" method="post">
-                <input class="updateInputs" type="text" name="price" value="">
-                <input class="updateInputs" type="number" name="quantity" min="0" value="0">
+              <form class="Form" action="../backend/updateProductsHandler.php" method="post">
+                <div class="updateForm" hidden>
+                  <input type="text" name="id" value="3" hidden>
+                  <input class="updateInputs" type="text" name="price" value="">
+                  <input class="updateInputs" type="number" name="quantity" min="0" value="0">
+                </div>
+                <button class="btn" name="updateBtn" type="submit">Update</button>
               </form>
             </div>
-            <button class="btn" type="button">Edit</button>
           </article>
           <article class="product">
             <div class="image-container">
@@ -111,18 +132,20 @@
               <span>Qty: <?php echo safeText($products[3]['stock_quantity']); ?></span>
             </p>
             <div class="product-data-update">
-              <form class="updateForm" action="../backend/updateProductsHandler" method="post">
-                <input class="updateInputs" type="text" name="price" value="">
-                <input class="updateInputs" type="number" name="quantity" min="0" value="0">
+              <form  action="../backend/updateProductsHandler.php" method="post">
+                <div class="updateForm" hidden>
+                  <input type="text" name="id" value="4" hidden>
+                  <input class="updateInputs" type="text" name="price" value="">
+                  <input class="updateInputs" type="number" name="quantity" min="0" value="0">
+                </div>
+                <button class="btn" name="updateBtn" type="submit">Update</button>
               </form>
             </div>
-            <button class="btn" type="button">Edit</button>
           </article>
         </div>
       </section>
     </main>
     <?php require __DIR__ . "/popup.php" ?>
     <script defer src="../js/dashboard.js"></script>
-    <script defer src="../js/productUpdate.js"></script>
 </body>
 </html>

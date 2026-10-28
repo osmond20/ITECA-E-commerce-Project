@@ -26,6 +26,7 @@
     crossorigin>
     <link rel="stylesheet" href="../css/productpage.css">
     <link rel="stylesheet" href="../css/cart.css">
+    <link rel="stylesheet" href="../css/popup.css">
 </head>
 <body>
     <?php require "header.php" ?>
@@ -58,7 +59,9 @@
     </main>
     <?php require __DIR__ . "//cart.php" ?>
    <?php require "footer.php" ?>
+   <?php require __DIR__ . "/popupMain.php" ?>
 </body>
 <script defer src="../js/index.js"></script>
 <script defer src="../js/productpage.js"></script>
+<script defer src="../js/popupMain.js"></script>
 </html>

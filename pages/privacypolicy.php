@@ -27,6 +27,7 @@
   crossorigin>
   <link rel="stylesheet" href="../css/privacy.css">
   <link rel="stylesheet" href="../css/cart.css">
+  <link rel="stylesheet" href="../css/popup.css">
 <body>
     <?php 
         require "header.php";
@@ -107,8 +108,10 @@
             <p class="paragraph">As a user of our service, you are advised to review our privacy policy periodically for any changes that may be made.</p>
         </div>
     </main>
-    <?php require __DIR__ . "//cart.php" ?>
+    <?php require __DIR__ . "/cart.php" ?>
     <?php require "footer.php" ?>
+    <?php require __DIR__ . "/popupMain.php" ?>
 </body>
 <script defer src="../js/index.js"></script>
+<script defer src="../js/popupMain.js"></script>
 </html>

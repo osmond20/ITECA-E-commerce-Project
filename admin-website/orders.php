@@ -78,17 +78,6 @@
 <body>
   <?php require __DIR__ . "/header.php" ?>
     <main class="main-el">
-      <?php 
-        $error = $_GET['error'] ?? '';
-        $success = $_GET['delivery'] ?? '';
-
-        if($error === 'serverError'){
-          echo '<p class="checkout-alert-error">Server Error. Please try again</p>';
-        }
-        else if($success === 'success'){
-          echo '<p class="checkout-alert>Successfully sent.</p>"';
-        }
-      ?>
           <!-- Orders -->
       <section class="orders" id="page-orders">
         <section class="card card-lg">
@@ -153,6 +142,17 @@
           </div>
         </section>
       </section>
+         <?php 
+        $error = $_GET['error'] ?? '';
+        $success = $_GET['delivery'] ?? '';
+
+        if($error === 'serverError'){
+          echo '<p class="checkout-alert-error">Server Error. Please try again</p>';
+        }
+        else if($success === 'success'){
+          echo '<p class="checkout-alert">Successfully sent.</p>"';
+        }
+      ?>
     </main>
     <?php require __DIR__ . "/popup.php" ?>
     <script defer src="../js/dashboard.js"></script>

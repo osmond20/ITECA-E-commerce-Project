@@ -4,9 +4,14 @@
 
     require __DIR__. "/session.php";
 
+       if (($_SESSION['state'] ?? '') !== 'loggedIn' || ($_SESSION['role'] ?? '') !== 'admin') {
+        header('Location: ../pages/login.php?error=forbidden');
+        exit();
+    }
+
     if($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['delivery-btn'])){
     // unidentified user is redirected to the sigin.php if tried accessing this page via URL
-    header("Location: ../pages/signin.php");
+    header("Location: ../pages/index.php");
     exit();
     }
 
@@ -32,13 +37,13 @@
 
     // sql stmt
     $insert = $conn->prepare(
-        "INSERT INTO users (order_id)
+        "INSERT INTO notify (order_id)
         VALUES (?)"
     );
     if (!$insert) {
-    error_log('Connection failed');
-    http_response_code(500);
-    exit('A server error occurred. Please try again later.');
+        error_log('Connection failed');
+        http_response_code(500);
+        exit('A server error occurred. Please try again later.');
     }
     $insert->bind_param('s', $orderID);
     if (!$insert->execute()) {

@@ -91,10 +91,12 @@ body {
 
 .main-el {
   display: flex;
-  min-height: 100vh;
+  flex-direction: column;
+  height: 100%;
   width: 100%;
-  align-items: start;
+  align-items: center;
   justify-content: center;
+  gap: 20px;
 }
 
 .main-el.dim {
@@ -105,7 +107,7 @@ body {
 .orders {
   height: 100%;
   width: 100%;
-  margin-block-start: 100px;
+  margin-block-start: 50px;
   padding-inline: 1.875rem;
 }
 
@@ -217,4 +219,24 @@ tbody tr:last-child td {
 .badge-failed {
   background-color: hsla(0, 99%, 55%, 0.205);
   color: var(--red);
+}
+
+.checkout-alert {
+  padding-block-start: 1.5625rem;
+  height: 70px;
+  width: 200px;
+  border-radius: 5px;
+  background-color: hsla(140, 99%, 55%, 0.205);
+  color: green;
+  text-align: center;
+}
+
+.checkout-alert-error {
+  height: 70px;
+  width: 200px;
+  border-radius: 5px;
+  padding-block-start: 1.5625rem;
+  background-color: hsla(0, 99%, 55%, 0.205);
+  color: var(--red);
+  text-align: center;
 }/*# sourceMappingURL=order.css.map */

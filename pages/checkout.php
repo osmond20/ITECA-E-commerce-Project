@@ -32,6 +32,7 @@
          checkout.css is only the checkout page. cart.css is the cart drawer. -->
     <link rel="stylesheet" href="../css/checkout.css">
     <link rel="stylesheet" href="../css/cart.css">
+    <link rel="stylesheet" href="../css/popup.css">
 </head>
 <body>
     <?php require __DIR__ . "/../pages/header.php" ?>
@@ -166,7 +167,9 @@
     </main>
     <?php require __DIR__ . "/../pages/cart.php"?>
     <?php require __DIR__ . "/../pages/footer.php"?>
+    <?php require __DIR__ . "/popupMain.php" ?>
 </body>
 <script defer src="../js/index.js"></script>
 <script defer src="../js/checkout.js"></script>
+<script defer src="../js/popupMain.js"></script>
 </html>

@@ -137,7 +137,7 @@ body {
   gap: 0.9375rem;
   padding-block: 3.125rem;
   padding-inline: 1.875rem;
-  z-index: 9999;
+  z-index: 4000;
   opacity: 0;
   background-color: white;
   left: -200px;

@@ -26,6 +26,7 @@
   crossorigin>
   <link rel="stylesheet" href="../css/shipping.css">
   <link rel="stylesheet" href="../css/cart.css">
+  <link rel="stylesheet" href="../css/popup.css">
 </head>
 <body>
      <?php require "header.php" ?>
@@ -37,8 +38,10 @@
             Our refund and returns policy lasts 14 days. You can return your item if it is unopened and unused. Please contact us to arrange your return and refund.</p>
         </div>
     </main>
-    <?php require __DIR__ . "//cart.php" ?>
+    <?php require __DIR__ . "/cart.php" ?>
     <?php require "footer.php" ?>
+    <?php require __DIR__ . "/popupMain.php"?>
 </body>
 <script defer src="../js/index.js"></script>
+<script defer src="../js/popupMain.js"></script>
 </html>

@@ -40,7 +40,7 @@ mainEl.addEventListener("click", ()=>{
 
 accIcon.addEventListener("click", ()=>{
     const isOpen = accMenu.classList.toggle("show");
-    accMenu.setAttribute("aria-expanded", isOpen);
+    accIcon.setAttribute("aria-expanded", isOpen);
 });  
 
 if(videoBtn && video){

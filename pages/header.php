@@ -17,7 +17,7 @@
       <div class="nav-actions">
         <img class="icon-actions cart-icon" src="../assets/images/cart-outline.svg" alt="" height="20" width="20">
         <span class="cart-item-count"></span>
-        <img class="icon-actions" id="acc-icon" aria-expanded="true" src="../assets/images/account-icon.png" alt="" height="20" width="20">
+        <img class="icon-actions" id="acc-icon" aria-expanded="false" src="../assets/images/account-icon.png" alt="" height="20" width="20">
       </div>
         <div class="account-menu">
             <ul class="acc-menu-list">
@@ -37,7 +37,7 @@
                 echo 
                 '
                 <li class="profile-link" id="profile">
-                    <a class="acc-link" href="#" id="">Profile</a>
+                    <a class="acc-link" href="#" id="account-popup">Profile</a>
                 </li>
                 <li class="sign-in-link" id=orders>
                     <a class="acc-link" href="../pages/orders.php">Orders</a>
