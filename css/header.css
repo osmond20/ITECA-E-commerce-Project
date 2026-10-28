@@ -1,0 +1,170 @@
+/* figtree-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Figtree";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../assets/fonts/figtree-v9-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* figtree-500 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Figtree";
+  font-style: normal;
+  font-weight: 500;
+  src: url("../assets/fonts/figtree-v9-latin-500.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* figtree-600 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Figtree";
+  font-style: normal;
+  font-weight: 600;
+  src: url("../assets/fonts/figtree-v9-latin-600.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* figtree-700 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Figtree";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../assets/fonts/figtree-v9-latin-700.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+:root {
+  --white: hsl(0, 0%, 100%);
+  --cod-gray: hsla(0, 0%, 6%, 0.562);
+  --black: hsl(0, 0%, 0%);
+  --paragraphfontsize: calc(17 / 16 * 1rem);
+  --nav-footer-fontsize: calc(14 / 16 * 1rem);
+  --neutrl-gray: hsl(191, 8%, 74%);
+  --red: hsl(0, 91%, 49%);
+}
+
+/* || RESET */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img,
+picture,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border-color: transparent;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul,
+ol {
+  list-style-type: none;
+}
+
+body {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  font-family: "FigTree", sans-serif;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 4.5625rem;
+  padding-inline-end: 1.25rem;
+  border-bottom: 1px solid rgb(194, 194, 194);
+  position: fixed;
+  top: 0;
+  z-index: 9999;
+  background-color: white;
+}
+
+.nav-title-container {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding-inline-start: 1.6875rem;
+}
+
+.nav-title {
+  font-size: 1.1rem;
+}
+
+.nav-menu-container {
+  height: 1.25rem;
+  width: 1.25rem;
+  display: flex;
+  align-items: center;
+}
+
+.menu-button {
+  height: 0.9375rem;
+  width: 0.9375rem;
+}
+
+/* MENU */
+.menu {
+  position: fixed;
+  top: 74px;
+  border-top: none;
+  width: clamp(15rem, 15rem + (100vw - 46.5rem) * 0.0862069, 18.75rem);
+  height: calc(100% - 73px);
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  gap: 0.9375rem;
+  padding-block: 3.125rem;
+  padding-inline: 1.875rem;
+  z-index: 9999;
+  opacity: 0;
+  background-color: white;
+  left: -200px;
+  transition: left 0.4s ease;
+  border-right: 1px solid rgb(231, 231, 231);
+}
+
+/* SHOWS MENU ON TOGGLE*/
+.menu.show {
+  left: 0;
+  opacity: 1;
+}
+
+/* MENU LINKS*/
+.menu-links {
+  font-size: 1.875rem;
+  text-decoration: none;
+  background-image: linear-gradient(var(--black), var(--black));
+  background-size: 0 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  color: var(--black);
+  transition: background-size 0.3s ease;
+}
+
+/* MENU HOVER & FOCUS STATES*/
+.menu-links:hover, .menu-links:focus {
+  background-size: 100% 1px;
+  outline: none;
+}/*# sourceMappingURL=header.css.map */

@@ -21,8 +21,6 @@
     }
     $stmt->close();
 
-
-
     $encoded_data = json_encode($products, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     if($encoded_data == false){
         error_log("JSON encoding failed: " . json_last_error_msg());

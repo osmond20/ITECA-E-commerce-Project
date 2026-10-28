@@ -33,6 +33,9 @@
               if($reset === "success"){
                 echo "<p class='success'>If that email is registered, a reset link is on its way. Check your inbox (and spam folder).</p>";
               }
+              else if($reset === 'error'){
+                echo "<p class='error'>Server error. Please try again.</p>";
+              }
               else if($reset === "invalid"){
                 echo "<p class='error'>Please enter a valid email address.</p>";
               }

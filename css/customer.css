@@ -1,0 +1,202 @@
+/* figtree-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Figtree";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../assets/fonts/figtree-v9-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* figtree-500 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Figtree";
+  font-style: normal;
+  font-weight: 500;
+  src: url("../assets/fonts/figtree-v9-latin-500.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* figtree-600 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Figtree";
+  font-style: normal;
+  font-weight: 600;
+  src: url("../assets/fonts/figtree-v9-latin-600.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* figtree-700 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Figtree";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../assets/fonts/figtree-v9-latin-700.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+:root {
+  --white: hsl(0, 0%, 100%);
+  --cod-gray: hsla(0, 0%, 6%, 0.562);
+  --black: hsl(0, 0%, 0%);
+  --paragraphfontsize: calc(17 / 16 * 1rem);
+  --nav-footer-fontsize: calc(14 / 16 * 1rem);
+  --neutrl-gray: hsl(191, 8%, 74%);
+  --red: hsl(0, 91%, 49%);
+}
+
+/* || RESET */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img,
+picture,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border-color: transparent;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul,
+ol {
+  list-style-type: none;
+}
+
+body {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  font-family: "FigTree", sans-serif;
+}
+
+.main-el {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  align-items: start;
+  justify-content: center;
+}
+
+.main-el.dim {
+  background-color: var(ink);
+  opacity: 25%;
+}
+
+.customers {
+  height: 100%;
+  width: 100%;
+  margin-block-start: 160px;
+  padding-inline: 1.875rem;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 38px;
+}
+
+.stat {
+  background: var(--white);
+  border: 1px solid var(--neutrl-gray);
+  border-radius: 6px;
+  padding: 28px 32px 36px;
+  min-height: 158px;
+}
+
+.stat h2 {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.stat p {
+  margin-top: 18px;
+  font-size: 22px;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid var(--neutrl-gray);
+  border-radius: 6px;
+  padding: 30px 42px 56px;
+  width: auto;
+}
+
+.card-lg {
+  margin-top: 82px;
+}
+
+.page > .card-lg:first-child {
+  margin-top: 0;
+}
+
+.card-sm {
+  padding-bottom: 42px;
+}
+
+.card h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+/* TABLE */
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+th, td {
+  text-align: left;
+  padding: 0 12px 0 4px;
+}
+
+th {
+  height: 30px;
+  font-weight: 700;
+  font-size: 11.5px;
+  border-bottom: 1px solid var(--neutrl-gray);
+  vertical-align: top;
+}
+
+td {
+  height: 49px;
+  border-bottom: 1px solid var(--neutrl-gray);
+}
+
+tbody tr:last-child td {
+  border-bottom: 1px solid var(--neutrl-gray);
+}
+
+.badge {
+  display: inline-block;
+  min-width: 52px;
+  padding: 3px 12px;
+  border-radius: 999px;
+  background: var(--paid-bg);
+  color: var(--paid-ink);
+  text-align: center;
+  font-size: 11px;
+}/*# sourceMappingURL=customer.css.map */

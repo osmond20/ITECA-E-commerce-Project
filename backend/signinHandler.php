@@ -64,10 +64,10 @@ require __DIR__ . "/session.php";
     }
     $insert->bind_param('sss', $username, $email, $password);
     if (!$insert->execute()) {
-    error_log('Registration insert failed.');
-    $insert->close();
-    header('Location: ../pages/signin.php?error=signinerror&username=' . urlencode($username) . '&email=' . urlencode($email));
-    exit();
+        error_log('Registration insert failed.');
+        $insert->close();
+        header('Location: ../pages/signin.php?error=signinerror&username=' . urlencode($username) . '&email=' . urlencode($email));
+        exit();
     }
     $insert->close();
 

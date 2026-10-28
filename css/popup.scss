@@ -1,0 +1,65 @@
+:root{
+  --white: hsl(0, 0%, 100%);
+  --cod-gray: hsla(0, 0%, 6%, 0.562);
+  --black: hsl(0, 0%, 0%);
+  --paragraphfontsize: calc(17 / 16 * 1rem);
+  --nav-footer-fontsize: calc(14 / 16 * 1rem);
+  --neutrl-gray: hsl(191, 8%, 74%);
+  --red: hsl(0, 91%, 49%);
+}
+
+.modal { 
+    position: fixed;  
+    display: grid; 
+    top:25%;
+    left: 20px;
+    right: 20px;
+    justify-self: center;
+    padding: 20px; 
+    z-index: 60; 
+    width: clamp(calc(280 / 16 * 1rem), calc((280 / 16 * 1rem) + ((100vw - 46.5rem) * 0.316092)), calc(500 / 16 * 1rem));
+    display: none;
+}
+
+.modal.show{
+    display: block;
+}
+
+.modal-box {
+  position: relative;
+  width: min(490px, 100%);
+  padding: 38px 34px 44px;
+  background: #fff;
+  border: 1px solid var(--neutrl-gray);
+  border-radius: 12px;
+}
+.modal-box h2 { 
+    font-size: 19px; 
+    font-weight: 400; 
+    margin-bottom: 30px; 
+}
+.acc-name { 
+    font-size: 19px; 
+    text-decoration: 
+    underline; 
+    text-underline-offset: 4px; 
+    margin-bottom: 26px; 
+}
+.acc-email { 
+    font-size: 15px; 
+    color: var(--c); 
+    text-decoration: underline; 
+    text-underline-offset: 4px; 
+}
+.modal-close { 
+    position: absolute; 
+    top: 20px; right: 24px; 
+    width: 32px; height: 32px; 
+    display: grid; 
+    place-items: center; 
+    border: 0; 
+    background: none; 
+    width: 16px; 
+    height: 16px; 
+    cursor: pointer;
+}

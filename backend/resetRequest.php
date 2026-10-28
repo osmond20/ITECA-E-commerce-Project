@@ -14,7 +14,7 @@
         $configPath = __DIR__ . '/mailconfig.php';
         if (!is_file($configPath)) {
             error_log('Password reset mail configuration file is missing.');
-            header('Location: ../pages/resetpassword.php?reset=success');
+            header('Location: ../pages/resetpassword.php?reset=error');
             exit();
         }
         $config = require $configPath;
