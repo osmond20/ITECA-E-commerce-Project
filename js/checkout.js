@@ -30,14 +30,12 @@ function validateForm(){
 
     inputs.forEach(input=>{
        const invalidEmail = input.type === 'email' && !isValidEmail(input.value);
-       if(input.value.trim() === '' || invalidEmail || note.value.trim()){
+       if(input.value.trim() === '' || invalidEmail){
             input.classList.add('error');
-            note.classList.add('error');
             isValid = false;
        }
        else{
         input.classList.remove('error');
-        note.classList.remove('error');
        }
     });
 
@@ -51,13 +49,7 @@ function validateForm(){
         }
     });
 
-    if(note.value === ''){
-        note.classList.add('error');
-        isValid = false;
-    }
-    else{
-        note.classList.remove('error');
-    }
+    note.classList.remove('error');
 
     return isValid;
 }

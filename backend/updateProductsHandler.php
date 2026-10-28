@@ -9,7 +9,14 @@
     }
 
     if($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['updateBtn'])){
-        header("Location: ../pages/index.php");
+        header("Location: ../index.php");
+        exit();
+    }
+
+    $sentToken = (string) ($_POST['csrf_token'] ?? '');
+    $realToken = (string) ($_SESSION['csrf_update'] ?? '');
+    if ($realToken === '' || !hash_equals($realToken, $sentToken)) {
+        header('Location: ../pages/login.php?session="sessionexpired"');
         exit();
     }
 

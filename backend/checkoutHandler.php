@@ -19,17 +19,17 @@
     require_once __DIR__ . "/../db/conn.php";
 
     // getting input values and storing them
-    $email = trim((string) ($_POST['email']));
-    $country = trim((string) ($_POST['country']));
-    $firstName = trim((string) ($_POST['fName']));
-    $lastName = trim((string) ($_POST['lName']));
-    $address = trim((string) ($_POST['address']));
-    $city = trim((string) ($_POST['city']));
-    $province = trim((string) ($_POST['province']));
-    $postalCode = trim((string) ($_POST['postal-Code']));
-    $tel = trim((string) ($_POST['phone-Number']));
-    $note = trim((string) ($_POST['note']));
-    $payment = $_POST['payment_method'];
+    $email = trim((string) ($_POST['email'] ?? ''));
+    $country = trim((string) ($_POST['country'] ?? ''));
+    $firstName = trim((string) ($_POST['fName'] ?? ''));
+    $lastName = trim((string) ($_POST['lName'] ?? ''));
+    $address = trim((string) ($_POST['address'] ?? ''));
+    $city = trim((string) ($_POST['city'] ?? ''));
+    $province = trim((string) ($_POST['province'] ?? ''));
+    $postalCode = trim((string) ($_POST['postal-Code'] ?? ''));
+    $tel = trim((string) ($_POST['phone-Number'] ?? ''));
+    $note = trim((string) ($_POST['note'] ?? ''));
+    $payment = (string) ($_POST['payment_method'] ?? '');
 
     // shipping fee
     $flatRate = 100.00;
@@ -40,7 +40,7 @@
         'tel' => $tel,'note'=>$note];
 
     if(empty($email)|| !filter_var($email, FILTER_VALIDATE_EMAIL) || empty($country)|| empty($firstName) 
-        || empty($lastName) || empty($address) || empty($city) || empty($province) || empty($note)){
+        || empty($lastName) || empty($address) || empty($city) || empty($province)){
             header("Location: ../pages/checkout.php?error=incorrectfields");
             exit();
     }
@@ -51,30 +51,47 @@
     }
 
 
-    // Read the cart that the browser sent
+    // Read and validate every item in the cart sent by the browser.
     $cartFromBrowser = json_decode((string) ($_POST['cart'] ?? ''), true);
-    $wanted = []; // 'title' => $productTitle, 'quantity' => $quantity
-    if(is_array($cartFromBrowser)){
-        foreach($cartFromBrowser as $selected){
-            $productID = $selected['productID'] ?? '';
-            $quantity = $selected['quantity'] ?? null;
-
-            // checking if variables are valid
-            if(!is_int($productID) || !is_int($quantity) || $productID < 1 || $quantity < 1){
-                continue; // ignore them and continue to the next line
-            }
-
-            // pushing to wanted array
-            $wanted[] = ['id' => $productID, 'quantity' => $quantity];
-        }
+    if(!is_array($cartFromBrowser)){
+        header("Location: ../pages/checkout.php?error=invalidcart");
+        exit();
     }
-
-    /// exit if greater than 4 because there are only 4 products that
-    // can be added to the cart
-    if($wanted === []){
+    if($cartFromBrowser === []){
         header("Location: ../pages/checkout.php?cartempty=empty");
         exit();
     }
+
+    $parsePositiveInt = static function ($value): ?int {
+        if(is_int($value)){
+            return $value > 0 ? $value : null;
+        }
+        if(!is_string($value) || !preg_match('/^[1-9][0-9]*$/D', $value)){
+            return null;
+        }
+
+        $parsed = filter_var($value, FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]);
+        return $parsed === false ? null : $parsed;
+    };
+
+    $wanted = [];
+    foreach($cartFromBrowser as $selected){
+        if(!is_array($selected)){
+            header("Location: ../pages/checkout.php?error=invalidcart");
+            exit();
+        }
+
+        $productID = $parsePositiveInt($selected['productID'] ?? null);
+        $quantity = $parsePositiveInt($selected['quantity'] ?? null);
+        if($productID === null || $quantity === null
+            || (isset($wanted[$productID]) && $wanted[$productID] > PHP_INT_MAX - $quantity)){
+            header("Location: ../pages/checkout.php?error=invalidcart");
+            exit();
+        }
+
+        $wanted[$productID] = ($wanted[$productID] ?? 0) + $quantity;
+    }
+    ksort($wanted, SORT_NUMERIC);
 
     //looking up real price in the db
     $stmt = $conn->prepare("SELECT product_id, product_name, product_price, stock_quantity 
@@ -87,36 +104,21 @@
 
     $selections = []; // one entry per product, with the real price
 
-    foreach($wanted as $item){
-        $productID = $item['id'] ?? '';
-        $quantity = $item['quantity'];
-        
-        if(!$productID){
-            header("Location: ../pages/checkout.php?error=serverError");
-            exit();
-        }
+    foreach($wanted as $productID => $quantity){
 
-        // use the db record as the source of truth for availability and price
-        $stmt->bind_param('s', $productID);
+        // Use the database record as the source of truth for product details.
+        $stmt->bind_param('i', $productID);
         $stmt->execute();
         $product = $stmt->get_result()->fetch_assoc();
 
-        // recheck stock at checkout with inventory
-        $stock = (int) $product['stock_quantity'];
-        if($quantity > $stock){
+        if(!$product){
             $stmt->close();
-            if($stock > 0){
-                header("Location: ../pages/checkout.php?message=stock&stock=". urldecode($stock). "&product=" . urldecode($product['product_name']));
-                exit();
-            }
-            else{
-                header("Location: ../pages/checkout.php?message=outofstock");
-                exit();
-            }
+            header("Location: ../pages/checkout.php?error=invalidproduct");
+            exit();
         }
 
         //converting the price to double
-        $price = number_format((float)$product['product_price'], 2);
+        $price = number_format((float)$product['product_price'], 2, '.', '');
 
         // getting the subtotal which is the sum of all products only
         $subtotal = $price * (int)$quantity;
@@ -158,12 +160,36 @@
     }
     $total+= $subtotal + $flatRate;
     $total = number_format((float) $total, 2, '.', '');
-    $userEmail = $_SESSION['user email'] ?? null;
+    $userEmail = $_SESSION['user_email'] ?? null;
 
     // saving everything all at once or nothing at all
     // because if saving an item fails, the half-saved order is undone
     $conn->begin_transaction();
     try{
+        // Reserve each product atomically so concurrent checkouts cannot oversell.
+        $reserveStmt = $conn->prepare('UPDATE products
+            SET stock_quantity = stock_quantity - ?
+            WHERE product_id = ? AND stock_quantity >= ?');
+        if(!$reserveStmt){
+            throw new Exception($conn->error);
+        }
+
+        foreach($selections as $selection){
+            $productID = $selection['product_id'];
+            $quantity = $selection['quantity'];
+            $reserveStmt->bind_param('iii', $quantity, $productID, $quantity);
+            if(!$reserveStmt->execute()){
+                throw new Exception($reserveStmt->error);
+            }
+            if($reserveStmt->affected_rows !== 1){
+                $reserveStmt->close();
+                $conn->rollback();
+                header("Location: ../pages/checkout.php?error=stock");
+                exit();
+            }
+        }
+        $reserveStmt->close();
+
         // saving the order itself to the order table
         $stmt = $conn->prepare('
             INSERT INTO orders (order_reference, user_email, customer_email, customer_name, full_address, phone_number, payment_method, 

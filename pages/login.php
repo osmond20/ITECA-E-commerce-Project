@@ -43,6 +43,10 @@
             if (($_GET['newpwd'] ?? '') === 'passwordupdated') {
                 echo "<p class='success'>Password updated. Please sign in.</p>";
             }
+
+            if(($_GET['session'] ?? '') === 'sessionexpired'){
+                echo "<p class='error'>Session expired. Please log in again.</p>";
+            }
         ?>
         <div class="login-container">
             <h1 class="title">Log In</h1>

@@ -1,6 +1,6 @@
 <?php 
     if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['reset-pw-btn'])) {
-        header('Location: ../pages/index.php');
+        header('Location: ../index.php');
         exit();
     }   
 

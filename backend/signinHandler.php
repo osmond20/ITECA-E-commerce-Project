@@ -62,7 +62,7 @@ require __DIR__ . "/session.php";
     http_response_code(500);
     exit('A server error occurred. Please try again later.');
     }
-    $insert->bind_param('sss', $username, $email, $password);
+    $insert->bind_param('sss', $username, $email, $passwordHash);
     if (!$insert->execute()) {
         error_log('Registration insert failed.');
         $insert->close();
@@ -81,6 +81,6 @@ require __DIR__ . "/session.php";
     $_SESSION['role'] = 'user';
 
     // redirects to the home page
-    header("Location: ../pages/index.php");
+    header("Location: ../index.php");
     exit();
 ?>

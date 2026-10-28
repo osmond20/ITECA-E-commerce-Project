@@ -21,7 +21,7 @@
 
     // Fetching the most recent orders
     $sql = $conn->prepare('SELECT order_reference, customer_name, 
-    customer_email, full_address, paid_at, status, total FROM orders WHERE customer_email = ?');
+    customer_email, full_address, phone_number, paid_at, status, total FROM orders WHERE customer_email = ? ORDER BY order_id DESC');
     if(!$sql){
         error_log('Connection failed');
         http_response_code(500);
@@ -81,11 +81,11 @@
                       <td><?php echo safeText($order['full_address']); ?></td>
                       <td><?php echo safeText($order['paid_at']);?></td>
                       <td>
-                         <?php if($orders['status'] === 'pending') {?>
+                         <?php if($order['status'] === 'pending') {?>
                           <span class="badge-pending">
                             <?php echo safeText($order['status']);?>
                           </span>
-                         <?php }else if($orders['status'] === 'cancelled'){ ?>
+                         <?php }else if($order['status'] === 'cancelled'){ ?>
                           <span class="badge-cancelled">
                             <?php echo safeText($order['status']);?>
                           </span>
@@ -97,6 +97,8 @@
                           <span class="badge">
                             <?php echo safeText($order['status']);?>
                           </span>
+                         <?php } else { ?>
+                          <span><?php echo safeText($order['status']);?></span>
                          <?php } ?>
                       </td>
                       <td><?php echo safeText($order['total']);?></td>

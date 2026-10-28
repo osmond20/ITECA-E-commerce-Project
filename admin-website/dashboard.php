@@ -20,8 +20,8 @@
 
     // Fetching the most recent orders
     $sql = $conn->prepare('SELECT order_reference, customer_name, 
-    customer_email, full_address, paid_at, status, total FROM orders 
-    ORDER BY paid_at DESC LIMIT 3');
+    customer_email, full_address, phone_number, paid_at, status, total FROM orders
+    ORDER BY order_id DESC LIMIT 3');
     if(!$sql){
         error_log('Connection failed');
         http_response_code(500);
@@ -41,15 +41,16 @@
     // close connection
     $sql->close();
 
-    $sql = $conn->prepare('SELECT COALESCE(SUM(total), 0)
-      AS total_sum
-      FROM orders');
+    $sql = $conn->prepare('SELECT COALESCE(SUM(total), 0) AS total_sum
+    FROM orders
+    WHERE status = ?');
     if(!$sql){
         error_log('Connection failed');
         http_response_code(500);
         exit('Server error occured. Please try again later.');
     }
-
+    $status = "paid";
+    $sql->bind_param("s", $status);
     $sql->execute();
     // get result
     $result = $sql->get_result();
@@ -63,14 +64,7 @@
     // close connection
     $sql->close();
 
-    /*
-      Summing if the total of all orders made
-      if the resulting row is 0 because no orders 
-      have been made, it will return the resulting
-      null using the coalesce function
-    */
-    $sql = $conn->prepare('SELECT COALESCE(SUM(order_id), 0)
-      AS total_orders
+    $sql = $conn->prepare('SELECT COUNT(*) AS total_orders
       FROM orders');
     if(!$sql){
         error_log('Connection failed');
@@ -84,6 +78,28 @@
 
     // The aggregate query returns a single row.
     $totalOrders = $result->fetch_assoc();
+
+    // free result from memory
+    $result->free_result();
+
+    // close connection
+    $sql->close();
+
+    $sql = $conn->prepare("SELECT COUNT(DISTINCT customer_email) AS total_customers
+      FROM orders
+      WHERE customer_email IS NOT NULL AND customer_email <> ''");
+    if(!$sql){
+        error_log('Connection failed');
+        http_response_code(500);
+        exit('Server error occured. Please try again later.');
+    }
+
+    $sql->execute();
+    // get result
+    $result = $sql->get_result();
+
+    // The aggregate query returns a single row.
+    $totalCustomers = $result->fetch_assoc();
 
     // free result from memory
     $result->free_result();
@@ -121,19 +137,11 @@
         </article>
           <article class="stat">
             <h2>Total Orders</h2>
-            <?php if(count($totalOrders) === 0){?>
-              <p>0</p>
-            <?php } else{ ?>
-              <p><?php echo safeText($totalOrders['total_orders']); ?></p>
-            <?php } ?>
+            <p><?php echo safeText($totalOrders['total_orders']); ?></p>
         </article>
           <article class="stat">
             <h2>Total Customers</h2>
-            <?php if(count($totalOrders) === 0){?>
-              <p>0</p>
-            <?php } else{ ?>
-              <p><?php echo safeText($totalOrders['total_orders']); ?></p>
-            <?php } ?>
+            <p><?php echo safeText($totalCustomers['total_customers']); ?></p>
         </article>
         </div>
         <section class="card card-lg">
@@ -162,11 +170,11 @@
                       <td><?php echo safeText($order['full_address']); ?></td>
                       <td><?php echo safeText($order['paid_at']);?></td>
                       <td>
-                         <?php if($orders['status'] === 'pending') {?>
+                         <?php if($order['status'] === 'pending') {?>
                           <span class="badge-pending">
                             <?php echo safeText($order['status']);?>
                           </span>
-                         <?php }else if($orders['status'] === 'cancelled'){ ?>
+                         <?php }else if($order['status'] === 'cancelled'){ ?>
                           <span class="badge-cancelled">
                             <?php echo safeText($order['status']);?>
                           </span>
@@ -178,6 +186,8 @@
                           <span class="badge">
                             <?php echo safeText($order['status']);?>
                           </span>
+                         <?php } else { ?>
+                          <span><?php echo safeText($order['status']);?></span>
                          <?php } ?>
                       </td>
                       <td><?php echo safeText($order['total']);?></td>

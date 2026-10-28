@@ -33,7 +33,7 @@
     <main class="main-el">
         <div class="shipping-content">
             <h1 class="shipping-title">Shipping, Returns and Refunds</h1>
-            <p class="shipping-paragraph">Shipping takes 2-5 days depending on where you are located. We ship from Johannesburg using The Courier Guy.
+            <p class="shipping-paragraph">Shipping takes 2-4 days depending on where you are located. We ship from Johannesburg using The Courier Guy.
             Shipping prices are displayed on the checkout page.
             Our refund and returns policy lasts 14 days. You can return your item if it is unopened and unused. Please contact us to arrange your return and refund.</p>
         </div>

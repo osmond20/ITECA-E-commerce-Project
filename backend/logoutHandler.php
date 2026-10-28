@@ -7,7 +7,7 @@
         the request is valid
     */
     if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['logout']) || !isset($_SESSION['csrf_logout']) || !is_string($_POST['csrf_token'] ?? null) || !hash_equals($_SESSION['csrf_logout'], $_POST['csrf_token'])) {
-        header('Location: ../pages/index.php');
+        header('Location: ../index.php');
         exit();
     }
 
@@ -28,6 +28,6 @@
     // destroying the session
     session_destroy();
     // redirecting the user back to the home page
-    header('Location: ../pages/index.php');
+    header('Location: ../index.php');
     exit();
 ?>

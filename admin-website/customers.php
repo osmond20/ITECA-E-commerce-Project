@@ -76,10 +76,10 @@
                     </tr>
                     <?php foreach($customers as $customer) {?>
                     <tr>
-                        <td><?php echo $customer['customer_name']; ?></td>
-                        <td><?php echo $customer['customer_email']; ?></td>
-                        <td><?php echo $customer['phone_number']; ?></td>
-                        <td><?php echo $customer['order_count']?></td>
+                        <td><?php echo safeText($customer['customer_name']); ?></td>
+                        <td><?php echo safeText($customer['customer_email']); ?></td>
+                        <td><?php echo safeText($customer['phone_number']); ?></td>
+                        <td><?php echo safeText($customer['order_count']); ?></td>
                     </tr> 
                     <?php }  ?>
                 </table>

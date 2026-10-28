@@ -47,7 +47,7 @@ require  __DIR__ . "/../backend/session.php";
     if ($_SESSION['role'] === 'admin') {
         header('Location: ../admin-website/dashboard.php');
     } else {
-        header('Location: ../pages/index.php');
+        header('Location: ../index.php');
     }
     exit();
 

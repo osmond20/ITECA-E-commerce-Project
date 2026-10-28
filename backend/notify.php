@@ -94,7 +94,7 @@
 
     // ---------- update the order ----------
 
-    // Marks a pending order as paid and takes the stock off the shelf.
+    // Marks a pending order as paid. Stock was reserved during checkout.
     // Returns true if it changed the order. Safe to call twice (PayFast can
     // send the same notification again): only a "pending" order is changed.
     function markOrderPaid(mysqli $conn, string $reference, string $pfPaymentId): bool
@@ -104,26 +104,56 @@
             $stmt = $conn->prepare("UPDATE orders SET status = 'paid', paid_at = NOW(), pf_payment_id = ?
                                     WHERE order_reference = ? AND status = 'pending'");
             $stmt->bind_param('ss', $pfPaymentId, $reference);
-            $stmt->execute();
+            if(!$stmt->execute()){
+                throw new RuntimeException($stmt->error);
+            }
             $changed = $stmt->affected_rows === 1;
             $stmt->close();
 
-            if ($changed) {
-                // take the bought quantities off the stock
-                $stock = $conn->prepare('UPDATE products p
-                                        JOIN order_items i ON i.product_id = p.product_id
-                                        JOIN orders o ON o.order_id = i.order_id
-                                        SET p.stock_quantity = GREATEST(p.stock_quantity - i.quantity, 0)
-                                        WHERE o.order_reference = ?');
-                $stock->bind_param('s', $reference);
-                $stock->execute();
-                $stock->close();
-            }
             $conn->commit();
             return $changed;
         } catch (Throwable $error) {
             $conn->rollback();
             error_log('markOrderPaid failed: ' . $error->getMessage());
+            return false;
+        }
+    }
+
+    // Releases a pending order's reservation after PayFast confirms cancellation.
+    function markOrderCancelled(mysqli $conn, string $reference): bool
+    {
+        $conn->begin_transaction();
+        try {
+            $stmt = $conn->prepare("UPDATE orders SET status = 'cancelled'
+                                    WHERE order_reference = ? AND status = 'pending'");
+            $stmt->bind_param('s', $reference);
+            if(!$stmt->execute()){
+                throw new RuntimeException($stmt->error);
+            }
+            $changed = $stmt->affected_rows === 1;
+            $stmt->close();
+
+            if($changed){
+                $stock = $conn->prepare('UPDATE products p
+                    JOIN order_items i ON i.product_id = p.product_id
+                    JOIN orders o ON o.order_id = i.order_id
+                    SET p.stock_quantity = p.stock_quantity + i.quantity
+                    WHERE o.order_reference = ?');
+                if(!$stock){
+                    throw new RuntimeException($conn->error);
+                }
+                $stock->bind_param('s', $reference);
+                if(!$stock->execute()){
+                    throw new RuntimeException($stock->error);
+                }
+                $stock->close();
+            }
+
+            $conn->commit();
+            return $changed;
+        } catch (Throwable $error) {
+            $conn->rollback();
+            error_log('markOrderCancelled failed: ' . $error->getMessage());
             return false;
         }
     }
@@ -207,6 +237,8 @@
                     error_log('Order confirmation email failed for order ' . $reference . '; check mail server configuration.');
                 }
             }
+        } elseif ($status === 'CANCELLED') {
+            markOrderCancelled($conn, $reference);
         }
     }
 ?>

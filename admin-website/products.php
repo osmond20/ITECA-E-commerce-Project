@@ -8,8 +8,12 @@
         exit();
     }
 
-        if (!isset($_SESSION['csrf_logout'])) {
+    if (!isset($_SESSION['csrf_logout'])) {
         $_SESSION['csrf_logout'] = bin2hex(random_bytes(32));
+    }
+
+    if(empty($_SESSION['csrf_update'])){
+        $_SESSION['csrf_update'] = bin2hex(random_bytes(32));
     }
 
      // function to make text safe to print in HTML
@@ -74,6 +78,7 @@
             <div class="product-data-update">
               <form class="Form" action="../backend/updateProductsHandler.php" method="post">
                   <div class="updateForm" hidden>
+                    <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_update'] ?>"> 
                     <input type="text" name="id" value="1" hidden>
                     <input class="updateInputs" type="text" name="price" value="">
                     <input class="updateInputs" type="number" name="quantity" min="0" value="0">
@@ -94,6 +99,7 @@
             <div class="product-data-update">
               <form class="Form" action="../backend/updateProductsHandler.php" method="post">
                 <div class="updateForm" hidden>
+                  <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_update'] ?>"> 
                   <input type="text" name="id" value="2" hidden>
                   <input class="updateInputs" type="text" name="price" value="">
                   <input class="updateInputs" type="number" name="quantity" min="0" value="0">
@@ -114,6 +120,7 @@
             <div class="product-data-update">
               <form class="Form" action="../backend/updateProductsHandler.php" method="post">
                 <div class="updateForm" hidden>
+                  <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_update'] ?>"> 
                   <input type="text" name="id" value="3" hidden>
                   <input class="updateInputs" type="text" name="price" value="">
                   <input class="updateInputs" type="number" name="quantity" min="0" value="0">
@@ -134,6 +141,7 @@
             <div class="product-data-update">
               <form  action="../backend/updateProductsHandler.php" method="post">
                 <div class="updateForm" hidden>
+                  <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_update'] ?>"> 
                   <input type="text" name="id" value="4" hidden>
                   <input class="updateInputs" type="text" name="price" value="">
                   <input class="updateInputs" type="number" name="quantity" min="0" value="0">

@@ -146,7 +146,7 @@
     }
     else{
         //if user enters the page via the URL
-        header("Location: ../pages/index.php");
+        header("Location: ../index.php");
         exit();
     }
 ?>

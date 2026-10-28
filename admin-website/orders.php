@@ -8,8 +8,12 @@
         exit();
     }
 
-        if (!isset($_SESSION['csrf_logout'])) {
+    if (!isset($_SESSION['csrf_logout'])) {
         $_SESSION['csrf_logout'] = bin2hex(random_bytes(32));
+    }
+
+    if(empty($_SESSION['csrf_notify'])){
+        $_SESSION['csrf_notify'] = bin2hex(random_bytes(32));
     }
 
      // function to make text safe to print in HTML
@@ -17,7 +21,7 @@
         return htmlspecialchars((string) $text, ENT_QUOTES, 'UTF-8');
     }
 
-    $sql = $conn->prepare('SELECT order_id, order_reference, customer_name, customer_email, full_address, paid_at,status, total FROM orders LIMIT 3');
+    $sql = $conn->prepare('SELECT order_id, order_reference, customer_name, customer_email, full_address, phone_number, paid_at, status, total FROM orders ORDER BY order_id DESC LIMIT 3');
     if(!$sql){
         error_log('Connection failed');
         http_response_code(500);
@@ -36,8 +40,6 @@
 
     // close connection
     $sql->close();
-
-    print_r($orders);
 
     $sql = $conn->prepare('SELECT order_id FROM notify');
     if(!$sql){
@@ -96,7 +98,7 @@
                   <th>Date</th>
                   <th>Status</th>
                   <th>Total</th>
-                  <td>Actions</td>
+                  <th>Actions</th>
                 </tr>
                   <?php foreach($orders as $order) {?>
                     <tr>
@@ -107,11 +109,11 @@
                         <td><?php echo safeText($order['full_address']); ?></td>
                         <td><?php echo safeText($order['paid_at']);?></td>
                         <td>
-                            <?php if($orders['status'] === 'pending') {?>
+                            <?php if($order['status'] === 'pending') {?>
                               <span class="badge-pending">
                                 <?php echo safeText($order['status']);?>
                               </span>
-                            <?php }else if($orders['status'] === 'cancelled'){ ?>
+                            <?php }else if($order['status'] === 'cancelled'){ ?>
                               <span class="badge-cancelled">
                                 <?php echo safeText($order['status']);?>
                               </span>
@@ -123,14 +125,17 @@
                               <span class="badge">
                                 <?php echo safeText($order['status']);?>
                               </span>
+                            <?php } else { ?>
+                              <span><?php echo safeText($order['status']);?></span>
                             <?php } ?>  
                         </td>
                         <td><?php echo safeText($order['total']);?></td>
                         <td>
-                                <?php if(!isset($notifiedOrderIds[(string)$order['order_id']])) {?>
+                                <?php if($order['status'] === 'paid' && !isset($notifiedOrderIds[(string)$order['order_id']])) {?>
                                 <form action="../backend/deliveryHandler.php" method="post">
+                                    <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_notify'] ?>">
                                     <input type="text" name="delivery"  value="<?php echo safeText($order['order_id']); ?>" hidden>
-                                    <input type="email" name="delivery-email" value="<?php echo safeText($order['customer_id'])  ?>"hidden>
+                                    <input type="email" name="delivery-email" value="<?php echo safeText($order['customer_email'])  ?>"hidden>
                                     <button class="link-btn" name="delivery-btn" type="submit">Notify for Delivery</button>
                                 </form>
                             <?php } ?>

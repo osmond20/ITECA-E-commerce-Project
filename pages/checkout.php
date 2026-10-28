@@ -28,8 +28,6 @@
     <link rel="preload" href="../assets/fonts/figtree-v9-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="../assets/fonts/figtree-v9-latin-500.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="../assets/fonts/figtree-v9-latin-600.woff2" as="font" type="font/woff2" crossorigin>
-    <!-- styles.css gives us the site header, menu and footer.
-         checkout.css is only the checkout page. cart.css is the cart drawer. -->
     <link rel="stylesheet" href="../css/checkout.css">
     <link rel="stylesheet" href="../css/cart.css">
     <link rel="stylesheet" href="../css/popup.css">
@@ -68,31 +66,31 @@
                     else if($error === "saveError"){
                         echo '<p class="checkout-alert checkout-alert-error">We could not save your order. Please try again.</p>';
                     }
+                    else if($error === 'invalidcart'){
+                        echo '<p class="checkout-alert checkout-alert-error">Your cart contains invalid items. Please return to your cart and update it before checking out.</p>';
+                    }
+                    else if($error === 'invalidproduct'){
+                        echo '<p class="checkout-alert checkout-alert-error">A product in your cart is no longer available. Please update your cart and try again.</p>';
+                    }
+                    else if($error === 'stock'){
+                        echo '<p class="checkout-alert checkout-alert-error">There is not enough stock to complete this order. Please update your cart and try again.</p>';
+                    }
                     else if($session === 'sessionexpired'){
                         echo '<p class="checkout-alert">Session expired.</p>';
                     }
                     else if($emptycart === 'empty'){
                         echo '<p class="checkout-alert">Your cart is empty. Please add a product.</p>';
                     }
-                    else if($message === 'stock'){
-                        $stock = $_GET['stock'];
-                        $product = $_GET['product_name'];
-                        echo '<p class="checkout-alert">Sorry we only have' . safeText($stock) .'of'. safeText($product) .'in stock.</p>';
-                    }
-                    else if($message === 'out of stock'){
-                        $product = $_GET['product_name'];
-                        echo '<p class="checkout-alert">Sorry, '. safeText($product). 'is out of stock.</p>';
-                    }
                     ?>
                <!-- Hidden value sent along with the form -->
                 <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_checkout'] ?>"> 
-                <!-- js/checkout.js fills this with the cart, e.g. [{"id":1,"quantity":2}] -->
+                <!-- js/checkout.js fills this with the cart, e.g. [{"productID":1,"quantity":2}] -->
                 <input type="hidden" name="cart" id="cart-field" value="[]">
 
                 <!-- Contact -->
                 <h2 class="checkout-heading">Contact</h2>
                 <p class="checkout-intro">We'll only use your email to send your order confirmation and delivery updates</p>
-                <input class="field-input" type="email" name="email" placeholder="Enter your email address" value="<?php safeText($old['email'] ?? ""); ?>">
+                <input class="field-input" type="email" name="email" placeholder="Enter your email address" value="<?php echo safeText($old['email'] ?? ""); ?>">
                 
                 <!-- Delivery -->
                 <h2 class="checkout-heading">Delivery</h2>
@@ -104,14 +102,14 @@
                 </select>
 
                 <div class="field-row">
-                    <input class="field-input" type="text" name="fName" placeholder="First Name" value="<?php safeText($old['firstName'] ?? ""); ?>">
-                    <input class="field-input" type="text" name="lName" placeholder="Last Name" value="<?php safeText($old['lastName'] ?? ""); ?>">
+                    <input class="field-input" type="text" name="fName" placeholder="First Name" value="<?php echo safeText($old['firstName'] ?? ""); ?>">
+                    <input class="field-input" type="text" name="lName" placeholder="Last Name" value="<?php echo safeText($old['lastName'] ?? ""); ?>">
                 </div>
 
-                <input class="field-input" type="text" name="address" placeholder="Enter your address" value="<?php safeText($old['address'] ?? ""); ?>">
+                <input class="field-input" type="text" name="address" placeholder="Enter your address" value="<?php echo safeText($old['address'] ?? ""); ?>">
 
                 <div class="field-row">
-                    <input class="field-input" type="text" name="city" placeholder="City" value="<?php safeText($old['city'] ?? ""); ?>">
+                    <input class="field-input" type="text" name="city" placeholder="City" value="<?php echo safeText($old['city'] ?? ""); ?>">
                     <select class="field-select" name="province">
                         <option value="Province" disabled selected>Province</option>
                         <option value="Eastern Cape" default>Eastern Cape</option>
@@ -126,10 +124,10 @@
                     </select>
                 </div>
                 <div class="field-row">
-                    <input class="field-input" type="text" name="postal-Code" placeholder="Postal Code" value="<?php safeText($old['postal-code'] ?? ""); ?>">
-                    <input class="field-input" type="tel" name="phone-Number" placeholder="Phone Number" value="<?php safeText($old['tel'] ?? ""); ?>">
+                    <input class="field-input" type="text" name="postal-Code" placeholder="Postal Code" value="<?php echo safeText($old['postal-code'] ?? ""); ?>">
+                    <input class="field-input" type="tel" name="phone-Number" placeholder="Phone Number" value="<?php echo safeText($old['tel'] ?? ""); ?>">
                 </div>
-                <textarea class="field-textarea" name="note" placeholder="Notes about your order, .e.g. special delivery"><?php safeText($old['note'] ?? ""); ?></textarea>
+                <textarea class="field-textarea" name="note" placeholder="Notes about your order, .e.g. special delivery"><?php echo safeText($old['note'] ?? ""); ?></textarea>
                 <!-- ---------- Payment ---------- -->
                 <div class="payment-box">
                     <legend class="payment-legend">Payment Options</legend>
@@ -142,8 +140,7 @@
                 
                 <p class="checkout-terms">
                     By proceeding with your purchase you agree to our
-                    <a href="../pages/privacypolicy.php">Terms and Conditions</a> and
-                    <a href="../pages/privacypolicy.php">Privacy Policy</a>
+                    <a href="../pages/privacypolicy.php">Privacy Policy & Terms</a>
                 </p>
 
                 <button type="submit" name="checkout-submit" class="checkout-submit" id="checkout-submit">Proceed to Checkout</button>
