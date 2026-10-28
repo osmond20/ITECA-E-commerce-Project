@@ -48,7 +48,7 @@
 }
 
 .acc-email {
-  font-size: 15px;
+  font-size: clamp(0.625rem, 0.625rem + (100vw - 46.5rem) * 0.0071839, 0.9375rem);
   color: var(--c);
   text-decoration: underline;
   text-underline-offset: 4px;

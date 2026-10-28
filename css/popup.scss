@@ -46,7 +46,7 @@
     margin-bottom: 26px; 
 }
 .acc-email { 
-    font-size: 15px; 
+    font-size: clamp(calc(10 / 16 * 1rem), calc((10 / 16 * 1rem) + ((100vw - 46.5rem) * 0.0071839)), calc(15 / 16 * 1rem));
     color: var(--c); 
     text-decoration: underline; 
     text-underline-offset: 4px; 

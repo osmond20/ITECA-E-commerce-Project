@@ -1,6 +1,8 @@
 <?php
     require_once __DIR__ . '/../backend/session.php';
 
+    require_once __DIR__ . '/../db/conn.php';
+
     if (($_SESSION['state'] ?? '') !== 'loggedIn' || ($_SESSION['role'] ?? '') !== 'admin') {
         header('Location: ../pages/login.php?error=forbidden');
         exit();
@@ -14,6 +16,31 @@
     function safeText($text){
         return htmlspecialchars((string) $text, ENT_QUOTES, 'UTF-8');
     }
+
+    /*
+    This query retrieves the customer name, customer email, customer's phone number
+    and has an additional column that shows the number of orders that customer has
+    And this is done for each customer.
+    */
+    $sql = $conn->prepare('SELECT customer_name,
+       customer_email,
+       phone_number,
+       COUNT(DISTINCT order_id) AS order_count
+        FROM orders
+        GROUP BY customer_name, customer_email, phone_number');
+
+    if(!$sql){
+      error_log('Connection failed');
+      http_response_code(500);
+      exit('Server error occured. Please try again later.');
+    }
+
+    $sql->execute();
+    $result = $sql->get_result();
+    $customers = $result->fetch_all(MYSQLI_ASSOC);
+    $result->free_result();
+    $sql->close();
+
 
 ?>
 <!DOCTYPE html>
@@ -37,42 +64,26 @@
         <section class="card card-sm">
           <h2>Customers</h2>
           <div class="table-wrap">
-            <table>
-              <thead>
-              <tr>
-                  <th>Customer</th>
-                  <th>Email</th>
-                  <th>Telephone Numbers</th>
-                  <th>Total Orders</th>
-              </tr>
-            </thead>
-              <tbody>
-                <tr>
-                  <td>Sophia Clark</td>
-                  <td>sophia.clark@example.com</td>
-                  <td>0678900653</td>
-                  <td>4</td>
-                </tr>
-                <tr>
-                  <td>Ethan Carter</td>
-                  <td>ethan.carter@example.com</td>
-                  <td>0678900653</td>
-                  <td>5</td>
-                </tr>
-                <tr>
-                  <td>Liam Foster</td>
-                  <td>liam.foster@example.com</td>
-                  <td>0678900653</td>
-                  <td>1</td>
-                </tr>
-                <tr>
-                  <td>Ava Harper</td>
-                  <td>ava.harper@example.com</td>
-                  <td>0678900653</td>
-                  <td>3</td>
-                </tr>
-              </tbody>
-            </table>
+            <?php if(count($customers) === 0){ ?>
+                <p>No customers.</p>
+            <?php } else { ?>
+                 <table border="1">
+                    <tr>
+                        <th>Customer Name</th>
+                        <th>Email Address</th>
+                        <th>Telephone Number</th>
+                        <th>Total Orders</th>
+                    </tr>
+                    <?php foreach($customers as $customer) {?>
+                    <tr>
+                        <td><?php echo $customer['customer_name']; ?></td>
+                        <td><?php echo $customer['customer_email']; ?></td>
+                        <td><?php echo $customer['phone_number']; ?></td>
+                        <td><?php echo $customer['order_count']?></td>
+                    </tr> 
+                    <?php }  ?>
+                </table>
+            <?php } ?>
           </div>
         </section>
       </section>

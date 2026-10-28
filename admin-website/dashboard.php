@@ -124,7 +124,7 @@
             <?php if(count($totalOrders) === 0){?>
               <p>0</p>
             <?php } else{ ?>
-              <p>R<?php echo safeText($totalOrders['total_orders']); ?></p>
+              <p><?php echo safeText($totalOrders['total_orders']); ?></p>
             <?php } ?>
         </article>
           <article class="stat">
