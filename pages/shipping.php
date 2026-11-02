@@ -27,6 +27,8 @@
   <link rel="stylesheet" href="../css/shipping.css">
   <link rel="stylesheet" href="../css/cart.css">
   <link rel="stylesheet" href="../css/popup.css">
+  <link rel="icon" type="image/svg+xml" href="/ITECA-E-commerce-Project/assets/images/favicon.svg">
+  <link rel="icon" type="image/png" href="/ITECA-E-commerce-Project/assets/images/favicon-2.png">
 </head>
 <body>
      <?php require "header.php" ?>

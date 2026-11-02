@@ -31,6 +31,8 @@
     <link rel="stylesheet" href="../css/checkout.css">
     <link rel="stylesheet" href="../css/cart.css">
     <link rel="stylesheet" href="../css/popup.css">
+    <link rel="icon" type="image/svg+xml" href="./assets/images/favicon.svg">
+  <link rel="icon" type="image/png" href="./assets/images/favicon.png">
 </head>
 <body>
     <?php require __DIR__ . "/../pages/header.php" ?>

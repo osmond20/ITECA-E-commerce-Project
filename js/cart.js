@@ -41,6 +41,7 @@ cartClose.addEventListener("click", () =>{
             cart.classList.remove("active");
             main.classList.remove("dim");
             footer.classList.remove("dim");
+            shoppingComponent.classList.remove("no-pointer");
         }
     }
 );

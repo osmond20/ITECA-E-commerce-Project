@@ -24,6 +24,8 @@
   type="font/woff2"
   crossorigin>
   <link rel="stylesheet" href="../css/signin.css">
+  <link rel="icon" type="image/svg+xml" href="/ITECA-E-commerce-Project/assets/images/favicon.svg">
+  <link rel="icon" type="image/png" href="/ITECA-E-commerce-Project/assets/images/favicon-2.png">
     <title>Sign in</title>
 </head>
 <body>

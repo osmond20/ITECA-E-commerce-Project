@@ -7,7 +7,8 @@ const popupButton = document.getElementById("account-popup");
 const backgroundFooter = document.querySelector(".footer-el");
 
 // displaying an acount popover
-popupButton.addEventListener("click", ()=>{
+if(popupButton){
+    popupButton.addEventListener("click", ()=>{
     const isOpen = accountMenu.classList.contains('show');
     popup.classList.add('show');
     
@@ -18,6 +19,7 @@ popupButton.addEventListener("click", ()=>{
     backgroundMain.classList.add("dim");
     backgroundFooter.classList.add("dim");
 });
+}
 
 // closing the account
 modalClose.addEventListener("click", ()=>{

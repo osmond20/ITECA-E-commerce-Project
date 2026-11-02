@@ -21,7 +21,7 @@
         return htmlspecialchars((string) $text, ENT_QUOTES, 'UTF-8');
     }
 
-    $sql = $conn->prepare('SELECT order_id, order_reference, customer_name, customer_email, full_address, phone_number, paid_at, status, total FROM orders ORDER BY order_id DESC LIMIT 3');
+    $sql = $conn->prepare('SELECT order_id, order_reference, customer_name, customer_email, full_address, phone_number, paid_at, status, total, order_note FROM orders ORDER BY order_id DESC LIMIT 3');
     if(!$sql){
         error_log('Connection failed');
         http_response_code(500);
@@ -76,6 +76,8 @@
     <link rel="stylesheet" href="../css/order.css">
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/popup.css">
+    <link rel="icon" type="image/svg+xml" href="/ITECA-E-commerce-Project/assets/images/favicon.svg">
+  <link rel="icon" type="image/png" href="/ITECA-E-commerce-Project/assets/images/favicon-2.png">
 </head>
 <body>
   <?php require __DIR__ . "/header.php" ?>
@@ -98,6 +100,7 @@
                   <th>Date</th>
                   <th>Status</th>
                   <th>Total</th>
+                  <th>Note</th>
                   <th>Actions</th>
                 </tr>
                   <?php foreach($orders as $order) {?>
@@ -130,6 +133,7 @@
                             <?php } ?>  
                         </td>
                         <td><?php echo safeText($order['total']);?></td>
+                        <td><?php echo safeText($order['order_note']);?></td>
                         <td>
                                 <?php if($order['status'] === 'paid' && !isset($notifiedOrderIds[(string)$order['order_id']])) {?>
                                 <form action="../backend/deliveryHandler.php" method="post">
