@@ -19,7 +19,7 @@ function payfastSettings(): array
     return $settings;
 }
 
-// gener
+// generates payfast signature
 function payfastSignature(array $data, string $passphrase = ''): string
 {
     $pairs = [];
