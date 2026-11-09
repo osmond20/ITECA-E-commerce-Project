@@ -75,7 +75,7 @@ require __DIR__ . "/session.php";
     session_regenerate_id(true);
 
     // store session credentials
-    $_SESSION['state']= "signedIn";
+    $_SESSION['state']= "loggedIn";
     $_SESSION['user_email'] = $email;
     $_SESSION['username'] = $username;
     $_SESSION['role'] = 'user';

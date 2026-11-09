@@ -3,9 +3,13 @@
 
     require_once __DIR__ . '/../db/conn.php';
     
-    if (($_SESSION['state'] ?? '') !== 'loggedIn' || ($_SESSION['role'] ?? '') !== 'admin') {
-        header('Location: ../pages/login.php?error=forbidden');
-        exit();
+    // Accept both post-login  and post-registration session states
+    $authState = $_SESSION['state'] ?? '';
+    $role = $_SESSION['role'] ?? '';
+    $isAuthenticated = in_array($authState, ['loggedIn', 'signedIn'], true);
+    if(!$isAuthenticated || $role !== 'user'){
+      header('Location: ../pages/login.php?error=forbidden');
+      exit();
     }
 
     if (!isset($_SESSION['csrf_logout'])) {
