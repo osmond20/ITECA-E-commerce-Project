@@ -23,7 +23,8 @@ Platform used for testing are:
 - TestSprite for backend testing and frontend testing
 - Lighthouse in DevTools
 
-##Design & Prototypes
+## Design & Prototypes
+
 The figma design files can be found in these links:
 1. Design:
     -   Main Website and Admin Website:<https://www.figma.com/community/file/1697913651677195361>
@@ -32,6 +33,6 @@ The figma design files can be found in these links:
     - Main Website:<[True Gent Africa Prototype | Figma](https://www.figma.com/community/file/1697914524643423330/true-gent-africa-prototype?fuid=1559949823767947608)>
     - Admin Website:<https://www.figma.com/community/file/1697915109808069734/true-gent-africa-admin-dashboard?fuid=1559949823767947608>
 
-##User Manual
+## User Manual
 A user manual has been provided in the docs under the "User Manual folder" for further information on hosting and deployment procedures as well setup requirements.
 
