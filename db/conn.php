@@ -8,7 +8,13 @@
 
 
     // storing connection in a variable
-    $conn = mysqli_connect($servername, $dBUserName, $dBPassword, $dbName);
+    try {
+        $conn = mysqli_connect($servername, $dBUserName, $dBPassword, $dbName);
+    } catch (mysqli_sql_exception $exception) {
+        error_log('Database connection failed: ' . $exception->getMessage());
+        http_response_code(500);
+        exit('The service is temporarily unavailable.');
+    }
 
     // checking connection and returns an error message if the connection fails
     if(!$conn){
