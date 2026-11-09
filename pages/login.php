@@ -43,7 +43,7 @@
             }
 
             if (($_GET['newpwd'] ?? '') === 'passwordupdated') {
-                echo "<p class='success'>Password updated. Please sign in.</p>";
+                echo "<p class='success'>Password updated. Please log in.</p>";
             }
 
             if(($_GET['session'] ?? '') === 'sessionexpired'){
