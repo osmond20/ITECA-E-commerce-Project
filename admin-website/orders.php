@@ -7,7 +7,7 @@
     $authState = $_SESSION['state'] ?? '';
     $role = $_SESSION['role'] ?? '';
     $isAuthenticated = in_array($authState, ['loggedIn', 'signedIn'], true);
-    if(!$isAuthenticated || $role !== 'user'){
+    if(!$isAuthenticated || $role !== 'admin'){
       header('Location: ../pages/login.php?error=forbidden');
       exit();
     }
